@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg-hero" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2D1B4E"/>
+      <stop offset="60%" stop-color="#1E1235"/>
+      <stop offset="100%" stop-color="#0F0820"/>
+    </linearGradient>
+    <linearGradient id="overlay-hero" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#A54120" stop-opacity="0.18"/>
+      <stop offset="50%" stop-color="#A54120" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#2D1B4E" stop-opacity="0.25"/>
+    </linearGradient>
+    <filter id="grain-hero">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 1 0 0 0 0 0.97 0 0 0 0 0.93 0 0 0 0.08 0"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#bg-hero)"/>
+
+  <!-- Window suggestion (architecture lines) -->
+  <g opacity="0.08" stroke="#FAF8F2" stroke-width="1" fill="none">
+    <rect x="60" y="120" width="300" height="560"/>
+    <line x1="60" y1="400" x2="360" y2="400"/>
+    <line x1="210" y1="120" x2="210" y2="680"/>
+    <rect x="420" y="140" width="290" height="540"/>
+    <line x1="420" y1="410" x2="710" y2="410"/>
+    <line x1="565" y1="140" x2="565" y2="680"/>
+  </g>
+
+  <!-- Desk line -->
+  <rect x="0" y="720" width="800" height="6" fill="#A54120" opacity="0.25"/>
+  <rect x="0" y="726" width="800" height="274" fill="#1A1410" opacity="0.35"/>
+
+  <!-- Warm light pool -->
+  <ellipse cx="400" cy="500" rx="500" ry="260" fill="#A54120" opacity="0.1"/>
+
+  <!-- Center typographic mark -->
+  <g opacity="0.9">
+    <text x="400" y="460" text-anchor="middle" fill="#FAF8F2"
+          font-family="'Playfair Display', Georgia, serif"
+          font-size="52" font-weight="400" letter-spacing="-1">Capsule</text>
+    <text x="400" y="490" text-anchor="middle" fill="#A54120"
+          font-family="'Playfair Display', Georgia, serif"
+          font-size="52" font-style="italic" font-weight="400">Expertise</text>
+    <line x1="340" y1="515" x2="460" y2="515" stroke="#A54120" stroke-width="1"/>
+    <text x="400" y="540" text-anchor="middle" fill="#FAF8F2" opacity="0.6"
+          font-family="'DM Sans', system-ui, sans-serif"
+          font-size="11" letter-spacing="3" font-weight="500">PHOTO PROVISOIRE — SHOOTING À PLANIFIER</text>
+  </g>
+
+  <rect width="800" height="1000" fill="url(#overlay-hero)"/>
+  <rect width="800" height="1000" filter="url(#grain-hero)" opacity="0.9"/>
+</svg>
