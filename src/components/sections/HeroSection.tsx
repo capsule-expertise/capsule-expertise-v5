@@ -129,41 +129,65 @@ export function HeroSection() {
             <em>{H.titleLineEm}</em>
           </motion.h1>
 
-          {/* Reassurance card (pas de prix affiché) */}
+          {/* Photo duo associés — focal humain above-the-fold */}
           <motion.div
             initial={{ opacity: 0, y: reduced ? 0 : 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduced ? 0 : 0.95, delay: 0.2, ease: EASE }}
-            className="hidden md:flex flex-col gap-3.5 px-9 py-8 min-w-[340px] bg-[var(--color-ce-cream)] text-[var(--color-ce-violet)] rounded-[var(--radius-lg)] relative overflow-hidden"
-            style={{ boxShadow: '0 30px 60px -30px rgba(11,6,24,0.55)' }}
+            className="hidden md:block relative overflow-hidden rounded-[var(--radius-lg)]"
+            style={{
+              width: 'clamp(320px, 28vw, 460px)',
+              aspectRatio: '3 / 4',
+              boxShadow: '0 30px 60px -30px rgba(11,6,24,0.55)',
+              background: 'var(--color-ce-violet-deep)',
+            }}
           >
-            <div className="ce-label ce-label--violet">{H.reassurance.label}</div>
-            <div className="flex items-baseline gap-2.5">
-              <div
-                style={{
-                  fontSize: '80px',
-                  lineHeight: 1,
-                  fontWeight: 500,
-                  letterSpacing: '-0.04em',
-                }}
-              >
-                {H.reassurance.num}
-                <em
-                  className="font-serif italic text-[var(--color-ce-terra)]"
-                  style={{ fontWeight: 400 }}
-                >
-                  {H.reassurance.unit}
-                </em>
-              </div>
-              <div className="text-[14px] text-[rgba(45,27,78,0.6)] leading-[1.3] whitespace-pre-line">
-                {H.reassurance.unitLine}
-              </div>
-            </div>
-            <div className="text-[14px] text-[rgba(45,27,78,0.72)] pt-3.5 border-t border-[rgba(45,27,78,0.1)] leading-[1.5] whitespace-pre-line">
-              {H.reassurance.footer}
+            <img
+              src={H.heroPhoto.src}
+              alt={H.heroPhoto.alt}
+              loading="eager"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: 'center top' }}
+            />
+            <div
+              className="absolute bottom-0 left-0 right-0 px-5 py-3 text-[12px] text-[var(--color-ce-cream)]"
+              style={{
+                background: 'linear-gradient(to top, rgba(11,6,24,0.85), transparent)',
+              }}
+            >
+              {H.heroPhoto.caption}
             </div>
           </motion.div>
         </div>
+
+        {/* Photo duo mobile (visible <md uniquement) */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          custom={0.18}
+          variants={fadeUp}
+          className="md:hidden mt-8 relative overflow-hidden rounded-[var(--radius-lg)]"
+          style={{
+            aspectRatio: '4 / 3',
+            background: 'var(--color-ce-violet-deep)',
+          }}
+        >
+          <img
+            src={H.heroPhoto.src}
+            alt={H.heroPhoto.alt}
+            loading="eager"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: 'center top' }}
+          />
+          <div
+            className="absolute bottom-0 left-0 right-0 px-4 py-2.5 text-[12px] text-[var(--color-ce-cream)]"
+            style={{
+              background: 'linear-gradient(to top, rgba(11,6,24,0.85), transparent)',
+            }}
+          >
+            {H.heroPhoto.caption}
+          </div>
+        </motion.div>
 
         {/* Deck + bullets + dual CTA */}
         <motion.div
@@ -208,7 +232,39 @@ export function HeroSection() {
               ))}
             </ul>
           </div>
-          <div className="flex flex-col gap-3 items-start">
+          <div className="flex flex-col gap-5 items-start">
+            {/* Reassurance 48h compacte (déplacée depuis la grille supérieure) */}
+            <div
+              className="hidden md:flex flex-col gap-2 px-6 py-5 min-w-[260px] bg-[var(--color-ce-cream)] text-[var(--color-ce-violet)] rounded-[var(--radius-lg)]"
+              style={{ boxShadow: '0 20px 40px -25px rgba(11,6,24,0.45)' }}
+            >
+              <div className="ce-label ce-label--violet">{H.reassurance.label}</div>
+              <div className="flex items-baseline gap-2.5">
+                <div
+                  style={{
+                    fontSize: '52px',
+                    lineHeight: 1,
+                    fontWeight: 500,
+                    letterSpacing: '-0.04em',
+                  }}
+                >
+                  {H.reassurance.num}
+                  <em
+                    className="font-serif italic text-[var(--color-ce-terra)]"
+                    style={{ fontWeight: 400 }}
+                  >
+                    {H.reassurance.unit}
+                  </em>
+                </div>
+                <div className="text-[12px] text-[rgba(45,27,78,0.6)] leading-[1.3] whitespace-pre-line">
+                  {H.reassurance.unitLine}
+                </div>
+              </div>
+              <div className="text-[12px] text-[rgba(45,27,78,0.72)] pt-2.5 border-t border-[rgba(45,27,78,0.1)] leading-[1.5] whitespace-pre-line">
+                {H.reassurance.footer}
+              </div>
+            </div>
+
             <a
               href={H.ctaPrimary.href}
               onClick={smoothScroll(H.ctaPrimary.href)}

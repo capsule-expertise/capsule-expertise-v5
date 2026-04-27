@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg-duo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a2566"/>
+      <stop offset="100%" stop-color="#1a0f32"/>
+    </linearGradient>
+    <filter id="grain-duo">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 1 0 0 0 0 0.97 0 0 0 0 0.93 0 0 0 0.06 0"/>
+    </filter>
+  </defs>
+  <rect width="600" height="800" fill="url(#bg-duo)"/>
+  <circle cx="220" cy="320" r="110" fill="#F2EDE1" opacity="0.08"/>
+  <circle cx="220" cy="320" r="68" fill="none" stroke="#D95A2E" stroke-width="1.5" opacity="0.6"/>
+  <text x="220" y="338" text-anchor="middle" fill="#D95A2E"
+        font-family="'Instrument Serif', Georgia, serif" font-style="italic"
+        font-size="64" font-weight="500" letter-spacing="2">RR</text>
+  <circle cx="380" cy="320" r="110" fill="#F2EDE1" opacity="0.08"/>
+  <circle cx="380" cy="320" r="68" fill="none" stroke="#D95A2E" stroke-width="1.5" opacity="0.6"/>
+  <text x="380" y="338" text-anchor="middle" fill="#D95A2E"
+        font-family="'Instrument Serif', Georgia, serif" font-style="italic"
+        font-size="64" font-weight="500" letter-spacing="2">JP</text>
+  <g opacity="0.55">
+    <line x1="180" y1="540" x2="420" y2="540" stroke="#D95A2E" stroke-width="1"/>
+    <text x="300" y="570" text-anchor="middle" fill="#F2EDE1"
+          font-family="'Instrument Sans', system-ui, sans-serif" font-size="13"
+          letter-spacing="3" font-weight="500">RANTO  &amp;  JÉRÔME</text>
+    <text x="300" y="592" text-anchor="middle" fill="#F2EDE1" opacity="0.55"
+          font-family="'Instrument Sans', system-ui, sans-serif" font-size="10"
+          letter-spacing="2.5" font-weight="400">ASSOCIÉS FONDATEURS</text>
+  </g>
+  <rect width="600" height="800" filter="url(#grain-duo)" opacity="0.9"/>
+</svg>
