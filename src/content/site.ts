@@ -81,7 +81,7 @@ export const SITE = {
         "Entretien de 30 minutes, confidentiel, sans engagement.\nNote de cadrage écrite livrée sous 10 jours.",
     },
     heroPhoto: {
-      src: '/ranto-jerome.png',
+      src: '/ranto-jerome.webp',
       alt: 'Ranto Rajaonarivo et Jérôme Phou, associés fondateurs de Capsule Expertise',
       caption: 'Ranto & Jérôme — vos interlocuteurs',
     },
