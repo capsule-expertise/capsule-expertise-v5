@@ -129,19 +129,17 @@ export function HeroSection() {
             <em>{H.titleLineEm}</em>
           </motion.h1>
 
-          {/* Photo duo associés — portrait fondu dans le fond violet */}
+          {/* Photo duo associés — focal humain above-the-fold */}
           <motion.div
             initial={{ opacity: 0, y: reduced ? 0 : 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduced ? 0 : 0.95, delay: 0.2, ease: EASE }}
-            className="hidden md:block relative pointer-events-none"
+            className="hidden md:block relative overflow-hidden rounded-[var(--radius-lg)]"
             style={{
-              width: 'clamp(340px, 30vw, 500px)',
+              width: 'clamp(320px, 28vw, 460px)',
               aspectRatio: '3 / 4',
-              WebkitMaskImage:
-                'radial-gradient(ellipse 60% 70% at 50% 45%, #000 35%, rgba(0,0,0,0.5) 65%, transparent 90%)',
-              maskImage:
-                'radial-gradient(ellipse 60% 70% at 50% 45%, #000 35%, rgba(0,0,0,0.5) 65%, transparent 90%)',
+              boxShadow: '0 30px 60px -30px rgba(11,6,24,0.55)',
+              background: 'var(--color-ce-violet-deep)',
             }}
           >
             <img
@@ -151,6 +149,14 @@ export function HeroSection() {
               className="w-full h-full object-cover"
               style={{ objectPosition: 'center top' }}
             />
+            <div
+              className="absolute bottom-0 left-0 right-0 px-5 py-3 text-[12px] text-[var(--color-ce-cream)]"
+              style={{
+                background: 'linear-gradient(to top, rgba(11,6,24,0.85), transparent)',
+              }}
+            >
+              {H.heroPhoto.caption}
+            </div>
           </motion.div>
         </div>
 
@@ -160,13 +166,10 @@ export function HeroSection() {
           animate="visible"
           custom={0.18}
           variants={fadeUp}
-          className="md:hidden mt-8 relative pointer-events-none"
+          className="md:hidden mt-8 relative overflow-hidden rounded-[var(--radius-lg)]"
           style={{
             aspectRatio: '4 / 3',
-            WebkitMaskImage:
-              'radial-gradient(ellipse 65% 70% at 50% 45%, #000 35%, rgba(0,0,0,0.5) 65%, transparent 92%)',
-            maskImage:
-              'radial-gradient(ellipse 65% 70% at 50% 45%, #000 35%, rgba(0,0,0,0.5) 65%, transparent 92%)',
+            background: 'var(--color-ce-violet-deep)',
           }}
         >
           <img
@@ -176,6 +179,14 @@ export function HeroSection() {
             className="w-full h-full object-cover"
             style={{ objectPosition: 'center top' }}
           />
+          <div
+            className="absolute bottom-0 left-0 right-0 px-4 py-2.5 text-[12px] text-[var(--color-ce-cream)]"
+            style={{
+              background: 'linear-gradient(to top, rgba(11,6,24,0.85), transparent)',
+            }}
+          >
+            {H.heroPhoto.caption}
+          </div>
         </motion.div>
 
         {/* Deck + bullets + dual CTA */}
