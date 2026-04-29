@@ -46,7 +46,7 @@ export function HeroSection() {
       className="relative overflow-hidden"
       style={{
         background: 'var(--color-ce-violet)',
-        paddingTop: '88px',
+        paddingTop: '32px',
         paddingBottom: '120px',
       }}
     >
@@ -82,7 +82,7 @@ export function HeroSection() {
       <div className="ce-container relative z-10">
         {/* Hero grid : H1 + subtitle / Photo */}
         <div
-          className="grid gap-10 md:gap-20 items-end"
+          className="grid gap-10 md:gap-20 items-start"
           style={{ gridTemplateColumns: 'minmax(0, 1fr) auto' }}
         >
           <div>
@@ -101,7 +101,7 @@ export function HeroSection() {
             >
               {H.titleLine1}
               <br />
-              {H.titleLine2}
+              <span style={{ color: 'var(--color-ce-terra)' }}>{H.titleLine2}</span>
             </motion.h1>
 
             <motion.p
@@ -176,33 +176,15 @@ export function HeroSection() {
           style={{ gridTemplateColumns: 'minmax(0, 1.1fr) auto' }}
         >
           <div>
-            <p
-              className="text-[rgba(242,237,225,0.82)] max-w-[60ch] mb-7"
-              style={{ fontSize: '21px', lineHeight: 1.5 }}
-            >
-              {H.deck.split(H.deckEm).map((chunk, i, arr) => (
-                <span key={i}>
-                  {chunk}
-                  {i < arr.length - 1 && (
-                    <em
-                      className="font-serif italic text-[var(--color-ce-terra-soft)]"
-                      style={{ fontSize: '1.05em' }}
-                    >
-                      {H.deckEm}
-                    </em>
-                  )}
-                </span>
-              ))}
-            </p>
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-3.5">
               {H.bullets.map((b) => (
                 <li
                   key={b}
-                  className="flex items-start gap-3 text-[16px] leading-[1.55] text-[var(--color-ce-cream)]"
+                  className="flex items-start gap-3.5 text-[17px] leading-[1.55] text-[var(--color-ce-cream)]"
                 >
                   <span
                     aria-hidden
-                    className="inline-block w-[6px] h-[6px] rounded-full bg-[var(--color-ce-terra)] mt-[0.55em] shrink-0"
+                    className="inline-block w-[8px] h-[8px] rounded-full bg-[var(--color-ce-terra)] mt-[0.55em] shrink-0"
                   />
                   {b}
                 </li>
