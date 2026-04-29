@@ -59,6 +59,25 @@ export function Footer() {
           ))}
         </div>
 
+        {/* Affiliation OEC */}
+        <div className="py-7 border-b border-[rgba(242,237,225,0.1)] flex items-center gap-5">
+          <img
+            src="/oec-logo.png"
+            alt="Ordre des Experts-Comptables — Conseil national"
+            width={150}
+            height={45}
+            style={{
+              height: '36px',
+              width: 'auto',
+              filter: 'brightness(0) invert(1)',
+              opacity: 0.75,
+            }}
+          />
+          <span className="text-[13px] text-[rgba(242,237,225,0.6)]">
+            Membre de l'Ordre des Experts-Comptables
+          </span>
+        </div>
+
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-[13px] text-[rgba(242,237,225,0.45)]">
           <div>

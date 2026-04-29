@@ -37,7 +37,7 @@ export const SITE = {
     phoneHref: 'tel:+331XXXXXXXX',
     email: 'contact@capsule-expertise.fr',
     address: {
-      street: 'XX avenue XXXX',
+      street: '60 avenue du Général Leclerc',
       postalCode: '94360',
       city: 'Bry-sur-Marne',
       region: 'Île-de-France',
@@ -49,7 +49,6 @@ export const SITE = {
     links: [
       { label: 'Dirigeants', href: '#dirigeant' },
       { label: 'DAF · ETI', href: '#finance' },
-      { label: 'Méthode', href: '#methode' },
       { label: 'Le cabinet', href: '#cabinet' },
     ],
     cta: { label: 'Prendre 30 min', href: '#contact' },
@@ -57,7 +56,6 @@ export const SITE = {
 
   // ─── HERO — copy V1 complet, présentation modèle ───
   hero: {
-    pulse: 'Cabinet ouvert · Bry-sur-Marne · réponse sous 48 h ouvrées',
     eyebrow: "Cabinet d'expertise comptable indépendant — Île-de-France",
     titleLine1: 'Comprendre',
     titleLine2: 'ses chiffres.',
@@ -104,7 +102,7 @@ export const SITE = {
     parcours: [
       {
         id: 'dirigeant',
-        label: 'Parcours 01',
+        label: 'Pour les TPE/PME',
         title: 'Je dirige une TPE/PME',
         titleEm: 'ou j’exerce en libéral',
         tagline:
@@ -120,7 +118,7 @@ export const SITE = {
       },
       {
         id: 'finance',
-        label: 'Parcours 02',
+        label: 'Pour les ETI / Groupes',
         title: 'Je pilote la finance',
         titleEm: "d’une ETI ou d’un groupe",
         tagline: 'Renfort opérationnel dans la fonction finance.',
@@ -464,7 +462,7 @@ export const SITE = {
         title: 'Contact',
         links: [
           { label: 'contact@capsule-expertise.fr', href: 'mailto:contact@capsule-expertise.fr' },
-          { label: 'Bry-sur-Marne · Val-de-Marne', href: '#' },
+          { label: '60 av. du Général Leclerc · 94360 Bry-sur-Marne', href: '#' },
           { label: 'Prendre 30 min →', href: '#contact' },
         ],
       },

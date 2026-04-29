@@ -80,19 +80,6 @@ export function HeroSection() {
       />
 
       <div className="ce-container relative z-10">
-        {/* Pulse status tag */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          custom={0}
-          variants={fadeUp}
-          className="inline-flex items-center gap-3 mb-10 py-2 pl-3 pr-4 border border-[rgba(242,237,225,0.12)] rounded-full"
-          style={{ background: 'rgba(242,237,225,0.06)' }}
-        >
-          <div className="ce-pulse" />
-          <span className="text-[13px] text-[rgba(242,237,225,0.78)]">{H.pulse}</span>
-        </motion.div>
-
         {/* Eyebrow avec géo (reco audit) */}
         <motion.div
           initial="hidden"
