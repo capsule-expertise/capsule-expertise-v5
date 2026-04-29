@@ -35,7 +35,7 @@ export function OffresSection() {
       <div className="ce-container">
         {/* Head */}
         <div className="mb-14 max-w-[720px]">
-          <div className="ce-label ce-label--violet mb-6">{O.eyebrow}</div>
+          <div className="ce-label ce-label--on-light mb-6">{O.eyebrow}</div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -75,7 +75,7 @@ export function OffresSection() {
               {/* N° label — mono discret */}
               <div className="flex items-start justify-between gap-4">
                 <div
-                  className="text-[var(--color-ce-terra)]"
+                  className="text-[var(--color-ce-terra-deep)]"
                   style={{
                     fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
                     fontSize: '12px',
@@ -100,7 +100,7 @@ export function OffresSection() {
               </h3>
 
               {/* Divider */}
-              <div className="w-8 h-px bg-[var(--color-ce-terra)]" aria-hidden />
+              <div className="w-8 h-px bg-[var(--color-ce-terra-deep)]" aria-hidden />
 
               {/* Description */}
               <p className="text-[16px] leading-[1.65] text-[rgba(20, 37, 58,0.75)]">
@@ -116,7 +116,7 @@ export function OffresSection() {
                   >
                     <span
                       aria-hidden
-                      className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra)]"
+                      className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra-deep)]"
                     />
                     {bullet}
                   </li>
@@ -162,7 +162,7 @@ export function OffresSection() {
                 >
                   <span
                     aria-hidden
-                    className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra)]"
+                    className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra-deep)]"
                   />
                   {b}
                 </li>
@@ -176,7 +176,7 @@ export function OffresSection() {
                 >
                   <span
                     aria-hidden
-                    className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra)]"
+                    className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra-deep)]"
                   />
                   {b}
                 </li>

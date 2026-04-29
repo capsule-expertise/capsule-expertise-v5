@@ -42,7 +42,7 @@ export function FactsSection() {
                 >
                   {f.num}
                   {'em' in f && f.em && (
-                    <em className="font-serif italic text-[var(--color-ce-terra)]" style={{ fontWeight: 400 }}>
+                    <em className="font-serif italic text-[var(--color-ce-terra-deep)]" style={{ fontWeight: 400 }}>
                       {f.em}
                     </em>
                   )}

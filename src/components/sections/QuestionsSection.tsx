@@ -50,7 +50,7 @@ export function QuestionsSection() {
         {/* Head */}
         <div className="ce-section-head mb-[72px]">
           <div>
-            <div className="ce-label mb-6">{Q.eyebrow}</div>
+            <div className="ce-label ce-label--on-light mb-6">{Q.eyebrow}</div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -82,7 +82,7 @@ export function QuestionsSection() {
             >
               {/* N° label — mono discret (style documents cabinet, pas hero SaaS) */}
               <div
-                className="text-[var(--color-ce-terra)]"
+                className="text-[var(--color-ce-terra-deep)]"
                 style={{
                   fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
                   fontSize: '12px',
@@ -108,7 +108,7 @@ export function QuestionsSection() {
               </h3>
 
               {/* Divider */}
-              <div className="w-6 h-px bg-[var(--color-ce-terra)]" aria-hidden />
+              <div className="w-6 h-px bg-[var(--color-ce-terra-deep)]" aria-hidden />
 
               {/* Answer */}
               <p className="text-[16px] leading-[1.65] italic text-[rgba(20, 37, 58,0.78)]">

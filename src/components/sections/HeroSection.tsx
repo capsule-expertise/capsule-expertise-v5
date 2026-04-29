@@ -103,10 +103,10 @@ export function HeroSection() {
             variants={fadeUp}
             className="tracking-display text-[var(--color-ce-cream)] max-w-[14ch]"
             style={{
-              fontSize: 'clamp(52px, 10.5vw, 168px)',
-              lineHeight: 0.92,
+              fontSize: 'clamp(44px, 9vw, 140px)',
+              lineHeight: 0.94,
               fontWeight: 500,
-              letterSpacing: '-0.042em',
+              letterSpacing: '-0.04em',
             }}
           >
             {H.titleLine1}

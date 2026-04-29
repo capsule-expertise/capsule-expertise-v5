@@ -38,7 +38,7 @@ export function AiguillageSection() {
         {/* Head */}
         <div className="ce-section-head ce-section-head--light mb-[72px]">
           <div>
-            <div className="ce-label ce-label--violet mb-6">{A.eyebrow}</div>
+            <div className="ce-label ce-label--on-light mb-6">{A.eyebrow}</div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -84,7 +84,7 @@ export function AiguillageSection() {
                 <div
                   className={cn(
                     'text-[11px] font-medium tracking-[0.18em] uppercase mb-4',
-                    p.priority ? 'text-[var(--color-ce-terra-soft)]' : 'text-[var(--color-ce-terra)]',
+                    p.priority ? 'text-[var(--color-ce-terra-soft)]' : 'text-[var(--color-ce-terra-deep)]',
                   )}
                 >
                   {p.label}
@@ -135,7 +135,7 @@ export function AiguillageSection() {
                   >
                     <span
                       aria-hidden
-                      className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra)]"
+                      className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra-deep)]"
                     />
                     {b}
                   </li>

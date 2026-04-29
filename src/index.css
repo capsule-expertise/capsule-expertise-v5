@@ -15,7 +15,8 @@
   --color-ce-violet-rich: #1e3a5f;
   --color-ce-violet-deep: #0a1726;
   --color-ce-violet-ink: #050e1a;
-  --color-ce-terra: #c9a227;
+  --color-ce-terra: #c9a227;       /* OCRE VIF — pour fond DARK (bleu nuit) */
+  --color-ce-terra-deep: #7a601a;  /* OCRE FONCÉ — pour fond LIGHT (ivoire), ratio AA */
   --color-ce-terra-soft: #e0b850;
   --color-ce-cream: #f4f1e8;
   --color-ce-cream-warm: #ede7d2;
@@ -167,6 +168,13 @@
   .ce-label--violet {
     color: var(--color-ce-violet);
   }
+  /* Pour eyebrows sur fond clair (ivoire) — ocre foncé pour respecter AA */
+  .ce-label--on-light {
+    color: var(--color-ce-terra-deep);
+  }
+  .ce-label--on-light::before {
+    background: var(--color-ce-terra-deep);
+  }
 
   /* Tag pill */
   .ce-tag {
@@ -213,22 +221,25 @@
   .ce-btn:hover {
     transform: translateY(-1px);
   }
+  /* Primary (sur fond DARK) — fonce sur hover, garde l'identité ocre */
   .ce-btn--terra {
     background: var(--color-ce-terra);
     color: var(--color-ce-cream);
   }
   .ce-btn--terra:hover {
-    background: var(--color-ce-cream);
-    color: var(--color-ce-violet);
+    background: var(--color-ce-terra-deep);
+    color: var(--color-ce-cream);
   }
+  /* Sur fond CLAIR — color swap navy/ivoire (high contrast) */
   .ce-btn--cream {
     background: var(--color-ce-cream);
     color: var(--color-ce-violet);
   }
   .ce-btn--cream:hover {
-    background: var(--color-ce-terra);
+    background: var(--color-ce-violet);
     color: var(--color-ce-cream);
   }
+  /* Ghost (sur fond DARK) — fill subtle ocre pour feedback */
   .ce-btn--ghost {
     background: transparent;
     color: var(--color-ce-cream);
@@ -237,15 +248,18 @@
   .ce-btn--ghost:hover {
     border-color: var(--color-ce-terra);
     color: var(--color-ce-terra);
+    background: rgba(201, 162, 39, 0.08);
   }
+  /* Ghost (sur fond CLAIR) — passe en ocre foncé sur hover, lisible */
   .ce-btn--ghost-light {
     background: transparent;
     color: var(--color-ce-violet);
     border-color: rgba(20, 37, 58, 0.25);
   }
   .ce-btn--ghost-light:hover {
-    border-color: var(--color-ce-terra);
-    color: var(--color-ce-terra);
+    border-color: var(--color-ce-terra-deep);
+    color: var(--color-ce-terra-deep);
+    background: rgba(122, 96, 26, 0.06);
   }
   .ce-btn--sm {
     padding: 10px 16px;
