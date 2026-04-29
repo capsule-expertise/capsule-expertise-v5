@@ -56,10 +56,10 @@ export const SITE = {
 
   // ─── HERO — copy V1 complet, présentation modèle ───
   hero: {
-    eyebrow: "Cabinet d'expertise comptable indépendant — Île-de-France",
-    titleLine1: 'Comprendre',
-    titleLine2: 'ses chiffres.',
-    titleLineEm: 'Décider plus vite.',
+    titleLine1: 'Copilote des',
+    titleLine2: 'Dirigeants & DAF',
+    subtitle:
+      'Expertise-comptable · DAF à temps partagé · Management de transition',
     deck:
       "Expert-comptable et accompagnement financier pour dirigeants de PME et directions financières. Capsule accompagne la production et la lecture de votre information financière.",
     deckEm: 'lecture',

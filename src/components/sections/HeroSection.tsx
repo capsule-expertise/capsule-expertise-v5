@@ -80,55 +80,59 @@ export function HeroSection() {
       />
 
       <div className="ce-container relative z-10">
-        {/* Eyebrow avec géo (reco audit) */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          custom={0.05}
-          variants={fadeUp}
-          className="ce-label ce-label--cream mb-6"
-        >
-          {H.eyebrow}
-        </motion.div>
-
-        {/* Hero grid : H1 + reassurance card */}
+        {/* Hero grid : H1 + subtitle / Photo */}
         <div
           className="grid gap-10 md:gap-20 items-end"
           style={{ gridTemplateColumns: 'minmax(0, 1fr) auto' }}
         >
-          <motion.h1
-            initial="hidden"
-            animate="visible"
-            custom={0.12}
-            variants={fadeUp}
-            className="tracking-display text-[var(--color-ce-cream)] max-w-[14ch]"
-            style={{
-              fontSize: 'clamp(44px, 9vw, 140px)',
-              lineHeight: 0.94,
-              fontWeight: 500,
-              letterSpacing: '-0.04em',
-            }}
-          >
-            {H.titleLine1}
-            <br />
-            {H.titleLine2}
-            <br />
-            <em>{H.titleLineEm}</em>
-          </motion.h1>
+          <div>
+            <motion.h1
+              initial="hidden"
+              animate="visible"
+              custom={0.05}
+              variants={fadeUp}
+              className="tracking-display text-[var(--color-ce-cream)] max-w-[18ch]"
+              style={{
+                fontSize: 'clamp(40px, 7vw, 100px)',
+                lineHeight: 0.98,
+                fontWeight: 500,
+                letterSpacing: '-0.035em',
+              }}
+            >
+              {H.titleLine1}
+              <br />
+              {H.titleLine2}
+            </motion.h1>
 
-          {/* Photo duo associés — portrait fondu dans le fond violet */}
+            <motion.p
+              initial="hidden"
+              animate="visible"
+              custom={0.18}
+              variants={fadeUp}
+              className="text-[var(--color-ce-cream)] mt-6 max-w-[60ch]"
+              style={{
+                fontSize: 'clamp(15px, 1.4vw, 18px)',
+                fontWeight: 400,
+                opacity: 0.78,
+                letterSpacing: '0.005em',
+                lineHeight: 1.5,
+              }}
+            >
+              {H.subtitle}
+            </motion.p>
+          </div>
+
+          {/* Photo duo associés — carte arrondie + ombre (sans fondu) */}
           <motion.div
             initial={{ opacity: 0, y: reduced ? 0 : 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduced ? 0 : 0.95, delay: 0.2, ease: EASE }}
-            className="hidden md:block relative pointer-events-none"
+            className="hidden md:block relative overflow-hidden rounded-[var(--radius-lg)]"
             style={{
-              width: 'clamp(340px, 30vw, 500px)',
+              width: 'clamp(320px, 28vw, 460px)',
               aspectRatio: '3 / 4',
-              WebkitMaskImage:
-                'radial-gradient(ellipse 60% 70% at 50% 45%, #000 35%, rgba(0,0,0,0.5) 65%, transparent 90%)',
-              maskImage:
-                'radial-gradient(ellipse 60% 70% at 50% 45%, #000 35%, rgba(0,0,0,0.5) 65%, transparent 90%)',
+              boxShadow: '0 30px 60px -30px rgba(5, 14, 26, 0.55)',
+              background: 'var(--color-ce-violet-deep)',
             }}
           >
             <img
@@ -141,19 +145,16 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Photo duo mobile (visible <md uniquement) */}
+        {/* Photo duo mobile (visible <md uniquement) — carte sans fondu */}
         <motion.div
           initial="hidden"
           animate="visible"
-          custom={0.18}
+          custom={0.25}
           variants={fadeUp}
-          className="md:hidden mt-8 relative pointer-events-none"
+          className="md:hidden mt-8 relative overflow-hidden rounded-[var(--radius-lg)]"
           style={{
             aspectRatio: '4 / 3',
-            WebkitMaskImage:
-              'radial-gradient(ellipse 65% 70% at 50% 45%, #000 35%, rgba(0,0,0,0.5) 65%, transparent 92%)',
-            maskImage:
-              'radial-gradient(ellipse 65% 70% at 50% 45%, #000 35%, rgba(0,0,0,0.5) 65%, transparent 92%)',
+            background: 'var(--color-ce-violet-deep)',
           }}
         >
           <img
