@@ -8,20 +8,22 @@
    ============================================================ */
 
 @theme {
-  /* Palette V4 — violet profond + terracotta vif + crème chaud */
-  --color-ce-violet: #2d1b4e;
-  --color-ce-violet-rich: #3a2566;
-  --color-ce-violet-deep: #1a0f32;
-  --color-ce-violet-ink: #0b0618;
-  --color-ce-terra: #d95a2e;
-  --color-ce-terra-soft: #f4a688;
-  --color-ce-cream: #f2ede1;
-  --color-ce-cream-warm: #ebe3d2;
+  /* POC Palette A — bleu nuit profond + ocre patrimonial + ivoire (cabinet moderne)
+     NB: les noms de variables (-violet, -terra, -cream) sont conservés pour minimiser
+     le diff. Seules les valeurs hex changent. */
+  --color-ce-violet: #0d1b2a;
+  --color-ce-violet-rich: #1e3a5f;
+  --color-ce-violet-deep: #050e1a;
+  --color-ce-violet-ink: #020611;
+  --color-ce-terra: #c9a227;
+  --color-ce-terra-soft: #e0b850;
+  --color-ce-cream: #f4f1e8;
+  --color-ce-cream-warm: #ede7d2;
   --color-ce-cream-cool: #f8f5ec;
 
-  /* Typographie V4 — Instrument Sans (body + display roman) + Instrument Serif (italic accents) */
-  --font-sans: 'Instrument Sans', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  /* Typographie POC — Inter (sans, neutre) + Fraunces (serif variable, fort caractère) */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
 
   /* Easings */
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
