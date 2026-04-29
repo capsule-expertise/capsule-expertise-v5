@@ -60,7 +60,7 @@ export function HeroSection() {
           width: '700px',
           height: '700px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(217,90,46,0.18) 0%, transparent 60%)',
+          background: 'radial-gradient(circle, rgba(201, 162, 39,0.18) 0%, transparent 60%)',
           zIndex: 0,
         }}
       />
@@ -74,7 +74,7 @@ export function HeroSection() {
           width: '400px',
           height: '400px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(58,37,102,0.6) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(30, 58, 95,0.6) 0%, transparent 65%)',
           zIndex: 0,
         }}
       />
@@ -212,7 +212,7 @@ export function HeroSection() {
             {/* Reassurance 48h compacte (déplacée depuis la grille supérieure) */}
             <div
               className="hidden md:flex flex-col gap-2 px-6 py-5 min-w-[260px] bg-[var(--color-ce-cream)] text-[var(--color-ce-violet)] rounded-[var(--radius-lg)]"
-              style={{ boxShadow: '0 20px 40px -25px rgba(11,6,24,0.45)' }}
+              style={{ boxShadow: '0 20px 40px -25px rgba(5, 14, 26,0.45)' }}
             >
               <div className="ce-label ce-label--violet">{H.reassurance.label}</div>
               <div className="flex items-baseline gap-2.5">
@@ -232,11 +232,11 @@ export function HeroSection() {
                     {H.reassurance.unit}
                   </em>
                 </div>
-                <div className="text-[12px] text-[rgba(45,27,78,0.6)] leading-[1.3] whitespace-pre-line">
+                <div className="text-[12px] text-[rgba(20, 37, 58,0.6)] leading-[1.3] whitespace-pre-line">
                   {H.reassurance.unitLine}
                 </div>
               </div>
-              <div className="text-[12px] text-[rgba(45,27,78,0.72)] pt-2.5 border-t border-[rgba(45,27,78,0.1)] leading-[1.5] whitespace-pre-line">
+              <div className="text-[12px] text-[rgba(20, 37, 58,0.72)] pt-2.5 border-t border-[rgba(20, 37, 58,0.1)] leading-[1.5] whitespace-pre-line">
                 {H.reassurance.footer}
               </div>
             </div>
@@ -256,7 +256,7 @@ export function HeroSection() {
               style={{
                 textDecoration: 'underline',
                 textUnderlineOffset: '4px',
-                textDecorationColor: 'rgba(217, 90, 46, 0.45)',
+                textDecorationColor: 'rgba(201, 162, 39, 0.45)',
                 textDecorationThickness: '1px',
               }}
             >
@@ -286,11 +286,11 @@ export function HeroSection() {
                 {H.reassurance.unit}
               </em>
             </div>
-            <div className="text-[13px] text-[rgba(45,27,78,0.6)] whitespace-pre-line">
+            <div className="text-[13px] text-[rgba(20, 37, 58,0.6)] whitespace-pre-line">
               {H.reassurance.unitLine}
             </div>
           </div>
-          <div className="text-[14px] text-[rgba(45,27,78,0.72)] pt-3 border-t border-[rgba(45,27,78,0.1)] whitespace-pre-line">
+          <div className="text-[14px] text-[rgba(20, 37, 58,0.72)] pt-3 border-t border-[rgba(20, 37, 58,0.1)] whitespace-pre-line">
             {H.reassurance.footer}
           </div>
         </motion.div>

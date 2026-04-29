@@ -47,7 +47,7 @@ export function FactsSection() {
                     </em>
                   )}
                 </div>
-                <div className="text-[14px] text-[rgba(45,27,78,0.65)] leading-[1.4] whitespace-pre-line">
+                <div className="text-[14px] text-[rgba(20, 37, 58,0.65)] leading-[1.4] whitespace-pre-line">
                   {f.label}
                 </div>
               </motion.div>

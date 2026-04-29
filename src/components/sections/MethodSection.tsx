@@ -101,7 +101,7 @@ export function MethodSection() {
                 <div
                   className="whitespace-nowrap text-[13px] font-medium px-3.5 py-2 rounded-[var(--radius-xs)]"
                   style={{
-                    background: i % 2 === 0 ? 'rgba(242,237,225,0.12)' : 'rgba(45,27,78,0.08)',
+                    background: i % 2 === 0 ? 'rgba(242,237,225,0.12)' : 'rgba(20, 37, 58,0.08)',
                     color: i % 2 === 0 ? 'rgba(242,237,225,0.92)' : 'var(--color-ce-violet)',
                   }}
                 >

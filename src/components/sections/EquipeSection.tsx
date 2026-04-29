@@ -42,7 +42,7 @@ export function EquipeSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
-            className="text-[17px] leading-[1.65] text-[rgba(45,27,78,0.72)] max-w-[62ch]"
+            className="text-[17px] leading-[1.65] text-[rgba(20, 37, 58,0.72)] max-w-[62ch]"
           >
             {E.intro}
           </motion.p>
@@ -58,7 +58,7 @@ export function EquipeSection() {
                 initial={{ opacity: 0, y: 28 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.9, delay: 0.3 + idx * 0.15, ease: EASE }}
-                className="grid bg-[#ffffff] rounded-[var(--radius-lg)] overflow-hidden border border-[rgba(45,27,78,0.1)]"
+                className="grid bg-[#ffffff] rounded-[var(--radius-lg)] overflow-hidden border border-[rgba(20, 37, 58,0.1)]"
                 style={{
                   gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
                   boxShadow: '0 2px 24px rgba(26,20,16,0.04)',
@@ -90,7 +90,7 @@ export function EquipeSection() {
                         {m.role}
                       </span>
                       {m.oec && (
-                        <span className="inline-flex items-center gap-1.5 text-[12px] text-[var(--color-ce-terra)] bg-[rgba(217,90,46,0.08)] border border-[rgba(217,90,46,0.2)] rounded-[4px] px-2 py-1">
+                        <span className="inline-flex items-center gap-1.5 text-[12px] text-[var(--color-ce-terra)] bg-[rgba(201, 162, 39,0.08)] border border-[rgba(201, 162, 39,0.2)] rounded-[4px] px-2 py-1">
                           {m.oec.replace('XXXXXX', '')}
                           <span className="ce-todo">XXXXXX</span>
                         </span>
@@ -116,7 +116,7 @@ export function EquipeSection() {
                     {m.bio.map((para, i) => (
                       <p
                         key={i}
-                        className="text-[16px] leading-[1.7] text-[rgba(45,27,78,0.78)]"
+                        className="text-[16px] leading-[1.7] text-[rgba(20, 37, 58,0.78)]"
                       >
                         {para}
                       </p>
@@ -128,7 +128,7 @@ export function EquipeSection() {
                     {m.competences.map((c) => (
                       <span
                         key={c}
-                        className="inline-flex items-center text-[13px] text-[rgba(45,27,78,0.78)] bg-[rgba(45,27,78,0.04)] border border-[rgba(45,27,78,0.1)] rounded-[4px] px-3 py-1"
+                        className="inline-flex items-center text-[13px] text-[rgba(20, 37, 58,0.78)] bg-[rgba(20, 37, 58,0.04)] border border-[rgba(20, 37, 58,0.1)] rounded-[4px] px-3 py-1"
                       >
                         {c}
                       </span>
@@ -169,7 +169,7 @@ export function EquipeSection() {
                 initial={{ opacity: 0, y: 22 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.85, delay: 0.6 + i * 0.1, ease: EASE }}
-                className="flex flex-col gap-5 p-8 bg-[#ffffff] border border-[rgba(45,27,78,0.1)] rounded-[var(--radius-md)]"
+                className="flex flex-col gap-5 p-8 bg-[#ffffff] border border-[rgba(20, 37, 58,0.1)] rounded-[var(--radius-md)]"
               >
                 <div
                   className="font-serif italic text-[var(--color-ce-terra)] leading-[0.7] opacity-40"
@@ -178,14 +178,14 @@ export function EquipeSection() {
                 >
                   “
                 </div>
-                <p className="text-[16px] leading-[1.7] italic text-[rgba(45,27,78,0.88)] flex-1">
+                <p className="text-[16px] leading-[1.7] italic text-[rgba(20, 37, 58,0.88)] flex-1">
                   {t.citation}
                 </p>
-                <div className="border-t border-[rgba(45,27,78,0.1)] pt-4 flex flex-col gap-1">
+                <div className="border-t border-[rgba(20, 37, 58,0.1)] pt-4 flex flex-col gap-1">
                   <div className="text-[15px] font-medium text-[var(--color-ce-violet)]">
                     {t.prenom} — {t.fonction}
                   </div>
-                  <span className="inline-flex self-start text-[12px] text-[var(--color-ce-terra)] bg-[rgba(217,90,46,0.08)] border border-[rgba(217,90,46,0.2)] rounded-[4px] px-2 py-1 mt-1">
+                  <span className="inline-flex self-start text-[12px] text-[var(--color-ce-terra)] bg-[rgba(201, 162, 39,0.08)] border border-[rgba(201, 162, 39,0.2)] rounded-[4px] px-2 py-1 mt-1">
                     {t.secteur}
                   </span>
                 </div>
@@ -193,7 +193,7 @@ export function EquipeSection() {
             ))}
           </div>
 
-          <p className="text-center mt-6 text-[13px] italic text-[rgba(45,27,78,0.5)]">
+          <p className="text-center mt-6 text-[13px] italic text-[rgba(20, 37, 58,0.5)]">
             {T.anonymisation}
           </p>
         </div>

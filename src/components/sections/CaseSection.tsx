@@ -159,7 +159,7 @@ export function CaseSection() {
                   {C.author.name}
                   {C.author.isPlaceholder && <span className="ce-todo ml-2">témoignage à confirmer</span>}
                 </div>
-                <div className="text-[13px] text-[rgba(45,27,78,0.6)] mt-0.5">{C.author.role}</div>
+                <div className="text-[13px] text-[rgba(20, 37, 58,0.6)] mt-0.5">{C.author.role}</div>
               </div>
             </motion.div>
 
@@ -168,7 +168,7 @@ export function CaseSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.85, delay: 0.45, ease: EASE }}
-              className="mt-14 pt-10 border-t border-[rgba(45,27,78,0.12)] grid gap-8"
+              className="mt-14 pt-10 border-t border-[rgba(20, 37, 58,0.12)] grid gap-8"
               style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))' }}
             >
               {C.results.map((r) => (
@@ -189,7 +189,7 @@ export function CaseSection() {
                       </em>
                     )}
                   </div>
-                  <div className="text-[14px] text-[rgba(45,27,78,0.6)] mt-1.5 leading-[1.4] whitespace-pre-line">
+                  <div className="text-[14px] text-[rgba(20, 37, 58,0.6)] mt-1.5 leading-[1.4] whitespace-pre-line">
                     {r.label}
                   </div>
                 </div>

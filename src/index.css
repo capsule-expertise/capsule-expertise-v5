@@ -8,13 +8,13 @@
    ============================================================ */
 
 @theme {
-  /* POC Palette A — bleu nuit profond + ocre patrimonial + ivoire (cabinet moderne)
-     NB: les noms de variables (-violet, -terra, -cream) sont conservés pour minimiser
-     le diff. Seules les valeurs hex changent. */
-  --color-ce-violet: #0d1b2a;
+  /* Palette V5 — bleu nuit + ocre patrimonial + ivoire (cabinet moderne)
+     Noms de variables conservés (--color-ce-violet/terra/cream) pour réduire le diff.
+     Bleu nuit légèrement éclairci (#14253a au lieu de #0d1b2a) pour ne pas être trop sombre. */
+  --color-ce-violet: #14253a;
   --color-ce-violet-rich: #1e3a5f;
-  --color-ce-violet-deep: #050e1a;
-  --color-ce-violet-ink: #020611;
+  --color-ce-violet-deep: #0a1726;
+  --color-ce-violet-ink: #050e1a;
   --color-ce-terra: #c9a227;
   --color-ce-terra-soft: #e0b850;
   --color-ce-cream: #f4f1e8;
@@ -181,13 +181,13 @@
     color: rgba(242, 237, 225, 0.78);
   }
   .ce-tag--terra {
-    background: rgba(217, 90, 46, 0.14);
-    border-color: rgba(217, 90, 46, 0.3);
+    background: rgba(201, 162, 39, 0.14);
+    border-color: rgba(201, 162, 39, 0.3);
     color: var(--color-ce-terra-soft);
   }
   .ce-tag--light {
-    background: rgba(45, 27, 78, 0.06);
-    border-color: rgba(45, 27, 78, 0.14);
+    background: rgba(20, 37, 58, 0.06);
+    border-color: rgba(20, 37, 58, 0.14);
     color: var(--color-ce-violet);
   }
 
@@ -241,7 +241,7 @@
   .ce-btn--ghost-light {
     background: transparent;
     color: var(--color-ce-violet);
-    border-color: rgba(45, 27, 78, 0.25);
+    border-color: rgba(20, 37, 58, 0.25);
   }
   .ce-btn--ghost-light:hover {
     border-color: var(--color-ce-terra);
@@ -269,15 +269,15 @@
     height: 8px;
     background: var(--color-ce-terra);
     border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(217, 90, 46, 0.6);
+    box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.6);
     animation: ce-pulse 2s ease-out infinite;
   }
   @keyframes ce-pulse {
     0% {
-      box-shadow: 0 0 0 0 rgba(217, 90, 46, 0.55);
+      box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.55);
     }
     100% {
-      box-shadow: 0 0 0 10px rgba(217, 90, 46, 0);
+      box-shadow: 0 0 0 10px rgba(201, 162, 39, 0);
     }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -352,8 +352,8 @@
     border-bottom-color: var(--color-ce-terra);
   }
   .ce-section-head--light .ce-section-head-link {
-    color: rgba(45, 27, 78, 0.72);
-    border-bottom-color: rgba(45, 27, 78, 0.25);
+    color: rgba(20, 37, 58, 0.72);
+    border-bottom-color: rgba(20, 37, 58, 0.25);
   }
 
   /* Reveal motion-safe (kept from V3) */

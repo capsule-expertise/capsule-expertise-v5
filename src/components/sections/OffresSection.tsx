@@ -53,7 +53,7 @@ export function OffresSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
-            className="text-[17px] leading-[1.65] text-[rgba(45,27,78,0.72)] max-w-[62ch]"
+            className="text-[17px] leading-[1.65] text-[rgba(20, 37, 58,0.72)] max-w-[62ch]"
           >
             {O.intro}
           </motion.p>
@@ -70,16 +70,21 @@ export function OffresSection() {
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.85, delay: 0.3 + i * 0.12, ease: EASE }}
-              className="flex flex-col gap-5 p-10 bg-[#ffffff] border border-[rgba(45,27,78,0.1)] rounded-[var(--radius-lg)]"
+              className="flex flex-col gap-5 p-10 bg-[#ffffff] border border-[rgba(20, 37, 58,0.1)] rounded-[var(--radius-lg)]"
             >
-              {/* Ghost number + title */}
+              {/* N° label — mono discret */}
               <div className="flex items-start justify-between gap-4">
                 <div
-                  className="font-serif italic text-[rgba(217,90,46,0.3)] leading-none"
-                  style={{ fontSize: '48px', fontWeight: 400 }}
+                  className="text-[var(--color-ce-terra)]"
+                  style={{
+                    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+                    fontSize: '12px',
+                    fontWeight: 500,
+                    letterSpacing: '0.14em',
+                  }}
                   aria-hidden
                 >
-                  {b.num}
+                  N° {b.num}
                 </div>
               </div>
               <h3
@@ -98,7 +103,7 @@ export function OffresSection() {
               <div className="w-8 h-px bg-[var(--color-ce-terra)]" aria-hidden />
 
               {/* Description */}
-              <p className="text-[16px] leading-[1.65] text-[rgba(45,27,78,0.75)]">
+              <p className="text-[16px] leading-[1.65] text-[rgba(20, 37, 58,0.75)]">
                 {b.description}
               </p>
 
@@ -107,7 +112,7 @@ export function OffresSection() {
                 {b.bullets.map((bullet) => (
                   <li
                     key={bullet}
-                    className="relative pl-6 text-[16px] leading-[1.55] text-[rgba(45,27,78,0.88)]"
+                    className="relative pl-6 text-[16px] leading-[1.55] text-[rgba(20, 37, 58,0.88)]"
                   >
                     <span
                       aria-hidden
@@ -190,7 +195,7 @@ export function OffresSection() {
           transition={{ duration: 0.85, delay: 0.7, ease: EASE }}
           className="flex flex-wrap items-center justify-between gap-6"
         >
-          <p className="text-[15px] italic text-[rgba(45,27,78,0.65)] max-w-[62ch]">
+          <p className="text-[15px] italic text-[rgba(20, 37, 58,0.65)] max-w-[62ch]">
             {O.ctaAside}
           </p>
           <a

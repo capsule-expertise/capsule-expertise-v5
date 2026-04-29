@@ -71,11 +71,11 @@ export function AiguillageSection() {
                 'flex flex-col gap-6 p-10 md:p-12 rounded-[var(--radius-xl)] relative overflow-hidden',
                 p.priority
                   ? 'bg-[var(--color-ce-violet-deep)] text-[var(--color-ce-cream)]'
-                  : 'bg-[#ffffff] text-[var(--color-ce-violet)] border border-[rgba(45,27,78,0.1)]',
+                  : 'bg-[#ffffff] text-[var(--color-ce-violet)] border border-[rgba(20, 37, 58,0.1)]',
               )}
               style={
                 p.priority
-                  ? { boxShadow: '0 30px 60px -30px rgba(11,6,24,0.3)' }
+                  ? { boxShadow: '0 30px 60px -30px rgba(5, 14, 26,0.3)' }
                   : undefined
               }
             >
@@ -109,7 +109,7 @@ export function AiguillageSection() {
               <p
                 className={cn(
                   'text-[16px] leading-[1.6] max-w-[44ch]',
-                  p.priority ? 'text-[rgba(242,237,225,0.72)]' : 'text-[rgba(45,27,78,0.72)]',
+                  p.priority ? 'text-[rgba(242,237,225,0.72)]' : 'text-[rgba(20, 37, 58,0.72)]',
                 )}
               >
                 {p.tagline}
@@ -119,7 +119,7 @@ export function AiguillageSection() {
               <div
                 className={cn(
                   'h-px',
-                  p.priority ? 'bg-[rgba(242,237,225,0.14)]' : 'bg-[rgba(45,27,78,0.1)]',
+                  p.priority ? 'bg-[rgba(242,237,225,0.14)]' : 'bg-[rgba(20, 37, 58,0.1)]',
                 )}
               />
 
@@ -130,7 +130,7 @@ export function AiguillageSection() {
                     key={b}
                     className={cn(
                       'relative pl-6 text-[16px] leading-[1.55]',
-                      p.priority ? 'text-[rgba(242,237,225,0.88)]' : 'text-[rgba(45,27,78,0.88)]',
+                      p.priority ? 'text-[rgba(242,237,225,0.88)]' : 'text-[rgba(20, 37, 58,0.88)]',
                     )}
                   >
                     <span

@@ -11,7 +11,7 @@ const toneClasses: Record<NonNullable<PillProps['tone']>, string> = {
   terra:
     'text-[var(--color-ce-terra)] bg-[rgba(165,65,32,0.07)] border border-[rgba(165,65,32,0.18)]',
   violet:
-    'text-[var(--color-ce-violet)] bg-[rgba(45,27,78,0.05)] border border-[rgba(45,27,78,0.14)]',
+    'text-[var(--color-ce-violet)] bg-[rgba(20, 37, 58,0.05)] border border-[rgba(20, 37, 58,0.14)]',
   cream:
     'text-[var(--color-ce-cream)] bg-[rgba(250,248,242,0.08)] border border-[rgba(250,248,242,0.18)]',
   outline:

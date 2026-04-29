@@ -32,7 +32,7 @@ export function Nav() {
     <>
       <div
         className="sticky top-0 z-50 backdrop-blur-xl border-b border-[rgba(242,237,225,0.08)]"
-        style={{ background: 'rgba(45,27,78,0.92)' }}
+        style={{ background: 'rgba(20, 37, 58,0.92)' }}
       >
         <div className="ce-container">
           <nav className="grid grid-cols-[1fr_auto_1fr] items-center py-[18px] gap-3">

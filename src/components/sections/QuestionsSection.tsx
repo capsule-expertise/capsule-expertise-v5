@@ -38,7 +38,7 @@ export function QuestionsSection() {
     <section
       id="questions"
       ref={ref}
-      className="bg-[var(--color-ce-violet)] text-[var(--color-ce-cream)]"
+      className="bg-[var(--color-ce-cream)] text-[var(--color-ce-violet)]"
       style={{ paddingBlock: '140px 120px' }}
     >
       <script
@@ -50,12 +50,12 @@ export function QuestionsSection() {
         {/* Head */}
         <div className="ce-section-head mb-[72px]">
           <div>
-            <div className="ce-label ce-label--cream mb-6">{Q.eyebrow}</div>
+            <div className="ce-label mb-6">{Q.eyebrow}</div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.85, ease: EASE }}
-              className="tracking-display text-[var(--color-ce-cream)] max-w-[18ch]"
+              className="tracking-display text-[var(--color-ce-violet)] max-w-[18ch]"
               style={{
                 fontSize: 'clamp(40px, 6.4vw, 94px)',
                 lineHeight: 0.94,
@@ -78,20 +78,25 @@ export function QuestionsSection() {
               initial={{ opacity: 0, y: 22 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.85, delay: i * 0.1, ease: EASE }}
-              className="relative flex flex-col gap-4 p-8 md:p-10 bg-[var(--color-ce-violet-deep)] border border-[rgba(242,237,225,0.08)] rounded-[var(--radius-md)]"
+              className="relative flex flex-col gap-4 p-8 md:p-10 bg-[#ffffff] border border-[rgba(20, 37, 58,0.1)] rounded-[var(--radius-md)]"
             >
-              {/* Ghost number */}
+              {/* N° label — mono discret (style documents cabinet, pas hero SaaS) */}
               <div
-                className="font-serif italic text-[rgba(217,90,46,0.28)] leading-none"
-                style={{ fontSize: '48px', fontWeight: 400 }}
+                className="text-[var(--color-ce-terra)]"
+                style={{
+                  fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+                  fontSize: '12px',
+                  fontWeight: 500,
+                  letterSpacing: '0.14em',
+                }}
                 aria-hidden
               >
-                {String(i + 1).padStart(2, '0')}
+                N° {String(i + 1).padStart(2, '0')}
               </div>
 
               {/* Question */}
               <h3
-                className="text-[var(--color-ce-cream)]"
+                className="text-[var(--color-ce-violet)]"
                 style={{
                   fontSize: '19px',
                   fontWeight: 500,
@@ -106,7 +111,7 @@ export function QuestionsSection() {
               <div className="w-6 h-px bg-[var(--color-ce-terra)]" aria-hidden />
 
               {/* Answer */}
-              <p className="text-[16px] leading-[1.65] italic text-[rgba(242,237,225,0.78)]">
+              <p className="text-[16px] leading-[1.65] italic text-[rgba(20, 37, 58,0.78)]">
                 {q.reponse}
               </p>
             </motion.div>
@@ -120,7 +125,7 @@ export function QuestionsSection() {
           transition={{ duration: 0.85, delay: 0.5, ease: EASE }}
           className="flex flex-wrap items-center justify-between gap-6"
         >
-          <p className="text-[17px] text-[rgba(242,237,225,0.75)] max-w-[60ch] leading-[1.55]">
+          <p className="text-[17px] text-[rgba(20, 37, 58,0.75)] max-w-[60ch] leading-[1.55]">
             {Q.closing}
           </p>
           <a
