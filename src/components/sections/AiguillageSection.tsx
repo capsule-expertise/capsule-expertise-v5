@@ -36,9 +36,9 @@ export function AiguillageSection() {
     >
       <div className="ce-container">
         {/* Head */}
-        <div className="ce-section-head ce-section-head--light mb-[72px]">
+        <div className="ce-section-head ce-section-head--light mb-12">
           <div>
-            <div className="ce-label ce-label--violet mb-6">{A.eyebrow}</div>
+            <div className="ce-label ce-label--on-light mb-6">{A.eyebrow}</div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -53,6 +53,16 @@ export function AiguillageSection() {
               {A.title} <em>{A.titleEm}</em>
               {A.titleEnd}
             </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
+              className="mt-7 text-[rgba(20,37,58,0.78)] max-w-[58ch]"
+              style={{ fontSize: '18px', lineHeight: 1.55 }}
+            >
+              Capsule s'adapte à deux profils. Identifiez le vôtre ci-dessous
+              pour découvrir comment nous travaillons concrètement avec vous.
+            </motion.p>
           </div>
         </div>
 
@@ -71,11 +81,11 @@ export function AiguillageSection() {
                 'flex flex-col gap-6 p-10 md:p-12 rounded-[var(--radius-xl)] relative overflow-hidden',
                 p.priority
                   ? 'bg-[var(--color-ce-violet-deep)] text-[var(--color-ce-cream)]'
-                  : 'bg-[#ffffff] text-[var(--color-ce-violet)] border border-[rgba(45,27,78,0.1)]',
+                  : 'bg-[#ffffff] text-[var(--color-ce-violet)] border border-[rgba(20, 37, 58,0.1)]',
               )}
               style={
                 p.priority
-                  ? { boxShadow: '0 30px 60px -30px rgba(11,6,24,0.3)' }
+                  ? { boxShadow: '0 30px 60px -30px rgba(5, 14, 26,0.3)' }
                   : undefined
               }
             >
@@ -84,7 +94,7 @@ export function AiguillageSection() {
                 <div
                   className={cn(
                     'text-[11px] font-medium tracking-[0.18em] uppercase mb-4',
-                    p.priority ? 'text-[var(--color-ce-terra-soft)]' : 'text-[var(--color-ce-terra)]',
+                    p.priority ? 'text-[var(--color-ce-terra-soft)]' : 'text-[var(--color-ce-terra-deep)]',
                   )}
                 >
                   {p.label}
@@ -109,7 +119,7 @@ export function AiguillageSection() {
               <p
                 className={cn(
                   'text-[16px] leading-[1.6] max-w-[44ch]',
-                  p.priority ? 'text-[rgba(242,237,225,0.72)]' : 'text-[rgba(45,27,78,0.72)]',
+                  p.priority ? 'text-[rgba(242,237,225,0.72)]' : 'text-[rgba(20, 37, 58,0.72)]',
                 )}
               >
                 {p.tagline}
@@ -119,7 +129,7 @@ export function AiguillageSection() {
               <div
                 className={cn(
                   'h-px',
-                  p.priority ? 'bg-[rgba(242,237,225,0.14)]' : 'bg-[rgba(45,27,78,0.1)]',
+                  p.priority ? 'bg-[rgba(242,237,225,0.14)]' : 'bg-[rgba(20, 37, 58,0.1)]',
                 )}
               />
 
@@ -130,12 +140,12 @@ export function AiguillageSection() {
                     key={b}
                     className={cn(
                       'relative pl-6 text-[16px] leading-[1.55]',
-                      p.priority ? 'text-[rgba(242,237,225,0.88)]' : 'text-[rgba(45,27,78,0.88)]',
+                      p.priority ? 'text-[rgba(242,237,225,0.88)]' : 'text-[rgba(20, 37, 58,0.88)]',
                     )}
                   >
                     <span
                       aria-hidden
-                      className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra)]"
+                      className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra-deep)]"
                     />
                     {b}
                   </li>

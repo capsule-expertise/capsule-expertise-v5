@@ -37,7 +37,7 @@ export const SITE = {
     phoneHref: 'tel:+331XXXXXXXX',
     email: 'contact@capsule-expertise.fr',
     address: {
-      street: 'XX avenue XXXX',
+      street: '60 avenue du Général Leclerc',
       postalCode: '94360',
       city: 'Bry-sur-Marne',
       region: 'Île-de-France',
@@ -49,37 +49,17 @@ export const SITE = {
     links: [
       { label: 'Dirigeants', href: '#dirigeant' },
       { label: 'DAF · ETI', href: '#finance' },
-      { label: 'Méthode', href: '#methode' },
       { label: 'Le cabinet', href: '#cabinet' },
     ],
     cta: { label: 'Prendre 30 min', href: '#contact' },
   },
 
-  // ─── HERO — copy V1 complet, présentation modèle ───
+  // ─── HERO — V5 itération 5 : copy court, photo immersive, choix renvoyé en aiguillage ───
   hero: {
-    pulse: 'Cabinet ouvert · Bry-sur-Marne · réponse sous 48 h ouvrées',
-    eyebrow: "Cabinet d'expertise comptable indépendant — Île-de-France",
-    titleLine1: 'Comprendre',
-    titleLine2: 'ses chiffres.',
-    titleLineEm: 'Décider plus vite.',
-    deck:
-      "Expert-comptable et accompagnement financier pour dirigeants de PME et directions financières. Capsule accompagne la production et la lecture de votre information financière.",
-    deckEm: 'lecture',
-    bullets: [
-      'Échange direct avec un expert-comptable',
-      'Une information financière claire et exploitable',
-      'Réponse sous 48 h ouvrées',
-    ],
-    ctaPrimary: { label: 'Je suis dirigeant (TPE/PME)', href: '#dirigeant' },
-    ctaSecondary: { label: 'Je suis DAF / Direction financière →', href: '#finance' },
-    reassurance: {
-      label: 'Premier échange',
-      num: '48',
-      unit: 'h',
-      unitLine: "réponse écrite\nouvrées",
-      footer:
-        "Entretien de 30 minutes, confidentiel, sans engagement.\nNote de cadrage écrite livrée sous 10 jours.",
-    },
+    titleLine1: 'Maîtrisez vos chiffres,',
+    titleLine2: 'Décidez plus vite.',
+    subtitleBrand: 'Capsule — Copilote des dirigeants & DAF',
+    oecBadge: "Membre de l'Ordre des Experts-Comptables de Paris",
     heroPhoto: {
       src: '/ranto-jerome.webp',
       alt: 'Ranto Rajaonarivo et Jérôme Phou, associés fondateurs de Capsule Expertise',
@@ -104,7 +84,7 @@ export const SITE = {
     parcours: [
       {
         id: 'dirigeant',
-        label: 'Parcours 01',
+        label: 'Pour les TPE/PME',
         title: 'Je dirige une TPE/PME',
         titleEm: 'ou j’exerce en libéral',
         tagline:
@@ -120,7 +100,7 @@ export const SITE = {
       },
       {
         id: 'finance',
-        label: 'Parcours 02',
+        label: 'Pour les ETI / Groupes',
         title: 'Je pilote la finance',
         titleEm: "d’une ETI ou d’un groupe",
         tagline: 'Renfort opérationnel dans la fonction finance.',
@@ -464,7 +444,7 @@ export const SITE = {
         title: 'Contact',
         links: [
           { label: 'contact@capsule-expertise.fr', href: 'mailto:contact@capsule-expertise.fr' },
-          { label: 'Bry-sur-Marne · Val-de-Marne', href: '#' },
+          { label: '60 av. du Général Leclerc · 94360 Bry-sur-Marne', href: '#' },
           { label: 'Prendre 30 min →', href: '#contact' },
         ],
       },

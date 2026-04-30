@@ -8,20 +8,23 @@
    ============================================================ */
 
 @theme {
-  /* Palette V4 — violet profond + terracotta vif + crème chaud */
-  --color-ce-violet: #2d1b4e;
-  --color-ce-violet-rich: #3a2566;
-  --color-ce-violet-deep: #1a0f32;
-  --color-ce-violet-ink: #0b0618;
-  --color-ce-terra: #d95a2e;
-  --color-ce-terra-soft: #f4a688;
-  --color-ce-cream: #f2ede1;
-  --color-ce-cream-warm: #ebe3d2;
+  /* Palette V5 — bleu nuit + ocre patrimonial + ivoire (cabinet moderne)
+     Noms de variables conservés (--color-ce-violet/terra/cream) pour réduire le diff.
+     Bleu nuit légèrement éclairci (#14253a au lieu de #0d1b2a) pour ne pas être trop sombre. */
+  --color-ce-violet: #14253a;
+  --color-ce-violet-rich: #1e3a5f;
+  --color-ce-violet-deep: #0a1726;
+  --color-ce-violet-ink: #050e1a;
+  --color-ce-terra: #c9a227;       /* OCRE VIF — pour fond DARK (bleu nuit) */
+  --color-ce-terra-deep: #7a601a;  /* OCRE FONCÉ — pour fond LIGHT (ivoire), ratio AA */
+  --color-ce-terra-soft: #e0b850;
+  --color-ce-cream: #f4f1e8;
+  --color-ce-cream-warm: #ede7d2;
   --color-ce-cream-cool: #f8f5ec;
 
-  /* Typographie V4 — Instrument Sans (body + display roman) + Instrument Serif (italic accents) */
-  --font-sans: 'Instrument Sans', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  /* Typographie POC — Inter (sans, neutre) + Fraunces (serif variable, fort caractère) */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
 
   /* Easings */
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
@@ -165,6 +168,13 @@
   .ce-label--violet {
     color: var(--color-ce-violet);
   }
+  /* Pour eyebrows sur fond clair (ivoire) — ocre foncé pour respecter AA */
+  .ce-label--on-light {
+    color: var(--color-ce-terra-deep);
+  }
+  .ce-label--on-light::before {
+    background: var(--color-ce-terra-deep);
+  }
 
   /* Tag pill */
   .ce-tag {
@@ -179,13 +189,13 @@
     color: rgba(242, 237, 225, 0.78);
   }
   .ce-tag--terra {
-    background: rgba(217, 90, 46, 0.14);
-    border-color: rgba(217, 90, 46, 0.3);
+    background: rgba(201, 162, 39, 0.14);
+    border-color: rgba(201, 162, 39, 0.3);
     color: var(--color-ce-terra-soft);
   }
   .ce-tag--light {
-    background: rgba(45, 27, 78, 0.06);
-    border-color: rgba(45, 27, 78, 0.14);
+    background: rgba(20, 37, 58, 0.06);
+    border-color: rgba(20, 37, 58, 0.14);
     color: var(--color-ce-violet);
   }
 
@@ -211,22 +221,25 @@
   .ce-btn:hover {
     transform: translateY(-1px);
   }
+  /* Primary (sur fond DARK) — fonce sur hover, garde l'identité ocre */
   .ce-btn--terra {
     background: var(--color-ce-terra);
     color: var(--color-ce-cream);
   }
   .ce-btn--terra:hover {
-    background: var(--color-ce-cream);
-    color: var(--color-ce-violet);
+    background: var(--color-ce-terra-deep);
+    color: var(--color-ce-cream);
   }
+  /* Sur fond CLAIR — color swap navy/ivoire (high contrast) */
   .ce-btn--cream {
     background: var(--color-ce-cream);
     color: var(--color-ce-violet);
   }
   .ce-btn--cream:hover {
-    background: var(--color-ce-terra);
+    background: var(--color-ce-violet);
     color: var(--color-ce-cream);
   }
+  /* Ghost (sur fond DARK) — fill subtle ocre pour feedback */
   .ce-btn--ghost {
     background: transparent;
     color: var(--color-ce-cream);
@@ -235,15 +248,18 @@
   .ce-btn--ghost:hover {
     border-color: var(--color-ce-terra);
     color: var(--color-ce-terra);
+    background: rgba(201, 162, 39, 0.08);
   }
+  /* Ghost (sur fond CLAIR) — passe en ocre foncé sur hover, lisible */
   .ce-btn--ghost-light {
     background: transparent;
     color: var(--color-ce-violet);
-    border-color: rgba(45, 27, 78, 0.25);
+    border-color: rgba(20, 37, 58, 0.25);
   }
   .ce-btn--ghost-light:hover {
-    border-color: var(--color-ce-terra);
-    color: var(--color-ce-terra);
+    border-color: var(--color-ce-terra-deep);
+    color: var(--color-ce-terra-deep);
+    background: rgba(122, 96, 26, 0.06);
   }
   .ce-btn--sm {
     padding: 10px 16px;
@@ -267,15 +283,15 @@
     height: 8px;
     background: var(--color-ce-terra);
     border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(217, 90, 46, 0.6);
+    box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.6);
     animation: ce-pulse 2s ease-out infinite;
   }
   @keyframes ce-pulse {
     0% {
-      box-shadow: 0 0 0 0 rgba(217, 90, 46, 0.55);
+      box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.55);
     }
     100% {
-      box-shadow: 0 0 0 10px rgba(217, 90, 46, 0);
+      box-shadow: 0 0 0 10px rgba(201, 162, 39, 0);
     }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -350,8 +366,8 @@
     border-bottom-color: var(--color-ce-terra);
   }
   .ce-section-head--light .ce-section-head-link {
-    color: rgba(45, 27, 78, 0.72);
-    border-bottom-color: rgba(45, 27, 78, 0.25);
+    color: rgba(20, 37, 58, 0.72);
+    border-bottom-color: rgba(20, 37, 58, 0.25);
   }
 
   /* Reveal motion-safe (kept from V3) */

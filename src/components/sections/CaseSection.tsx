@@ -27,7 +27,7 @@ export function CaseSection() {
             next.push(chunk);
             if (idx < split.length - 1) {
               next.push(
-                <em key={`${phrase}-${idx}`} className="font-serif italic text-[var(--color-ce-terra)]" style={{ fontWeight: 400 }}>
+                <em key={`${phrase}-${idx}`} className="font-serif italic text-[var(--color-ce-terra-deep)]" style={{ fontWeight: 400 }}>
                   {phrase}
                 </em>,
               );
@@ -53,7 +53,7 @@ export function CaseSection() {
         {/* Head */}
         <div className="ce-section-head ce-section-head--light">
           <div>
-            <div className="ce-label ce-label--violet mb-6">{C.eyebrow}</div>
+            <div className="ce-label ce-label--on-light mb-6">{C.eyebrow}</div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -89,7 +89,7 @@ export function CaseSection() {
           >
             <span
               className="inline-flex self-start px-3 py-1.5 text-[12px] font-medium tracking-[0.02em] rounded-[4px]"
-              style={{ background: 'var(--color-ce-terra)', color: 'var(--color-ce-cream)' }}
+              style={{ background: 'var(--color-ce-terra-deep)', color: 'var(--color-ce-cream)' }}
             >
               {C.meta.tag}
             </span>
@@ -119,7 +119,7 @@ export function CaseSection() {
               transition={{ duration: 0.9, delay: 0.18, ease: EASE }}
             >
               <span
-                className="font-serif italic text-[var(--color-ce-terra)] block mb-5"
+                className="font-serif italic text-[var(--color-ce-terra-deep)] block mb-5"
                 style={{ fontSize: '100px', lineHeight: 0.6, fontWeight: 400 }}
                 aria-hidden
               >
@@ -147,7 +147,7 @@ export function CaseSection() {
               <div
                 className="w-16 h-16 rounded-full flex items-center justify-center font-serif italic text-[var(--color-ce-cream)]"
                 style={{
-                  background: 'linear-gradient(135deg, var(--color-ce-terra), var(--color-ce-violet))',
+                  background: 'linear-gradient(135deg, var(--color-ce-terra-deep), var(--color-ce-violet))',
                   fontSize: '22px',
                   fontWeight: 400,
                 }}
@@ -159,7 +159,7 @@ export function CaseSection() {
                   {C.author.name}
                   {C.author.isPlaceholder && <span className="ce-todo ml-2">témoignage à confirmer</span>}
                 </div>
-                <div className="text-[13px] text-[rgba(45,27,78,0.6)] mt-0.5">{C.author.role}</div>
+                <div className="text-[13px] text-[rgba(20, 37, 58,0.6)] mt-0.5">{C.author.role}</div>
               </div>
             </motion.div>
 
@@ -168,13 +168,13 @@ export function CaseSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.85, delay: 0.45, ease: EASE }}
-              className="mt-14 pt-10 border-t border-[rgba(45,27,78,0.12)] grid gap-8"
+              className="mt-14 pt-10 border-t border-[rgba(20, 37, 58,0.12)] grid gap-8"
               style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))' }}
             >
               {C.results.map((r) => (
                 <div key={r.label}>
                   <div
-                    className="text-[var(--color-ce-terra)]"
+                    className="text-[var(--color-ce-terra-deep)]"
                     style={{
                       fontSize: 'clamp(44px, 4.2vw, 56px)',
                       lineHeight: 1,
@@ -189,7 +189,7 @@ export function CaseSection() {
                       </em>
                     )}
                   </div>
-                  <div className="text-[14px] text-[rgba(45,27,78,0.6)] mt-1.5 leading-[1.4] whitespace-pre-line">
+                  <div className="text-[14px] text-[rgba(20, 37, 58,0.6)] mt-1.5 leading-[1.4] whitespace-pre-line">
                     {r.label}
                   </div>
                 </div>

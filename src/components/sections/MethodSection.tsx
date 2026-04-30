@@ -26,7 +26,7 @@ export function MethodSection() {
         >
           {/* Sticky left */}
           <div className="md:sticky md:top-32 self-start">
-            <div className="ce-label ce-label--violet mb-6">{M.eyebrow}</div>
+            <div className="ce-label ce-label--on-light mb-6">{M.eyebrow}</div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -65,7 +65,7 @@ export function MethodSection() {
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 font-serif italic"
                   style={{
-                    background: i % 2 === 0 ? 'var(--color-ce-terra)' : 'var(--color-ce-violet)',
+                    background: i % 2 === 0 ? 'var(--color-ce-terra-deep)' : 'var(--color-ce-violet)',
                     color: 'var(--color-ce-cream)',
                     fontSize: '22px',
                     fontWeight: 400,
@@ -87,7 +87,7 @@ export function MethodSection() {
                     }}
                   >
                     {step.title}
-                    <em style={{ color: 'var(--color-ce-terra)' }}> {step.titleEm}</em>
+                    <em style={{ color: 'var(--color-ce-terra-deep)' }}> {step.titleEm}</em>
                   </h3>
                   <p
                     className="text-[17px] leading-[1.55] max-w-[54ch]"
@@ -101,7 +101,7 @@ export function MethodSection() {
                 <div
                   className="whitespace-nowrap text-[13px] font-medium px-3.5 py-2 rounded-[var(--radius-xs)]"
                   style={{
-                    background: i % 2 === 0 ? 'rgba(242,237,225,0.12)' : 'rgba(45,27,78,0.08)',
+                    background: i % 2 === 0 ? 'rgba(242,237,225,0.12)' : 'rgba(20, 37, 58,0.08)',
                     color: i % 2 === 0 ? 'rgba(242,237,225,0.92)' : 'var(--color-ce-violet)',
                   }}
                 >

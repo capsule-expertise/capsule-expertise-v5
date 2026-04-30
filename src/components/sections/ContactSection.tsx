@@ -37,7 +37,7 @@ export function ContactSection() {
           width: '800px',
           height: '800px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(217,90,46,0.28) 0%, transparent 60%)',
+          background: 'radial-gradient(circle, rgba(201, 162, 39,0.28) 0%, transparent 60%)',
           zIndex: 0,
         }}
       />

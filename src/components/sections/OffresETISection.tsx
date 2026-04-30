@@ -84,11 +84,16 @@ export function OffresETISection() {
               className="p-9 bg-[rgba(242,237,225,0.02)] flex flex-col gap-3"
             >
               <div
-                className="font-serif italic text-[rgba(217,90,46,0.35)] leading-none"
-                style={{ fontSize: '40px', fontWeight: 400 }}
+                className="text-[var(--color-ce-terra)]"
+                style={{
+                  fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+                  fontSize: '12px',
+                  fontWeight: 500,
+                  letterSpacing: '0.14em',
+                }}
                 aria-hidden
               >
-                {m.num}
+                N° {m.num}
               </div>
               <h3
                 className="text-[var(--color-ce-cream)]"

@@ -7,7 +7,6 @@ import { AiguillageSection } from '@/components/sections/AiguillageSection';
 import { OffresSection } from '@/components/sections/OffresSection';
 import { QuestionsSection } from '@/components/sections/QuestionsSection';
 import { OffresETISection } from '@/components/sections/OffresETISection';
-import { MethodSection } from '@/components/sections/MethodSection';
 import { EquipeSection } from '@/components/sections/EquipeSection';
 import { CaseSection } from '@/components/sections/CaseSection';
 import { ContactSection } from '@/components/sections/ContactSection';
@@ -39,9 +38,6 @@ export function Home() {
 
         {/* 6. Offres ETI — 5 missions V1 + intro Ranto ex-DAF LBO */}
         <OffresETISection />
-
-        {/* 7. Méthode — 3 étapes V1 approche en steps romains */}
-        <MethodSection />
 
         {/* 8. Équipe — 2 profils V1 complets + 3 témoignages V1 */}
         <EquipeSection />
