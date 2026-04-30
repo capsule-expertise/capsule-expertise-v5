@@ -36,7 +36,7 @@ export function AiguillageSection() {
     >
       <div className="ce-container">
         {/* Head */}
-        <div className="ce-section-head ce-section-head--light mb-[72px]">
+        <div className="ce-section-head ce-section-head--light mb-12">
           <div>
             <div className="ce-label ce-label--on-light mb-6">{A.eyebrow}</div>
             <motion.h2
@@ -53,6 +53,16 @@ export function AiguillageSection() {
               {A.title} <em>{A.titleEm}</em>
               {A.titleEnd}
             </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
+              className="mt-7 text-[rgba(20,37,58,0.78)] max-w-[58ch]"
+              style={{ fontSize: '18px', lineHeight: 1.55 }}
+            >
+              Capsule s'adapte à deux profils. Identifiez le vôtre ci-dessous
+              pour découvrir comment nous travaillons concrètement avec vous.
+            </motion.p>
           </div>
         </div>
 

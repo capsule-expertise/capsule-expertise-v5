@@ -54,16 +54,12 @@ export const SITE = {
     cta: { label: 'Prendre 30 min', href: '#contact' },
   },
 
-  // ─── HERO — V5 itération 4 : copy poétique + couleur + subtitle factuel ───
+  // ─── HERO — V5 itération 5 : copy court, photo immersive, choix renvoyé en aiguillage ───
   hero: {
-    titleLine1: 'Comprendre vos chiffres,',
-    titleLine2: 'décider plus vite.',
+    titleLine1: 'Maîtrisez vos chiffres,',
+    titleLine2: 'Décidez plus vite.',
     subtitleBrand: 'Capsule — Copilote des dirigeants & DAF',
-    subtitleServices:
-      'Expertise comptable · Management de transition · DAF/RAF part-time',
     oecBadge: "Membre de l'Ordre des Experts-Comptables de Paris",
-    ctaPrimary: { label: 'Je suis dirigeant (TPE/PME)', href: '#dirigeant' },
-    ctaSecondary: { label: 'Je suis DAF / Direction financière →', href: '#finance' },
     heroPhoto: {
       src: '/ranto-jerome.webp',
       alt: 'Ranto Rajaonarivo et Jérôme Phou, associés fondateurs de Capsule Expertise',
