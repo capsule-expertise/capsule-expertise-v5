@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { SITE } from '@/content/site';
 import { useInView } from '@/hooks/useInView';
 
@@ -70,9 +71,9 @@ export function CaseSection() {
               {C.titleEnd}
             </motion.h2>
           </div>
-          <a href="#contact" className="ce-section-head-link self-end">
+          <Link to="/contact" className="ce-section-head-link self-end">
             En discuter →
-          </a>
+          </Link>
         </div>
 
         {/* Layout : sidebar meta + body */}

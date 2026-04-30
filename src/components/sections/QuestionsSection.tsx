@@ -1,20 +1,10 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SITE } from '@/content/site';
 import { useInView } from '@/hooks/useInView';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-
-function smoothScroll(href: string) {
-  return (e: React.MouseEvent) => {
-    if (!href.startsWith('#')) return;
-    e.preventDefault();
-    const el = document.querySelector(href);
-    if (!el) return;
-    const top = (el as HTMLElement).getBoundingClientRect().top + window.scrollY - 72;
-    window.scrollTo({ top, behavior: 'smooth' });
-  };
-}
 
 /**
  * QuestionsSection V5 — 4 Q&R V1 en grille 2×2 (réintroduit sur reco audit).
@@ -128,14 +118,10 @@ export function QuestionsSection() {
           <p className="text-[17px] text-[rgba(20, 37, 58,0.75)] max-w-[60ch] leading-[1.55]">
             {Q.closing}
           </p>
-          <a
-            href={Q.cta.href}
-            onClick={smoothScroll(Q.cta.href)}
-            className="ce-btn ce-btn--terra"
-          >
+          <Link to={Q.cta.href} className="ce-btn ce-btn--terra">
             {Q.cta.label}
             <ArrowRight size={14} strokeWidth={1.75} />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

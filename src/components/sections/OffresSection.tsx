@@ -1,20 +1,10 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SITE } from '@/content/site';
 import { useInView } from '@/hooks/useInView';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-
-function smoothScroll(href: string) {
-  return (e: React.MouseEvent) => {
-    if (!href.startsWith('#')) return;
-    e.preventDefault();
-    const el = document.querySelector(href);
-    if (!el) return;
-    const top = (el as HTMLElement).getBoundingClientRect().top + window.scrollY - 72;
-    window.scrollTo({ top, behavior: 'smooth' });
-  };
-}
 
 /**
  * OffresSection V5 — détail complet V1 : bloc 01 Comptabilité, bloc 02 Pilotage,
@@ -198,14 +188,10 @@ export function OffresSection() {
           <p className="text-[15px] italic text-[rgba(20, 37, 58,0.65)] max-w-[62ch]">
             {O.ctaAside}
           </p>
-          <a
-            href={O.cta.href}
-            onClick={smoothScroll(O.cta.href)}
-            className="ce-btn ce-btn--terra ce-btn--lg"
-          >
+          <Link to={`${O.cta.href}?from=dirigeant`} className="ce-btn ce-btn--terra ce-btn--lg">
             {O.cta.label}
             <ArrowRight size={15} strokeWidth={1.75} />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

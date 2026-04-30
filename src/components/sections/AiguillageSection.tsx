@@ -1,21 +1,11 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SITE } from '@/content/site';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/cn';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-
-function smoothScroll(href: string) {
-  return (e: React.MouseEvent) => {
-    if (!href.startsWith('#')) return;
-    e.preventDefault();
-    const el = document.querySelector(href);
-    if (!el) return;
-    const top = (el as HTMLElement).getBoundingClientRect().top + window.scrollY - 72;
-    window.scrollTo({ top, behavior: 'smooth' });
-  };
-}
 
 /**
  * AiguillageSection V5 — 2 parcours V1 teasers en cards modèle.
@@ -153,9 +143,8 @@ export function AiguillageSection() {
               </ul>
 
               {/* CTA */}
-              <a
-                href={p.cta.href}
-                onClick={smoothScroll(p.cta.href)}
+              <Link
+                to={p.cta.href}
                 className={cn(
                   'ce-btn self-start',
                   p.priority ? 'ce-btn--terra' : 'ce-btn--ghost-light',
@@ -163,7 +152,7 @@ export function AiguillageSection() {
               >
                 {p.cta.label}
                 <ArrowRight size={14} strokeWidth={1.75} />
-              </a>
+              </Link>
             </motion.article>
           ))}
         </div>

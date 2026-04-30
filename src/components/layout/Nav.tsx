@@ -1,26 +1,25 @@
 import { useEffect, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { SITE } from '@/content/site';
 import { cn } from '@/lib/cn';
 
-function smoothScroll(href: string) {
-  return (e: React.MouseEvent) => {
-    if (!href.startsWith('#')) return;
-    e.preventDefault();
-    const el = document.querySelector(href);
-    if (!el) return;
-    const top = (el as HTMLElement).getBoundingClientRect().top + window.scrollY - 72;
-    window.scrollTo({ top, behavior: 'smooth' });
-  };
-}
-
 /**
- * Nav V4 — grille sticky violet avec blur, wordmark Capsule. central,
- * liens + téléphone + CTA terra à droite.
+ * Nav V6 — multi-page (React Router).
+ * - Liens utilisent <NavLink> avec underline ocre quand actif
+ * - CTA "Contact" en bouton terra
+ * - Drawer mobile reste sur le même mécanisme
  */
 export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
+  // Ferme le drawer mobile à chaque changement de route.
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  // Block scroll quand le drawer est ouvert.
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => {
@@ -36,35 +35,48 @@ export function Nav() {
       >
         <div className="ce-container">
           <nav className="grid grid-cols-[1fr_auto_1fr] items-center py-[18px] gap-3">
-            {/* Left — Brand */}
-            <a
-              href="#hero"
-              onClick={smoothScroll('#hero')}
-              className="ce-brand justify-self-start"
-            >
+            {/* Left — Brand → Home */}
+            <Link to="/" className="ce-brand justify-self-start">
               <div className="ce-brand-mark text-[var(--color-ce-cream)]" />
               <span className="ce-brand-name text-[var(--color-ce-cream)]">
                 {SITE.brand.name}
                 <em>{SITE.brand.suffix}</em>
               </span>
-            </a>
+            </Link>
 
             {/* Center — Links (desktop) */}
             <ul className="hidden lg:flex gap-8 justify-self-center">
               {SITE.nav.links.map((l) => (
                 <li key={l.label}>
-                  <a
-                    href={l.href}
-                    onClick={smoothScroll(l.href)}
-                    className="text-[15px] text-[rgba(242,237,225,0.72)] hover:text-[var(--color-ce-cream)] transition-colors py-2 relative"
+                  <NavLink
+                    to={l.href}
+                    className={({ isActive }) =>
+                      cn(
+                        'text-[15px] py-2 relative transition-colors',
+                        isActive
+                          ? 'text-[var(--color-ce-cream)]'
+                          : 'text-[rgba(242,237,225,0.72)] hover:text-[var(--color-ce-cream)]',
+                      )
+                    }
                   >
-                    {l.label}
-                  </a>
+                    {({ isActive }) => (
+                      <>
+                        {l.label}
+                        {isActive && (
+                          <span
+                            aria-hidden
+                            className="absolute left-0 right-0 -bottom-[2px] h-[2px]"
+                            style={{ background: 'var(--color-ce-terra)' }}
+                          />
+                        )}
+                      </>
+                    )}
+                  </NavLink>
                 </li>
               ))}
             </ul>
 
-            {/* Right — Phone (optionnel, si renseigné) + CTA */}
+            {/* Right — Phone + CTA */}
             <div className="hidden lg:flex gap-4 items-center justify-self-end">
               {!SITE.legal.phone.includes('XX') ? (
                 <a
@@ -76,13 +88,9 @@ export function Nav() {
               ) : (
                 <span className="ce-todo">tél. à ajouter</span>
               )}
-              <a
-                href={SITE.nav.cta.href}
-                onClick={smoothScroll(SITE.nav.cta.href)}
-                className="ce-btn ce-btn--terra ce-btn--sm"
-              >
+              <Link to={SITE.nav.cta.href} className="ce-btn ce-btn--terra ce-btn--sm">
                 {SITE.nav.cta.label}
-              </a>
+              </Link>
             </div>
 
             {/* Mobile trigger */}
@@ -110,28 +118,27 @@ export function Nav() {
       >
         <div className="h-full flex flex-col items-center justify-center gap-6 px-6">
           {SITE.nav.links.map((l) => (
-            <a
+            <NavLink
               key={l.label}
-              href={l.href}
-              onClick={(e) => {
-                smoothScroll(l.href)(e);
-                setMobileOpen(false);
-              }}
-              className="font-sans text-[clamp(2rem,6vw,3rem)] font-medium tracking-[-0.035em] hover:text-[var(--color-ce-terra)] transition-colors"
+              to={l.href}
+              className={({ isActive }) =>
+                cn(
+                  'font-sans text-[clamp(2rem,6vw,3rem)] font-medium tracking-[-0.035em] transition-colors',
+                  isActive
+                    ? 'text-[var(--color-ce-terra)]'
+                    : 'hover:text-[var(--color-ce-terra)]',
+                )
+              }
             >
               {l.label}
-            </a>
+            </NavLink>
           ))}
-          <a
-            href={SITE.nav.cta.href}
-            onClick={(e) => {
-              smoothScroll(SITE.nav.cta.href)(e);
-              setMobileOpen(false);
-            }}
+          <Link
+            to={SITE.nav.cta.href}
             className="ce-btn ce-btn--terra ce-btn--lg mt-4"
           >
             {SITE.nav.cta.label}
-          </a>
+          </Link>
           {!SITE.legal.phone.includes('XX') && (
             <a
               href={SITE.legal.phoneHref}

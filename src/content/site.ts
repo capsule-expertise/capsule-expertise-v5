@@ -47,11 +47,11 @@ export const SITE = {
 
   nav: {
     links: [
-      { label: 'Dirigeants', href: '#dirigeant' },
-      { label: 'DAF · ETI', href: '#finance' },
-      { label: 'Le cabinet', href: '#cabinet' },
+      { label: 'Dirigeants', href: '/dirigeants' },
+      { label: 'DAF · ETI', href: '/direction-financiere' },
+      { label: 'Qui sommes-nous', href: '/qui-sommes-nous' },
     ],
-    cta: { label: 'Prendre 30 min', href: '#contact' },
+    cta: { label: 'Contact', href: '/contact' },
   },
 
   // ─── HERO — V5 itération 5 : copy court, photo immersive, choix renvoyé en aiguillage ───
@@ -95,7 +95,7 @@ export const SITE = {
           'Décider d’un recrutement',
           'Comprendre la performance de votre entreprise',
         ],
-        cta: { label: 'Voir le parcours dirigeant', href: '#dirigeant' },
+        cta: { label: 'Voir le parcours dirigeant', href: '/dirigeants' },
         priority: true,
       },
       {
@@ -110,7 +110,7 @@ export const SITE = {
           'Amélioration des délais de clôture',
           'Management de transition',
         ],
-        cta: { label: 'Voir le parcours Finance', href: '#finance' },
+        cta: { label: 'Voir le parcours DAF', href: '/direction-financiere' },
         priority: false,
       },
     ],
@@ -166,7 +166,7 @@ export const SITE = {
       footer:
         "Ces sujets peuvent être traités lorsque la situation de l’entreprise le nécessite.",
     },
-    cta: { label: 'Échanger sur votre situation', href: '#contact' },
+    cta: { label: 'Échanger sur votre situation', href: '/contact' },
     ctaAside:
       'Pour les ETI et directions financières, voir le parcours Finance ci-dessous.',
   },
@@ -202,7 +202,7 @@ export const SITE = {
     ],
     closing:
       "Si vous vous posez l’une de ces questions, c’est probablement le bon moment pour en parler.",
-    cta: { label: 'En parler avec un expert — 30 min', href: '#contact' },
+    cta: { label: 'En parler avec un expert — 30 min', href: '/contact' },
   },
 
   // ─── OFFRES ETI — 5 missions V1 + intro Ranto ex-DAF ───
@@ -245,7 +245,7 @@ export const SITE = {
           "Départ d’un directeur comptable, remplacement temporaire, renfort sur une période critique. Disponibilité rapide, sans période d’adaptation.",
       },
     ],
-    cta: { label: 'Discuter de votre projet', href: '#contact' },
+    cta: { label: 'Discuter de votre projet', href: '/contact' },
   },
 
   // ─── MÉTHODE — 3 étapes V1 "approche" en format modèle i · ii · iii ───
@@ -427,17 +427,15 @@ export const SITE = {
       {
         title: 'Cabinet',
         links: [
-          { label: 'Méthode', href: '#methode' },
-          { label: 'Les associés', href: '#cabinet' },
-          { label: 'Contact', href: '#contact' },
+          { label: 'Qui sommes-nous', href: '/qui-sommes-nous' },
+          { label: 'Contact', href: '/contact' },
         ],
       },
       {
         title: 'Missions',
         links: [
-          { label: 'Dirigeants TPE/PME', href: '#dirigeant' },
-          { label: 'DAF · ETI', href: '#finance' },
-          { label: 'Exemples', href: '#case' },
+          { label: 'Dirigeants TPE/PME', href: '/dirigeants' },
+          { label: 'DAF · ETI', href: '/direction-financiere' },
         ],
       },
       {
@@ -445,7 +443,7 @@ export const SITE = {
         links: [
           { label: 'contact@capsule-expertise.fr', href: 'mailto:contact@capsule-expertise.fr' },
           { label: '60 av. du Général Leclerc · 94360 Bry-sur-Marne', href: '#' },
-          { label: 'Prendre 30 min →', href: '#contact' },
+          { label: 'Nous écrire →', href: '/contact' },
         ],
       },
     ],
