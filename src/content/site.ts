@@ -54,30 +54,16 @@ export const SITE = {
     cta: { label: 'Prendre 30 min', href: '#contact' },
   },
 
-  // ─── HERO — copy V1 complet, présentation modèle ───
+  // ─── HERO — V5 itération 4 : copy poétique + couleur + subtitle factuel ───
   hero: {
-    titleLine1: 'Copilote des',
-    titleLine2: 'Dirigeants & DAF',
-    subtitle:
-      'Expertise-comptable · DAF à temps partagé · Management de transition',
-    deck:
-      "Expert-comptable et accompagnement financier pour dirigeants de PME et directions financières. Capsule accompagne la production et la lecture de votre information financière.",
-    deckEm: 'lecture',
-    bullets: [
-      'Échange direct avec un expert-comptable',
-      'Une information financière claire et exploitable',
-      'Réponse sous 48 h ouvrées',
-    ],
+    titleLine1: 'Comprendre vos chiffres,',
+    titleLine2: 'décider plus vite.',
+    subtitleBrand: 'Capsule — Copilote des dirigeants & DAF',
+    subtitleServices:
+      'Expertise comptable · Management de transition · DAF/RAF part-time',
+    oecBadge: "Membre de l'Ordre des Experts-Comptables de Paris",
     ctaPrimary: { label: 'Je suis dirigeant (TPE/PME)', href: '#dirigeant' },
     ctaSecondary: { label: 'Je suis DAF / Direction financière →', href: '#finance' },
-    reassurance: {
-      label: 'Premier échange',
-      num: '48',
-      unit: 'h',
-      unitLine: "réponse écrite\nouvrées",
-      footer:
-        "Entretien de 30 minutes, confidentiel, sans engagement.\nNote de cadrage écrite livrée sous 10 jours.",
-    },
     heroPhoto: {
       src: '/ranto-jerome.webp',
       alt: 'Ranto Rajaonarivo et Jérôme Phou, associés fondateurs de Capsule Expertise',

@@ -1,4 +1,4 @@
-import { motion, type Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { SITE } from '@/content/site';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
@@ -17,28 +17,19 @@ function smoothScroll(href: string) {
 }
 
 /**
- * HeroSection V5 — présentation modèle + copy V1.
+ * HeroSection V5 — itération 4.
  *
- * - H1 V1 "Comprendre ses chiffres. *Décider plus vite.*" en taille géante modèle
- * - Eyebrow avec géo (reco audit)
- * - Deck V1 reformulé
- * - Bullets V1 (3 engagements)
- * - CTA dual V1 (TPE prioritaire / DAF secondaire en texte-link)
- * - Reassurance card 48h (pas de prix, audit-compliant)
- * - Pulse live status
+ * - H1 2 lignes "Comprendre vos chiffres, / décider plus vite." (ligne 2 ocre)
+ * - Subtitle 2 lignes : brand + services
+ * - Badge OEC discret
+ * - Photo duo en carte arrondie (sans fondu)
+ * - Pas de carte 48h, pas de bullets, pas de blobs radial gradient
+ * - Pas d'animations sur le texte (seul la photo a un reveal subtle)
+ * - Accent éditorial : trait ocre vertical 2px à gauche
  */
 export function HeroSection() {
   const reduced = useReducedMotion();
   const H = SITE.hero;
-
-  const fadeUp: Variants = {
-    hidden: { opacity: 0, y: reduced ? 0 : 22 },
-    visible: (delay: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { duration: reduced ? 0 : 0.8, delay, ease: EASE },
-    }),
-  };
 
   return (
     <section
@@ -47,86 +38,81 @@ export function HeroSection() {
       style={{
         background: 'var(--color-ce-violet)',
         paddingTop: '32px',
-        paddingBottom: '120px',
+        paddingBottom: '96px',
       }}
     >
-      {/* Ornement radial terra droite */}
+      {/* Accent éditorial — trait ocre vertical à gauche (au lieu des blobs Vercel) */}
       <div
         aria-hidden
         className="absolute pointer-events-none"
         style={{
-          right: '-300px',
-          top: '20%',
-          width: '700px',
-          height: '700px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(201, 162, 39,0.18) 0%, transparent 60%)',
-          zIndex: 0,
-        }}
-      />
-      {/* Ornement radial violet gauche */}
-      <div
-        aria-hidden
-        className="absolute pointer-events-none"
-        style={{
-          left: '-100px',
-          bottom: 0,
-          width: '400px',
-          height: '400px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(30, 58, 95,0.6) 0%, transparent 65%)',
+          left: 0,
+          top: 0,
+          width: '2px',
+          height: '50%',
+          background: 'var(--color-ce-terra)',
           zIndex: 0,
         }}
       />
 
       <div className="ce-container relative z-10">
-        {/* Hero grid : H1 + subtitle / Photo */}
+        {/* Hero grid : texte / photo */}
         <div
           className="grid gap-10 md:gap-20 items-start"
           style={{ gridTemplateColumns: 'minmax(0, 1fr) auto' }}
         >
           <div>
-            <motion.h1
-              initial="hidden"
-              animate="visible"
-              custom={0.05}
-              variants={fadeUp}
-              className="tracking-display text-[var(--color-ce-cream)] max-w-[18ch]"
+            <h1
+              className="tracking-display text-[var(--color-ce-cream)] max-w-[28ch]"
               style={{
-                fontSize: 'clamp(40px, 7vw, 100px)',
-                lineHeight: 0.98,
+                fontSize: 'clamp(36px, 6.5vw, 88px)',
+                lineHeight: 1.0,
                 fontWeight: 500,
-                letterSpacing: '-0.035em',
+                letterSpacing: '-0.03em',
               }}
             >
               {H.titleLine1}
               <br />
               <span style={{ color: 'var(--color-ce-terra)' }}>{H.titleLine2}</span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              initial="hidden"
-              animate="visible"
-              custom={0.18}
-              variants={fadeUp}
+            {/* Subtitle 2 lignes — brand + services */}
+            <p
               className="text-[var(--color-ce-cream)] mt-6 max-w-[60ch]"
               style={{
-                fontSize: 'clamp(15px, 1.4vw, 18px)',
+                fontSize: 'clamp(16px, 1.4vw, 19px)',
+                fontWeight: 500,
+                opacity: 0.92,
+                letterSpacing: '0.005em',
+                lineHeight: 1.4,
+              }}
+            >
+              {H.subtitleBrand}
+            </p>
+            <p
+              className="text-[var(--color-ce-cream)] mt-1.5 max-w-[60ch]"
+              style={{
+                fontSize: 'clamp(14px, 1.1vw, 16px)',
                 fontWeight: 400,
-                opacity: 0.78,
+                opacity: 0.65,
                 letterSpacing: '0.005em',
                 lineHeight: 1.5,
               }}
             >
-              {H.subtitle}
-            </motion.p>
+              {H.subtitleServices}
+            </p>
+
+            {/* Badge OEC */}
+            <div className="ce-label ce-label--cream mt-8" style={{ color: 'var(--color-ce-terra)' }}>
+              {H.oecBadge}
+            </div>
           </div>
 
-          {/* Photo duo associés — carte arrondie + ombre (sans fondu) */}
+          {/* Photo duo associés — carte arrondie + ombre, sans fondu */}
           <motion.div
-            initial={{ opacity: 0, y: reduced ? 0 : 30 }}
+            initial={{ opacity: 0, y: reduced ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduced ? 0 : 0.95, delay: 0.2, ease: EASE }}
+            transition={{ duration: reduced ? 0 : 0.7, delay: 0.1, ease: EASE }}
             className="hidden md:block relative overflow-hidden rounded-[var(--radius-lg)]"
             style={{
               width: 'clamp(320px, 28vw, 460px)',
@@ -145,13 +131,12 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Photo duo mobile (visible <md uniquement) — carte sans fondu */}
+        {/* Photo duo mobile (visible <md uniquement) */}
         <motion.div
-          initial="hidden"
-          animate="visible"
-          custom={0.25}
-          variants={fadeUp}
-          className="md:hidden mt-8 relative overflow-hidden rounded-[var(--radius-lg)]"
+          initial={{ opacity: 0, y: reduced ? 0 : 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduced ? 0 : 0.7, delay: 0.15, ease: EASE }}
+          className="md:hidden mt-10 relative overflow-hidden rounded-[var(--radius-lg)]"
           style={{
             aspectRatio: '4 / 3',
             background: 'var(--color-ce-violet-deep)',
@@ -166,117 +151,32 @@ export function HeroSection() {
           />
         </motion.div>
 
-        {/* Deck + bullets + dual CTA */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          custom={0.32}
-          variants={fadeUp}
-          className="mt-14 pt-10 border-t border-[rgba(242,237,225,0.12)] grid gap-10 md:gap-16 items-start"
-          style={{ gridTemplateColumns: 'minmax(0, 1.1fr) auto' }}
+        {/* CTAs — séparé par border-top */}
+        <div
+          className="mt-14 pt-10 border-t border-[rgba(242,237,225,0.12)] flex flex-wrap items-center gap-6"
         >
-          <div>
-            <ul className="flex flex-col gap-3.5">
-              {H.bullets.map((b) => (
-                <li
-                  key={b}
-                  className="flex items-start gap-3.5 text-[17px] leading-[1.55] text-[var(--color-ce-cream)]"
-                >
-                  <span
-                    aria-hidden
-                    className="inline-block w-[8px] h-[8px] rounded-full bg-[var(--color-ce-terra)] mt-[0.55em] shrink-0"
-                  />
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="flex flex-col gap-5 items-start">
-            {/* Reassurance 48h compacte (déplacée depuis la grille supérieure) */}
-            <div
-              className="hidden md:flex flex-col gap-2 px-6 py-5 min-w-[260px] bg-[var(--color-ce-cream)] text-[var(--color-ce-violet)] rounded-[var(--radius-lg)]"
-              style={{ boxShadow: '0 20px 40px -25px rgba(5, 14, 26,0.45)' }}
-            >
-              <div className="ce-label ce-label--violet">{H.reassurance.label}</div>
-              <div className="flex items-baseline gap-2.5">
-                <div
-                  style={{
-                    fontSize: '52px',
-                    lineHeight: 1,
-                    fontWeight: 500,
-                    letterSpacing: '-0.04em',
-                  }}
-                >
-                  {H.reassurance.num}
-                  <em
-                    className="font-serif italic text-[var(--color-ce-terra)]"
-                    style={{ fontWeight: 400 }}
-                  >
-                    {H.reassurance.unit}
-                  </em>
-                </div>
-                <div className="text-[12px] text-[rgba(20, 37, 58,0.6)] leading-[1.3] whitespace-pre-line">
-                  {H.reassurance.unitLine}
-                </div>
-              </div>
-              <div className="text-[12px] text-[rgba(20, 37, 58,0.72)] pt-2.5 border-t border-[rgba(20, 37, 58,0.1)] leading-[1.5] whitespace-pre-line">
-                {H.reassurance.footer}
-              </div>
-            </div>
-
-            <a
-              href={H.ctaPrimary.href}
-              onClick={smoothScroll(H.ctaPrimary.href)}
-              className="ce-btn ce-btn--terra ce-btn--lg"
-            >
-              {H.ctaPrimary.label}
-              <ArrowRight size={16} strokeWidth={1.75} />
-            </a>
-            <a
-              href={H.ctaSecondary.href}
-              onClick={smoothScroll(H.ctaSecondary.href)}
-              className="inline-flex items-center gap-1.5 text-[14px] text-[rgba(242,237,225,0.72)] hover:text-[var(--color-ce-terra)] transition-colors"
-              style={{
-                textDecoration: 'underline',
-                textUnderlineOffset: '4px',
-                textDecorationColor: 'rgba(201, 162, 39, 0.45)',
-                textDecorationThickness: '1px',
-              }}
-            >
-              {H.ctaSecondary.label}
-            </a>
-            <p className="text-[12px] text-[rgba(242,237,225,0.5)] mt-1">
-              Parler de votre situation — sans engagement
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Reassurance card mobile */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          custom={0.45}
-          variants={fadeUp}
-          className="md:hidden flex flex-col gap-3 px-7 py-6 mt-10 bg-[var(--color-ce-cream)] text-[var(--color-ce-violet)] rounded-[var(--radius-lg)]"
-        >
-          <div className="ce-label ce-label--violet">{H.reassurance.label}</div>
-          <div className="flex items-baseline gap-2.5">
-            <div
-              style={{ fontSize: '60px', lineHeight: 1, fontWeight: 500, letterSpacing: '-0.04em' }}
-            >
-              {H.reassurance.num}
-              <em className="font-serif italic text-[var(--color-ce-terra)]" style={{ fontWeight: 400 }}>
-                {H.reassurance.unit}
-              </em>
-            </div>
-            <div className="text-[13px] text-[rgba(20, 37, 58,0.6)] whitespace-pre-line">
-              {H.reassurance.unitLine}
-            </div>
-          </div>
-          <div className="text-[14px] text-[rgba(20, 37, 58,0.72)] pt-3 border-t border-[rgba(20, 37, 58,0.1)] whitespace-pre-line">
-            {H.reassurance.footer}
-          </div>
-        </motion.div>
+          <a
+            href={H.ctaPrimary.href}
+            onClick={smoothScroll(H.ctaPrimary.href)}
+            className="ce-btn ce-btn--terra ce-btn--lg"
+          >
+            {H.ctaPrimary.label}
+            <ArrowRight size={16} strokeWidth={1.75} />
+          </a>
+          <a
+            href={H.ctaSecondary.href}
+            onClick={smoothScroll(H.ctaSecondary.href)}
+            className="inline-flex items-center gap-1.5 text-[15px] text-[rgba(242,237,225,0.72)] hover:text-[var(--color-ce-terra)] transition-colors"
+            style={{
+              textDecoration: 'underline',
+              textUnderlineOffset: '4px',
+              textDecorationColor: 'rgba(201, 162, 39, 0.45)',
+              textDecorationThickness: '1px',
+            }}
+          >
+            {H.ctaSecondary.label}
+          </a>
+        </div>
       </div>
     </section>
   );
