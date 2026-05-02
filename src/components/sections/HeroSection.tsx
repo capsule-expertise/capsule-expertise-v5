@@ -69,13 +69,14 @@ export function HeroSection() {
         style={{
           width: 'clamp(420px, 42vw, 720px)',
           zIndex: 1,
-          // (a) Mask gradient — fond progressif vers la gauche dans le navy.
-          // Plus de photo visible (65% opaque vs 60% avant) + courbe en S
-          // (3 stops dont 0.5 à 90%) pour une transition plus douce.
+          // (a) Mask gradient — fond TRÈS progressif vers la gauche dans le navy.
+          // Opaque resserré à droite (30%) pour que le fade démarre tôt et
+          // s'étire sur 70% de la largeur. 4 stops pour une courbe S la plus
+          // douce possible — la photo "fond" graduellement dans le navy.
           WebkitMaskImage:
-            'linear-gradient(to left, rgba(0,0,0,1) 65%, rgba(0,0,0,0.5) 90%, rgba(0,0,0,0) 100%)',
+            'linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.35) 80%, rgba(0,0,0,0) 100%)',
           maskImage:
-            'linear-gradient(to left, rgba(0,0,0,1) 65%, rgba(0,0,0,0.5) 90%, rgba(0,0,0,0) 100%)',
+            'linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.35) 80%, rgba(0,0,0,0) 100%)',
         }}
       >
         <img
