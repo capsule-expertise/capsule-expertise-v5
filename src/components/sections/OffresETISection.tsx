@@ -1,20 +1,11 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SITE } from '@/content/site';
 import { useInView } from '@/hooks/useInView';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-function smoothScroll(href: string) {
-  return (e: React.MouseEvent) => {
-    if (!href.startsWith('#')) return;
-    e.preventDefault();
-    const el = document.querySelector(href);
-    if (!el) return;
-    const top = (el as HTMLElement).getBoundingClientRect().top + window.scrollY - 72;
-    window.scrollTo({ top, behavior: 'smooth' });
-  };
-}
 
 /**
  * OffresETISection V5 — 5 missions finance V1 + intro Ranto ex-DAF LBO.
@@ -121,14 +112,10 @@ export function OffresETISection() {
           transition={{ duration: 0.85, delay: 0.6, ease: EASE }}
           className="flex justify-end"
         >
-          <a
-            href={E.cta.href}
-            onClick={smoothScroll(E.cta.href)}
-            className="ce-btn ce-btn--terra ce-btn--lg"
-          >
+          <Link to={`${E.cta.href}?from=daf`} className="ce-btn ce-btn--terra ce-btn--lg">
             {E.cta.label}
             <ArrowRight size={15} strokeWidth={1.75} />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

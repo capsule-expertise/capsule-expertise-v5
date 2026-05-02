@@ -53,16 +53,23 @@ export function HeroSection() {
         }}
       />
 
-      {/* Photo full-bleed à droite — immersive, sort du container */}
+      {/* Photo full-bleed à droite — 3 effets cumulatifs pour fondre dans le navy */}
       <motion.div
         initial={{ opacity: 0, scale: reduced ? 1 : 1.04 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: reduced ? 0 : 1.2, delay: 0.1, ease: EASE }}
         aria-hidden
-        className="hidden md:block absolute top-0 bottom-0 right-0 pointer-events-none"
+        className="hidden md:block absolute top-0 bottom-0 right-0 pointer-events-none overflow-hidden"
         style={{
           width: 'clamp(420px, 42vw, 720px)',
           zIndex: 1,
+          // (a) Mask gradient — fond progressif vers la gauche dans le navy.
+          // Appliqué sur le container pour couvrir img + overlays simultanément
+          // (sinon le navy overlay créerait un bandeau bizarre sur la zone fade).
+          WebkitMaskImage:
+            'linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
+          maskImage:
+            'linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
         }}
       >
         <img
@@ -72,24 +79,22 @@ export function HeroSection() {
           className="w-full h-full object-cover"
           style={{ objectPosition: '30% 30%' }}
         />
-        {/* Gradient fade left edge — fond violet → photo */}
+        {/* (b) Overlay color-blend navy multiply 0.15 — uniformise les températures */}
         <div
           aria-hidden
-          className="absolute inset-y-0 left-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
           style={{
-            width: '40%',
-            background:
-              'linear-gradient(to right, var(--color-ce-violet) 0%, rgba(20, 37, 58, 0.6) 50%, transparent 100%)',
+            background: '#0A1F3A',
+            mixBlendMode: 'multiply',
+            opacity: 0.15,
           }}
         />
-        {/* Gradient fade bottom edge — fond violet remontant */}
+        {/* (c) Vignette navy périphérique — referme les bords contre le fond */}
         <div
           aria-hidden
-          className="absolute inset-x-0 bottom-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
           style={{
-            height: '30%',
-            background:
-              'linear-gradient(to top, var(--color-ce-violet) 0%, transparent 100%)',
+            boxShadow: 'inset 0 0 200px 80px rgba(10, 31, 58, 0.6)',
           }}
         />
       </motion.div>
@@ -144,25 +149,25 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Photo mobile (visible <md uniquement) — carte arrondie classique */}
-      <motion.div
-        initial={{ opacity: 0, y: reduced ? 0 : 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: reduced ? 0 : 0.7, delay: 0.3, ease: EASE }}
-        className="md:hidden mx-6 mt-2 mb-2 relative overflow-hidden rounded-[var(--radius-lg)]"
-        style={{
-          aspectRatio: '4 / 3',
-          background: 'var(--color-ce-violet-deep)',
-        }}
+      {/* Photo mobile (<md) — background plein écran de la section + overlay navy 0.85
+          pour que le texte (H1 + subtitle + badge) reste lisible par-dessus. */}
+      <div
+        aria-hidden
+        className="md:hidden absolute inset-0 pointer-events-none"
+        style={{ zIndex: 0 }}
       >
         <img
           src={H.heroPhoto.src}
-          alt={H.heroPhoto.alt}
+          alt=""
           loading="eager"
           className="w-full h-full object-cover"
-          style={{ objectPosition: 'center top' }}
+          style={{ objectPosition: '50% 30%' }}
         />
-      </motion.div>
+        <div
+          className="absolute inset-0"
+          style={{ background: 'rgba(10, 31, 58, 0.85)' }}
+        />
+      </div>
     </section>
   );
 }
