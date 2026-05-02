@@ -69,14 +69,14 @@ export function HeroSection() {
         style={{
           width: 'clamp(420px, 42vw, 720px)',
           zIndex: 1,
-          // (a) Mask gradient — fond TRÈS progressif vers la gauche dans le navy.
-          // Opaque resserré à droite (30%) pour que le fade démarre tôt et
-          // s'étire sur 70% de la largeur. 4 stops pour une courbe S la plus
-          // douce possible — la photo "fond" graduellement dans le navy.
+          // (a) Mask gradient — photo nette à partir de l'épaule (75% mask coord),
+          // fade S-curve sur les 25% à gauche jusqu'au navy. Opaque jusqu'à
+          // l'épaule de Ranto = visages + bustes nets ; le fondu démarre
+          // exactement au niveau de l'épaule et descend doucement jusqu'au navy.
           WebkitMaskImage:
-            'linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.35) 80%, rgba(0,0,0,0) 100%)',
+            'linear-gradient(to left, rgba(0,0,0,1) 75%, rgba(0,0,0,0.7) 85%, rgba(0,0,0,0.3) 95%, rgba(0,0,0,0) 100%)',
           maskImage:
-            'linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.35) 80%, rgba(0,0,0,0) 100%)',
+            'linear-gradient(to left, rgba(0,0,0,1) 75%, rgba(0,0,0,0.7) 85%, rgba(0,0,0,0.3) 95%, rgba(0,0,0,0) 100%)',
         }}
       >
         <img
