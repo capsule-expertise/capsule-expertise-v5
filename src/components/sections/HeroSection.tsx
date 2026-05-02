@@ -83,7 +83,7 @@ export function HeroSection() {
           alt={H.heroPhoto.alt}
           loading="eager"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '30% 30%' }}
+          style={{ objectPosition: '30% 62%' }}
         />
         {/* (b) Overlay color-blend navy multiply 0.15 — uniformise les températures */}
         <div
@@ -167,7 +167,7 @@ export function HeroSection() {
           alt=""
           loading="eager"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '50% 30%' }}
+          style={{ objectPosition: '50% 62%' }}
         />
         <div
           className="absolute inset-0"
