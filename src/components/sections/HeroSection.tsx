@@ -33,7 +33,9 @@ export function HeroSection() {
       id="hero"
       className="relative overflow-hidden"
       style={{
-        background: 'var(--color-ce-violet)',
+        // Radial gradient subtle violet→deep-violet pour effet "glow" derrière la photo
+        background:
+          'radial-gradient(ellipse at 70% 40%, var(--color-ce-violet-rich) 0%, var(--color-ce-violet) 60%)',
         paddingTop: '32px',
         paddingBottom: '96px',
         // Plein viewport sous la nav — pas de bande de la section suivante
@@ -112,8 +114,8 @@ export function HeroSection() {
             style={{
               fontSize: 'clamp(36px, 6.5vw, 88px)',
               lineHeight: 1.0,
-              fontWeight: 500,
-              letterSpacing: '-0.03em',
+              // fontWeight retiré : laisse le CSS de base (h1 = 800) s'appliquer
+              letterSpacing: '-0.04em',
             }}
           >
             {H.titleLine1}

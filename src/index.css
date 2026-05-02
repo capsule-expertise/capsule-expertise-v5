@@ -8,16 +8,19 @@
    ============================================================ */
 
 @theme {
-  /* Palette V5 — bleu nuit + ocre patrimonial + ivoire (cabinet moderne)
-     Noms de variables conservés (--color-ce-violet/terra/cream) pour réduire le diff.
-     Bleu nuit légèrement éclairci (#14253a au lieu de #0d1b2a) pour ne pas être trop sombre. */
-  --color-ce-violet: #14253a;
-  --color-ce-violet-rich: #1e3a5f;
-  --color-ce-violet-deep: #0a1726;
-  --color-ce-violet-ink: #050e1a;
-  --color-ce-terra: #c9a227;       /* OCRE VIF — pour fond DARK (bleu nuit) */
-  --color-ce-terra-deep: #7a601a;  /* OCRE FONCÉ — pour fond LIGHT (ivoire), ratio AA */
-  --color-ce-terra-soft: #e0b850;
+  /* Palette V6 — manifesto : violet profond + orange vif + purple lavande
+     Noms de vars CSS conservés pour réduire le diff. Le système est désormais
+     à 2 accents : ORANGE pour l'emphase texte, PURPLE pour les boutons. */
+  --color-ce-violet: #1a1f3d;        /* dark blue-violet (était navy #14253a) */
+  --color-ce-violet-rich: #2a1f4a;   /* plus purple pour gradient/glow */
+  --color-ce-violet-deep: #0f1228;
+  --color-ce-violet-ink: #08091a;
+  --color-ce-terra: #fb6f47;         /* ORANGE VIF — accent texte (italic remplacé par color seul) */
+  --color-ce-terra-deep: #c8442a;    /* ORANGE FONCÉ — pour fond clair (AA contrast) */
+  --color-ce-terra-soft: #ffa787;
+  --color-ce-purple: #7c6cff;        /* PURPLE/LAVANDE — boutons primaires */
+  --color-ce-purple-soft: #a096ff;
+  --color-ce-purple-deep: #5b4fd9;
   --color-ce-cream: #f4f1e8;
   --color-ce-cream-warm: #ede7d2;
   --color-ce-cream-cool: #f8f5ec;
@@ -85,16 +88,21 @@
     color: inherit;
   }
 
-  /* Accents serif italique — signature V4 */
+  /* H1 manifesto V6 — Inter Black 800 */
+  h1 {
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+
+  /* Accents V6 — ORANGE plein, sans italique, sans serif (anti-Claude tic) */
   h1 em,
   h2 em,
   h3 em,
   .serif-em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: inherit;
     color: var(--color-ce-terra);
-    letter-spacing: -0.02em;
+    /* font-family hérité du parent (Inter) — pas de switch vers Fraunces */
   }
 
   p,
@@ -221,13 +229,14 @@
   .ce-btn:hover {
     transform: translateY(-1px);
   }
-  /* Primary (sur fond DARK) — fonce sur hover, garde l'identité ocre */
+  /* Primary V6 — PURPLE/lavande (le nom .ce-btn--terra reste pour ne pas
+     churn les composants, mais le style passe au purple). Hover = purple-deep. */
   .ce-btn--terra {
-    background: var(--color-ce-terra);
+    background: var(--color-ce-purple);
     color: var(--color-ce-cream);
   }
   .ce-btn--terra:hover {
-    background: var(--color-ce-terra-deep);
+    background: var(--color-ce-purple-deep);
     color: var(--color-ce-cream);
   }
   /* Sur fond CLAIR — color swap navy/ivoire (high contrast) */
