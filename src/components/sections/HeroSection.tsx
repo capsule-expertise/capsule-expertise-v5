@@ -86,24 +86,9 @@ export function HeroSection() {
           className="w-full h-full object-cover"
           style={{ objectPosition: '30% 62%' }}
         />
-        {/* (b) Overlay color-blend navy multiply 0.15 — uniformise les températures */}
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: '#0A1F3A',
-            mixBlendMode: 'multiply',
-            opacity: 0.15,
-          }}
-        />
-        {/* (c) Vignette navy périphérique — referme les bords contre le fond */}
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            boxShadow: 'inset 0 0 200px 80px rgba(10, 31, 58, 0.6)',
-          }}
-        />
+        {/* Overlays multiply + vignette retirés — la photo doit être nette
+            et lumineuse côté droit. Seul le mask gradient (sur le container)
+            gère la transition vers le navy à gauche. */}
       </motion.div>
 
       <div className="ce-container relative z-10">
