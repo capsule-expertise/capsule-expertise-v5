@@ -36,7 +36,9 @@ export function HeroSection() {
         background: 'var(--color-ce-violet)',
         paddingTop: '32px',
         paddingBottom: '96px',
-        minHeight: '600px',
+        // Plein viewport sous la nav — pas de bande de la section suivante
+        // (Aiguillage cream) visible avant scroll.
+        minHeight: 'calc(100svh - var(--spacing-nav-h))',
       }}
     >
       {/* Accent éditorial — trait ocre vertical à gauche */}
@@ -64,12 +66,12 @@ export function HeroSection() {
           width: 'clamp(420px, 42vw, 720px)',
           zIndex: 1,
           // (a) Mask gradient — fond progressif vers la gauche dans le navy.
-          // Appliqué sur le container pour couvrir img + overlays simultanément
-          // (sinon le navy overlay créerait un bandeau bizarre sur la zone fade).
+          // Plus de photo visible (65% opaque vs 60% avant) + courbe en S
+          // (3 stops dont 0.5 à 90%) pour une transition plus douce.
           WebkitMaskImage:
-            'linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
+            'linear-gradient(to left, rgba(0,0,0,1) 65%, rgba(0,0,0,0.5) 90%, rgba(0,0,0,0) 100%)',
           maskImage:
-            'linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
+            'linear-gradient(to left, rgba(0,0,0,1) 65%, rgba(0,0,0,0.5) 90%, rgba(0,0,0,0) 100%)',
         }}
       >
         <img
