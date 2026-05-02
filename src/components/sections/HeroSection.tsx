@@ -33,9 +33,11 @@ export function HeroSection() {
       id="hero"
       className="relative overflow-hidden"
       style={{
-        // Radial gradient subtle violet→deep-violet pour effet "glow" derrière la photo
+        // Gradient linéaire navy → navy profond pour profondeur stable.
+        // Top légèrement plus clair, bas plus dense — ancrage visuel "cabinet
+        // sérieux nuit calme" sans le côté SaaS du radial glow.
         background:
-          'radial-gradient(ellipse at 70% 40%, var(--color-ce-violet-rich) 0%, var(--color-ce-violet) 60%)',
+          'linear-gradient(180deg, var(--color-ce-violet-rich) 0%, var(--color-ce-violet) 50%, var(--color-ce-violet-deep) 100%)',
         paddingTop: '32px',
         paddingBottom: '96px',
         // Plein viewport sous la nav — pas de bande de la section suivante

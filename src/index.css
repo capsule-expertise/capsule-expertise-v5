@@ -8,16 +8,17 @@
    ============================================================ */
 
 @theme {
-  /* Palette V6 — manifesto : violet profond + orange vif + purple lavande
-     Noms de vars CSS conservés pour réduire le diff. Le système est désormais
-     à 2 accents : ORANGE pour l'emphase texte, PURPLE pour les boutons. */
-  --color-ce-violet: #1a1f3d;        /* dark blue-violet (était navy #14253a) */
-  --color-ce-violet-rich: #2a1f4a;   /* plus purple pour gradient/glow */
-  --color-ce-violet-deep: #0f1228;
-  --color-ce-violet-ink: #08091a;
-  --color-ce-terra: #fb6f47;         /* ORANGE VIF — accent texte (italic remplacé par color seul) */
-  --color-ce-terra-deep: #c8442a;    /* ORANGE FONCÉ — pour fond clair (AA contrast) */
-  --color-ce-terra-soft: #ffa787;
+  /* Palette V6.1 — stabilisateur : navy profond + champagne/gold + purple lavande
+     Orange retiré (jugé Claude-tic). Bg passe en navy profond solide
+     (gradient linéaire pour la profondeur). Accent texte = champagne/gold
+     premium cabinet. Boutons primaires restent purple. */
+  --color-ce-violet: #0e1a2e;        /* DEEP NAVY — was violet #1a1f3d */
+  --color-ce-violet-rich: #0f1f35;   /* navy moyen pour haut du gradient */
+  --color-ce-violet-deep: #07111f;   /* navy ink pour bas du gradient */
+  --color-ce-violet-ink: #050b17;
+  --color-ce-terra: #d4b66b;         /* CHAMPAGNE/GOLD — accent texte premium */
+  --color-ce-terra-deep: #8c6f1f;    /* champagne foncé — pour fond clair (AA) */
+  --color-ce-terra-soft: #e8d094;    /* champagne soft */
   --color-ce-purple: #7c6cff;        /* PURPLE/LAVANDE — boutons primaires */
   --color-ce-purple-soft: #a096ff;
   --color-ce-purple-deep: #5b4fd9;
