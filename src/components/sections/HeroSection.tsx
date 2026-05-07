@@ -67,16 +67,17 @@ export function HeroSection() {
         aria-hidden
         className="hidden md:block absolute top-0 bottom-0 right-0 pointer-events-none overflow-hidden"
         style={{
-          width: 'clamp(420px, 42vw, 720px)',
+          // Photo plus grande pour donner de l'espace au fade — style hashtagfinance.
+          // Avec ~55vw, les sujets ne remplissent plus tout le container : la zone
+          // gauche du container a du décor de bureau qui se fond mieux dans le navy.
+          width: 'clamp(500px, 55vw, 900px)',
           zIndex: 1,
-          // (a) Mask gradient — photo nette à partir de l'épaule (75% mask coord),
-          // fade S-curve sur les 25% à gauche jusqu'au navy. Opaque jusqu'à
-          // l'épaule de Ranto = visages + bustes nets ; le fondu démarre
-          // exactement au niveau de l'épaule et descend doucement jusqu'au navy.
+          // Mask gradient étendu — fade plus long sur la zone gauche, S-curve douce.
+          // Opaque dans le tiers droit, fade progressif sur 40% de largeur restante.
           WebkitMaskImage:
-            'linear-gradient(to left, rgba(0,0,0,1) 75%, rgba(0,0,0,0.7) 85%, rgba(0,0,0,0.3) 95%, rgba(0,0,0,0) 100%)',
+            'linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0.75) 75%, rgba(0,0,0,0.35) 90%, rgba(0,0,0,0) 100%)',
           maskImage:
-            'linear-gradient(to left, rgba(0,0,0,1) 75%, rgba(0,0,0,0.7) 85%, rgba(0,0,0,0.3) 95%, rgba(0,0,0,0) 100%)',
+            'linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0.75) 75%, rgba(0,0,0,0.35) 90%, rgba(0,0,0,0) 100%)',
         }}
       >
         <img
@@ -84,7 +85,7 @@ export function HeroSection() {
           alt={H.heroPhoto.alt}
           loading="eager"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '30% 62%' }}
+          style={{ objectPosition: '50% 55%' }}
         />
         {/* Overlays multiply + vignette retirés — la photo doit être nette
             et lumineuse côté droit. Seul le mask gradient (sur le container)
