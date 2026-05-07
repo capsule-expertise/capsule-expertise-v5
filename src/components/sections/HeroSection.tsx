@@ -58,7 +58,7 @@ export function HeroSection() {
           alt={H.heroPhoto.alt}
           loading="eager"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '70% 50%' }}
+          style={{ objectPosition: '60% 22%' }}
         />
         {/* Dark overlay navy global — laisse la photo lisible sous le texte */}
         <div
