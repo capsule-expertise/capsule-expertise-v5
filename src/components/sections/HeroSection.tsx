@@ -59,7 +59,7 @@ export function HeroSection() {
           alt={H.heroPhoto.alt}
           loading="eager"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '55% 35%' }}
+          style={{ objectPosition: '45% 25%' }}
         />
         {/* Overlay navy LÉGER global — laisse la photo respirer, les visages
             ressortent. Avant: 0.35 + un 2e overlay gauche (trop sombre). */}
