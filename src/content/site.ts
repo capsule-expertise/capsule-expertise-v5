@@ -77,10 +77,12 @@ export const SITE = {
 
   // ─── AIGUILLAGE — 2 parcours V1 teasers (réintroduit en V5 sur reco audit) ───
   aiguillage: {
-    eyebrow: 'Deux situations, deux approches',
+    eyebrow: 'Pour les dirigeants',
     title: 'À qui s’adresse',
     titleEm: 'Capsule',
     titleEnd: '?',
+    intro:
+      "Capsule accompagne les dirigeants au quotidien sur leur comptabilité, leurs arbitrages financiers et leurs décisions de pilotage.",
     parcours: [
       {
         id: 'dirigeant',

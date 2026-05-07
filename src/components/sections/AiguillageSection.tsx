@@ -3,19 +3,25 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SITE } from '@/content/site';
 import { useInView } from '@/hooks/useInView';
-import { cn } from '@/lib/cn';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * AiguillageSection V5 — 2 parcours V1 teasers en cards modèle.
- * Hiérarchie 70/30 : parcours TPE priorité (fond violet-deep contraste fort),
- * parcours ETI secondaire (fond crème sobre).
- * Copy verbatim V1.
+ * AiguillageSection V8 — refocus audience dirigeants TPE/PME.
+ *
+ * Une seule card primaire mise en avant (dirigeants TPE/PME, libéraux,
+ * indépendants) — la cible business prioritaire. L'option DAF/ETI passe en
+ * lien texte discret sous la card, comme un footnote, pour ne pas concurrencer
+ * visuellement le parcours principal.
+ *
+ * La page /direction-financiere reste accessible via la nav top (DAF · ETI)
+ * — on ne cache rien, on hiérarchise.
  */
 export function AiguillageSection() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.1 });
   const A = SITE.aiguillage;
+  const primary = A.parcours[0]; // dirigeants TPE/PME
+  const secondary = A.parcours[1]; // DAF / ETI
 
   return (
     <section
@@ -50,112 +56,96 @@ export function AiguillageSection() {
               className="mt-7 text-[rgba(20,37,58,0.78)] max-w-[58ch]"
               style={{ fontSize: '18px', lineHeight: 1.55 }}
             >
-              Capsule s'adapte à deux profils. Identifiez le vôtre ci-dessous
-              pour découvrir comment nous travaillons concrètement avec vous.
+              {A.intro}
             </motion.p>
           </div>
         </div>
 
-        {/* Cards 70/30 */}
-        <div
-          className="grid gap-5"
-          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}
+        {/* Card primaire dirigeants TPE/PME — pleine largeur (max-w 900) */}
+        <motion.article
+          initial={{ opacity: 0, y: 28 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, ease: EASE }}
+          className="flex flex-col gap-6 p-10 md:p-14 rounded-[var(--radius-xl)] relative overflow-hidden bg-[var(--color-ce-violet-deep)] text-[var(--color-ce-cream)] max-w-[900px]"
+          style={{ boxShadow: '0 30px 60px -30px rgba(5, 14, 26, 0.3)' }}
         >
-          {A.parcours.map((p, i) => (
-            <motion.article
-              key={p.id}
-              initial={{ opacity: 0, y: 28 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.9, delay: i * 0.12, ease: EASE }}
-              className={cn(
-                'flex flex-col gap-6 p-10 md:p-12 rounded-[var(--radius-xl)] relative overflow-hidden',
-                p.priority
-                  ? 'bg-[var(--color-ce-violet-deep)] text-[var(--color-ce-cream)]'
-                  : 'bg-[#ffffff] text-[var(--color-ce-violet)] border border-[rgba(20, 37, 58,0.1)]',
-              )}
-              style={
-                p.priority
-                  ? { boxShadow: '0 30px 60px -30px rgba(5, 14, 26,0.3)' }
-                  : undefined
-              }
+          {/* Label + Title */}
+          <div>
+            <div className="text-[11px] font-medium tracking-[0.18em] uppercase mb-4 text-[var(--color-ce-terra-soft)]">
+              {primary.label}
+            </div>
+            <h3
+              className="tracking-display"
+              style={{
+                fontSize: 'clamp(32px, 4vw, 52px)',
+                lineHeight: 1.02,
+                fontWeight: 500,
+                color: 'inherit',
+                letterSpacing: '-0.025em',
+              }}
             >
-              {/* Label + Title */}
-              <div>
-                <div
-                  className={cn(
-                    'text-[11px] font-medium tracking-[0.18em] uppercase mb-4',
-                    p.priority ? 'text-[var(--color-ce-terra-soft)]' : 'text-[var(--color-ce-terra-deep)]',
-                  )}
-                >
-                  {p.label}
-                </div>
-                <h3
-                  className="tracking-display"
-                  style={{
-                    fontSize: 'clamp(28px, 3.4vw, 42px)',
-                    lineHeight: 1.02,
-                    fontWeight: 500,
-                    color: 'inherit',
-                    letterSpacing: '-0.025em',
-                  }}
-                >
-                  {p.title}
-                  <br />
-                  <em>{p.titleEm}</em>
-                </h3>
-              </div>
+              {primary.title}
+              <br />
+              <em>{primary.titleEm}</em>
+            </h3>
+          </div>
 
-              {/* Tagline */}
-              <p
-                className={cn(
-                  'text-[16px] leading-[1.6] max-w-[44ch]',
-                  p.priority ? 'text-[rgba(242,237,225,0.72)]' : 'text-[rgba(20, 37, 58,0.72)]',
-                )}
+          {/* Tagline */}
+          <p className="text-[17px] leading-[1.6] max-w-[52ch] text-[rgba(242,237,225,0.78)]">
+            {primary.tagline}
+          </p>
+
+          {/* Separator */}
+          <div className="h-px bg-[rgba(242,237,225,0.14)]" />
+
+          {/* Bullets */}
+          <ul className="flex flex-col gap-3 flex-1">
+            {primary.bullets.map((b) => (
+              <li
+                key={b}
+                className="relative pl-6 text-[16px] leading-[1.55] text-[rgba(242,237,225,0.92)]"
               >
-                {p.tagline}
-              </p>
+                <span
+                  aria-hidden
+                  className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra)]"
+                />
+                {b}
+              </li>
+            ))}
+          </ul>
 
-              {/* Separator */}
-              <div
-                className={cn(
-                  'h-px',
-                  p.priority ? 'bg-[rgba(242,237,225,0.14)]' : 'bg-[rgba(20, 37, 58,0.1)]',
-                )}
-              />
+          {/* CTA */}
+          <Link to={primary.cta.href} className="ce-btn ce-btn--terra ce-btn--lg self-start mt-2">
+            {primary.cta.label}
+            <ArrowRight size={16} strokeWidth={1.75} />
+          </Link>
+        </motion.article>
 
-              {/* Bullets */}
-              <ul className="flex flex-col gap-2.5 flex-1">
-                {p.bullets.map((b) => (
-                  <li
-                    key={b}
-                    className={cn(
-                      'relative pl-6 text-[16px] leading-[1.55]',
-                      p.priority ? 'text-[rgba(242,237,225,0.88)]' : 'text-[rgba(20, 37, 58,0.88)]',
-                    )}
-                  >
-                    <span
-                      aria-hidden
-                      className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra-deep)]"
-                    />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA */}
-              <Link
-                to={p.cta.href}
-                className={cn(
-                  'ce-btn self-start',
-                  p.priority ? 'ce-btn--terra' : 'ce-btn--ghost-light',
-                )}
-              >
-                {p.cta.label}
-                <ArrowRight size={14} strokeWidth={1.75} />
-              </Link>
-            </motion.article>
-          ))}
-        </div>
+        {/* Lien secondaire DAF/ETI — footnote discret, sous séparateur fin */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
+          className="mt-16 max-w-[900px]"
+        >
+          <div className="h-px bg-[rgba(20,37,58,0.12)] mb-6" />
+          <p className="text-[15px] text-[rgba(20,37,58,0.65)] leading-[1.6]">
+            Vous pilotez la finance d'une ETI ou d'un groupe ?{' '}
+            <Link
+              to={secondary.cta.href}
+              className="inline-flex items-center gap-1.5 text-[var(--color-ce-violet)] hover:text-[var(--color-ce-terra-deep)] transition-colors font-medium"
+              style={{
+                textDecoration: 'underline',
+                textUnderlineOffset: '4px',
+                textDecorationColor: 'rgba(124, 108, 255, 0.4)',
+                textDecorationThickness: '1px',
+              }}
+            >
+              Voir le parcours direction financière
+              <ArrowRight size={13} strokeWidth={1.75} />
+            </Link>
+          </p>
+        </motion.div>
       </div>
     </section>
   );
