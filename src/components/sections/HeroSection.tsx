@@ -5,15 +5,22 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * HeroSection V5 — itération 5.
+ * HeroSection V7 — photo plein écran + dark overlay (style hashtagfinance).
  *
- * - H1 2 lignes "Maîtrisez vos chiffres, / Décidez plus vite." (ligne 2 ocre)
- * - Subtitle 1 ligne (brand statement)
- * - Badge OEC
- * - Photo full-bleed à droite (immersive, sort du container, jusqu'au bord viewport)
- * - Pas de CTAs (le choix de parcours se fait dans AiguillageSection juste après)
- * - Animations framer-motion fadeUp restaurées sur le texte
- * - Trait ocre vertical 2px à gauche comme accent éditorial
+ * Refonte de la hiérarchie visuelle :
+ * - Photo prend toute la section en background (au lieu d'un container à droite
+ *   avec mask gradient artificiel)
+ * - Dark overlay navy semi-transparent (~55%) globalement par-dessus la photo
+ * - Subtle gradient additionnel à gauche pour aider la lecture du texte sans
+ *   créer de "rideau" artificiel
+ * - H1 réduit (-18%), line-height 1.15, padding-y augmenté → respiration et luxe
+ * - Plus de trait ocre vertical (devient redondant avec photo dominante)
+ *
+ * Hiérarchie visuelle restaurée :
+ *   1. Photo (dominante par sa surface)
+ *   2. H1 (présence forte mais respirante)
+ *   3. Subtitle + badge OEC (accent secondaires)
+ *   4. Nav (chrome fonctionnel)
  */
 export function HeroSection() {
   const reduced = useReducedMotion();
@@ -33,78 +40,55 @@ export function HeroSection() {
       id="hero"
       className="relative overflow-hidden"
       style={{
-        // Gradient linéaire navy → navy profond pour profondeur stable.
-        // Top légèrement plus clair, bas plus dense — ancrage visuel "cabinet
-        // sérieux nuit calme" sans le côté SaaS du radial glow.
-        background:
-          'linear-gradient(180deg, var(--color-ce-violet-rich) 0%, var(--color-ce-violet) 50%, var(--color-ce-violet-deep) 100%)',
-        paddingTop: '32px',
-        paddingBottom: '96px',
-        // Plein viewport sous la nav — pas de bande de la section suivante
-        // (Aiguillage cream) visible avant scroll.
+        background: 'var(--color-ce-violet)',
         minHeight: 'calc(100svh - var(--spacing-nav-h))',
       }}
     >
-      {/* Accent éditorial — trait ocre vertical à gauche */}
-      <div
-        aria-hidden
-        className="absolute pointer-events-none"
-        style={{
-          left: 0,
-          top: 0,
-          width: '2px',
-          height: '50%',
-          background: 'var(--color-ce-terra)',
-          zIndex: 0,
-        }}
-      />
-
-      {/* Photo full-bleed à droite — 3 effets cumulatifs pour fondre dans le navy */}
+      {/* Photo plein écran en background */}
       <motion.div
         initial={{ opacity: 0, scale: reduced ? 1 : 1.04 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: reduced ? 0 : 1.2, delay: 0.1, ease: EASE }}
+        transition={{ duration: reduced ? 0 : 1.4, delay: 0, ease: EASE }}
         aria-hidden
-        className="hidden md:block absolute top-0 bottom-0 right-0 pointer-events-none overflow-hidden"
-        style={{
-          // Photo plus grande pour donner de l'espace au fade — style hashtagfinance.
-          // Avec ~55vw, les sujets ne remplissent plus tout le container : la zone
-          // gauche du container a du décor de bureau qui se fond mieux dans le navy.
-          width: 'clamp(500px, 55vw, 900px)',
-          zIndex: 1,
-          // Mask gradient étendu — fade plus long sur la zone gauche, S-curve douce.
-          // Opaque dans le tiers droit, fade progressif sur 40% de largeur restante.
-          WebkitMaskImage:
-            'linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0.75) 75%, rgba(0,0,0,0.35) 90%, rgba(0,0,0,0) 100%)',
-          maskImage:
-            'linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0.75) 75%, rgba(0,0,0,0.35) 90%, rgba(0,0,0,0) 100%)',
-        }}
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 0 }}
       >
         <img
           src={H.heroPhoto.src}
           alt={H.heroPhoto.alt}
           loading="eager"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '50% 55%' }}
+          style={{ objectPosition: '70% 50%' }}
         />
-        {/* Overlays multiply + vignette retirés — la photo doit être nette
-            et lumineuse côté droit. Seul le mask gradient (sur le container)
-            gère la transition vers le navy à gauche. */}
+        {/* Dark overlay navy global — laisse la photo lisible sous le texte */}
+        <div
+          className="absolute inset-0"
+          style={{ background: 'rgba(14, 26, 46, 0.55)' }}
+        />
+        {/* Gradient additionnel à gauche pour aide à la lecture du texte
+            (subtil — ne crée pas de "rideau" visible) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to right, rgba(7, 17, 31, 0.7) 0%, rgba(14, 26, 46, 0.2) 45%, transparent 70%)',
+          }}
+        />
       </motion.div>
 
-      <div className="ce-container relative z-10">
-        <div className="max-w-[640px] md:max-w-[720px] py-12 md:py-20">
+      {/* Container text par-dessus, H1 + subtitle + badge OEC */}
+      <div className="ce-container relative z-10 flex items-center" style={{ minHeight: 'calc(100svh - var(--spacing-nav-h))' }}>
+        <div className="max-w-[640px] md:max-w-[720px] py-20 md:py-28">
           <motion.h1
             initial="hidden"
             animate="visible"
             custom={0.1}
             variants={fadeUp}
-            className="tracking-display text-[var(--color-ce-cream)] max-w-[28ch]"
+            className="tracking-display text-[var(--color-ce-cream)] max-w-[26ch]"
             style={{
-              fontSize: 'clamp(36px, 6.5vw, 88px)',
-              lineHeight: 1.0,
-              // fontWeight retiré : laisse le CSS de base (h1 = 800) s'appliquer
-              letterSpacing: '-0.04em',
+              fontSize: 'clamp(30px, 5.3vw, 72px)',
+              lineHeight: 1.15,
+              letterSpacing: '-0.035em',
             }}
           >
             {H.titleLine1}
@@ -117,13 +101,13 @@ export function HeroSection() {
             animate="visible"
             custom={0.25}
             variants={fadeUp}
-            className="text-[var(--color-ce-cream)] mt-7 max-w-[60ch]"
+            className="text-[var(--color-ce-cream)] mt-8 max-w-[60ch]"
             style={{
-              fontSize: 'clamp(16px, 1.4vw, 19px)',
+              fontSize: 'clamp(16px, 1.3vw, 18px)',
               fontWeight: 500,
               opacity: 0.92,
               letterSpacing: '0.005em',
-              lineHeight: 1.4,
+              lineHeight: 1.5,
             }}
           >
             {H.subtitleBrand}
@@ -134,32 +118,12 @@ export function HeroSection() {
             animate="visible"
             custom={0.4}
             variants={fadeUp}
-            className="ce-label mt-8"
+            className="ce-label mt-10"
             style={{ color: 'var(--color-ce-terra)' }}
           >
             {H.oecBadge}
           </motion.div>
         </div>
-      </div>
-
-      {/* Photo mobile (<md) — background plein écran de la section + overlay navy 0.85
-          pour que le texte (H1 + subtitle + badge) reste lisible par-dessus. */}
-      <div
-        aria-hidden
-        className="md:hidden absolute inset-0 pointer-events-none"
-        style={{ zIndex: 0 }}
-      >
-        <img
-          src={H.heroPhoto.src}
-          alt=""
-          loading="eager"
-          className="w-full h-full object-cover"
-          style={{ objectPosition: '50% 62%' }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'rgba(10, 31, 58, 0.85)' }}
-        />
       </div>
     </section>
   );
