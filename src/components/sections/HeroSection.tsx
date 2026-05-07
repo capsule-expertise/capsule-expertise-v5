@@ -81,7 +81,10 @@ export function HeroSection() {
 
       {/* Container text par-dessus, H1 + subtitle + badge OEC */}
       <div className="ce-container relative z-10 flex items-center" style={{ minHeight: 'calc(100svh - var(--spacing-nav-h))' }}>
-        <div className="max-w-[640px] md:max-w-[720px] py-20 md:py-28">
+        <div
+          className="max-w-[640px] md:max-w-[720px] py-20 md:py-28"
+          style={{ marginLeft: 'clamp(-2.5rem, -2vw, -1rem)' }}
+        >
           <motion.h1
             initial="hidden"
             animate="visible"
