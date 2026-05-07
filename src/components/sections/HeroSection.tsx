@@ -62,7 +62,7 @@ export function HeroSection() {
           alt={H.heroPhoto.alt}
           loading="eager"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '50% 25%' }}
+          style={{ objectPosition: '55% 35%' }}
         />
         {/* Dark overlay navy léger — harmonise avec navy bg sans assombrir la photo */}
         <div
