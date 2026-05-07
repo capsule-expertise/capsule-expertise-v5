@@ -44,34 +44,38 @@ export function HeroSection() {
         minHeight: 'calc(100svh - var(--spacing-nav-h))',
       }}
     >
-      {/* Photo plein écran en background */}
+      {/* Photo en container droite (~60vw) — pas plein écran pour éviter le
+          sur-zoom d'object-cover. Le 40vw gauche reste navy avec le texte. */}
       <motion.div
-        initial={{ opacity: 0, scale: reduced ? 1 : 1.04 }}
+        initial={{ opacity: 0, scale: reduced ? 1 : 1.03 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: reduced ? 0 : 1.4, delay: 0, ease: EASE }}
         aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{ zIndex: 0 }}
+        className="absolute top-0 bottom-0 right-0 pointer-events-none overflow-hidden"
+        style={{
+          width: 'clamp(500px, 62vw, 1100px)',
+          zIndex: 0,
+        }}
       >
         <img
           src={H.heroPhoto.src}
           alt={H.heroPhoto.alt}
           loading="eager"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '60% 22%' }}
+          style={{ objectPosition: '50% 25%' }}
         />
-        {/* Dark overlay navy global — laisse la photo lisible sous le texte */}
+        {/* Dark overlay navy léger — harmonise avec navy bg sans assombrir la photo */}
         <div
           className="absolute inset-0"
-          style={{ background: 'rgba(14, 26, 46, 0.55)' }}
+          style={{ background: 'rgba(14, 26, 46, 0.35)' }}
         />
-        {/* Gradient additionnel à gauche pour aide à la lecture du texte
-            (subtil — ne crée pas de "rideau" visible) */}
+        {/* Fade gauche : la photo se fond doucement dans le navy bg du hero */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-y-0 left-0 pointer-events-none"
           style={{
+            width: '45%',
             background:
-              'linear-gradient(to right, rgba(7, 17, 31, 0.7) 0%, rgba(14, 26, 46, 0.2) 45%, transparent 70%)',
+              'linear-gradient(to right, var(--color-ce-violet) 0%, rgba(14,26,46,0.6) 35%, rgba(14,26,46,0.2) 70%, transparent 100%)',
           }}
         />
       </motion.div>
