@@ -5,15 +5,22 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * HeroSection V5 — itération 5.
+ * HeroSection V7 — photo plein écran + dark overlay (style hashtagfinance).
  *
- * - H1 2 lignes "Maîtrisez vos chiffres, / Décidez plus vite." (ligne 2 ocre)
- * - Subtitle 1 ligne (brand statement)
- * - Badge OEC
- * - Photo full-bleed à droite (immersive, sort du container, jusqu'au bord viewport)
- * - Pas de CTAs (le choix de parcours se fait dans AiguillageSection juste après)
- * - Animations framer-motion fadeUp restaurées sur le texte
- * - Trait ocre vertical 2px à gauche comme accent éditorial
+ * Refonte de la hiérarchie visuelle :
+ * - Photo prend toute la section en background (au lieu d'un container à droite
+ *   avec mask gradient artificiel)
+ * - Dark overlay navy semi-transparent (~55%) globalement par-dessus la photo
+ * - Subtle gradient additionnel à gauche pour aider la lecture du texte sans
+ *   créer de "rideau" artificiel
+ * - H1 réduit (-18%), line-height 1.15, padding-y augmenté → respiration et luxe
+ * - Plus de trait ocre vertical (devient redondant avec photo dominante)
+ *
+ * Hiérarchie visuelle restaurée :
+ *   1. Photo (dominante par sa surface)
+ *   2. H1 (présence forte mais respirante)
+ *   3. Subtitle + badge OEC (accent secondaires)
+ *   4. Nav (chrome fonctionnel)
  */
 export function HeroSection() {
   const reduced = useReducedMotion();
@@ -34,86 +41,60 @@ export function HeroSection() {
       className="relative overflow-hidden"
       style={{
         background: 'var(--color-ce-violet)',
-        paddingTop: '32px',
-        paddingBottom: '96px',
-        // Plein viewport sous la nav — pas de bande de la section suivante
-        // (Aiguillage cream) visible avant scroll.
         minHeight: 'calc(100svh - var(--spacing-nav-h))',
       }}
     >
-      {/* Accent éditorial — trait ocre vertical à gauche */}
-      <div
-        aria-hidden
-        className="absolute pointer-events-none"
-        style={{
-          left: 0,
-          top: 0,
-          width: '2px',
-          height: '50%',
-          background: 'var(--color-ce-terra)',
-          zIndex: 0,
-        }}
-      />
-
-      {/* Photo full-bleed à droite — 3 effets cumulatifs pour fondre dans le navy */}
+      {/* Photo plein écran assumée — un seul overlay léger global, plus de
+          fade horizontal artificiel. Direction DA : "image pleine, on assume". */}
       <motion.div
-        initial={{ opacity: 0, scale: reduced ? 1 : 1.04 }}
+        initial={{ opacity: 0, scale: reduced ? 1 : 1.03 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: reduced ? 0 : 1.2, delay: 0.1, ease: EASE }}
+        transition={{ duration: reduced ? 0 : 1.4, delay: 0, ease: EASE }}
         aria-hidden
-        className="hidden md:block absolute top-0 bottom-0 right-0 pointer-events-none overflow-hidden"
-        style={{
-          width: 'clamp(420px, 42vw, 720px)',
-          zIndex: 1,
-          // (a) Mask gradient — fond progressif vers la gauche dans le navy.
-          // Plus de photo visible (65% opaque vs 60% avant) + courbe en S
-          // (3 stops dont 0.5 à 90%) pour une transition plus douce.
-          WebkitMaskImage:
-            'linear-gradient(to left, rgba(0,0,0,1) 65%, rgba(0,0,0,0.5) 90%, rgba(0,0,0,0) 100%)',
-          maskImage:
-            'linear-gradient(to left, rgba(0,0,0,1) 65%, rgba(0,0,0,0.5) 90%, rgba(0,0,0,0) 100%)',
-        }}
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+        style={{ zIndex: 0 }}
       >
         <img
           src={H.heroPhoto.src}
           alt={H.heroPhoto.alt}
           loading="eager"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '30% 30%' }}
+          style={{ objectPosition: '30% 18%' }}
         />
-        {/* (b) Overlay color-blend navy multiply 0.15 — uniformise les températures */}
+        {/* Overlay navy LÉGER global — laisse la photo respirer, les visages
+            ressortent. Avant: 0.35 + un 2e overlay gauche (trop sombre). */}
         <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: '#0A1F3A',
-            mixBlendMode: 'multiply',
-            opacity: 0.15,
-          }}
+          className="absolute inset-0"
+          style={{ background: 'rgba(14, 26, 46, 0.22)' }}
         />
-        {/* (c) Vignette navy périphérique — referme les bords contre le fond */}
+        {/* Gradient vertical bas→haut subtle pour fond de lecture du H1
+            (pas un fade horizontal qui crée une frontière) */}
         <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-x-0 bottom-0 pointer-events-none"
           style={{
-            boxShadow: 'inset 0 0 200px 80px rgba(10, 31, 58, 0.6)',
+            height: '70%',
+            background:
+              'linear-gradient(to top, rgba(14, 26, 46, 0.45) 0%, rgba(14, 26, 46, 0.15) 60%, transparent 100%)',
           }}
         />
       </motion.div>
 
-      <div className="ce-container relative z-10">
-        <div className="max-w-[640px] md:max-w-[720px] py-12 md:py-20">
+      {/* Container text par-dessus, H1 + subtitle + badge OEC */}
+      <div className="ce-container relative z-10 flex items-center" style={{ minHeight: 'calc(100svh - var(--spacing-nav-h))' }}>
+        <div
+          className="max-w-[640px] md:max-w-[720px] py-20 md:py-28"
+          style={{ marginLeft: 'clamp(-2.5rem, -2vw, -1rem)' }}
+        >
           <motion.h1
             initial="hidden"
             animate="visible"
             custom={0.1}
             variants={fadeUp}
-            className="tracking-display text-[var(--color-ce-cream)] max-w-[28ch]"
+            className="tracking-display text-[var(--color-ce-cream)] max-w-[26ch]"
             style={{
-              fontSize: 'clamp(36px, 6.5vw, 88px)',
-              lineHeight: 1.0,
-              fontWeight: 500,
-              letterSpacing: '-0.03em',
+              fontSize: 'clamp(30px, 5.3vw, 72px)',
+              lineHeight: 1.15,
+              letterSpacing: '-0.035em',
             }}
           >
             {H.titleLine1}
@@ -126,13 +107,13 @@ export function HeroSection() {
             animate="visible"
             custom={0.25}
             variants={fadeUp}
-            className="text-[var(--color-ce-cream)] mt-7 max-w-[60ch]"
+            className="text-[var(--color-ce-cream)] mt-8 max-w-[60ch]"
             style={{
-              fontSize: 'clamp(16px, 1.4vw, 19px)',
+              fontSize: 'clamp(16px, 1.3vw, 18px)',
               fontWeight: 500,
               opacity: 0.92,
               letterSpacing: '0.005em',
-              lineHeight: 1.4,
+              lineHeight: 1.5,
             }}
           >
             {H.subtitleBrand}
@@ -143,32 +124,12 @@ export function HeroSection() {
             animate="visible"
             custom={0.4}
             variants={fadeUp}
-            className="ce-label mt-8"
+            className="ce-label mt-10"
             style={{ color: 'var(--color-ce-terra)' }}
           >
             {H.oecBadge}
           </motion.div>
         </div>
-      </div>
-
-      {/* Photo mobile (<md) — background plein écran de la section + overlay navy 0.85
-          pour que le texte (H1 + subtitle + badge) reste lisible par-dessus. */}
-      <div
-        aria-hidden
-        className="md:hidden absolute inset-0 pointer-events-none"
-        style={{ zIndex: 0 }}
-      >
-        <img
-          src={H.heroPhoto.src}
-          alt=""
-          loading="eager"
-          className="w-full h-full object-cover"
-          style={{ objectPosition: '50% 30%' }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'rgba(10, 31, 58, 0.85)' }}
-        />
       </div>
     </section>
   );

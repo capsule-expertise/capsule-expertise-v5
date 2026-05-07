@@ -72,8 +72,8 @@ export function PageHeader({ eyebrow, title, titleEm, description }: PageHeaderP
           style={{
             fontSize: 'clamp(36px, 5.5vw, 80px)',
             lineHeight: 1.0,
-            fontWeight: 500,
-            letterSpacing: '-0.03em',
+            // fontWeight retiré : CSS base (h1 = 800) s'applique
+            letterSpacing: '-0.04em',
           }}
         >
           {title}

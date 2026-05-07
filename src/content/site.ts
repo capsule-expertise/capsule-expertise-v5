@@ -61,7 +61,7 @@ export const SITE = {
     subtitleBrand: 'Capsule — Copilote des dirigeants & DAF',
     oecBadge: "Membre de l'Ordre des Experts-Comptables de Paris",
     heroPhoto: {
-      src: '/ranto-jerome.webp',
+      src: '/Ranto%20Jeromev3.png',
       alt: 'Ranto Rajaonarivo et Jérôme Phou, associés fondateurs de Capsule Expertise',
       caption: 'Ranto & Jérôme — vos interlocuteurs',
     },
