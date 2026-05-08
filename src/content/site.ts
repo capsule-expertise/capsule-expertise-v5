@@ -116,59 +116,86 @@ export const SITE = {
     ],
   },
 
-  // ─── OFFRES TPE/PME — détail V1 complet (bloc 01 + 02 + 03 interventions) ───
+  // ─── OFFRES TPE/PME — refonte premium 3 packs + 10 missions complémentaires ───
   offresTPE: {
-    eyebrow: 'Parcours Dirigeant — PME / Libéral',
-    title: 'Comment nous',
-    titleEm: 'travaillons',
-    titleEnd: 'avec les dirigeants',
+    eyebrow: 'Nos offres',
+    title: 'Un accompagnement adapté à',
+    titleEm: 'votre façon de piloter',
+    titleEnd: '.',
     intro:
-      "Chaque entreprise a ses priorités et son rythme. Le cabinet propose un accompagnement qui peut rester centré sur la comptabilité ou intégrer un pilotage financier plus régulier.",
-    blocs: [
+      "De la gestion quotidienne au pilotage financier plus structuré, nous adaptons notre niveau d'accompagnement à vos enjeux.",
+    packs: [
       {
-        num: '01',
-        title: 'Comptabilité et fiscalité de l’entreprise',
-        description:
-          "Le cabinet prend en charge la comptabilité et les obligations fiscales de l’entreprise. Le dirigeant dispose de comptes fiables et d’un interlocuteur disponible pour répondre à ses questions.",
+        id: 'essentiel',
+        label: 'Capsule Essentiel',
+        intro: 'Le nécessaire pour gérer votre entreprise sereinement.',
         bullets: [
-          'Gestion comptable et fiscale',
-          'Déclarations et comptes annuels',
-          'Outils numériques pour simplifier la gestion',
-          "Deux échanges dans l’année pour faire le point sur l’activité",
+          'Comptabilité, fiscalité, social & juridique',
+          'Dépôt des pièces simplifié',
+          'Un interlocuteur réactif',
+          'Des échéances maîtrisées',
+          'Une gestion claire et fluide',
         ],
+        footer:
+          "Pour les dirigeants qui souhaitent déléguer efficacement leur gestion quotidienne.",
+        cta: { label: "Découvrir l'offre", href: '/contact?from=dirigeant&pack=essentiel' },
+        highlighted: false,
       },
       {
-        num: '02',
-        title: 'Comptabilité et pilotage de l’entreprise',
-        description:
-          "Certains dirigeants souhaitent aller plus loin et utiliser leurs chiffres pour suivre l’évolution de leur activité. Le cabinet met alors en place un reporting et des échanges réguliers pour analyser la trésorerie, la rentabilité et les décisions importantes.",
+        id: 'pilotage',
+        label: 'Capsule Pilotage',
+        intro: 'Pour suivre votre activité avec des chiffres utiles.',
         bullets: [
-          'Reporting mensuel ou trimestriel',
-          'Analyse de la trésorerie et des marges',
-          'Projection à 6-12 mois',
-          "Points de pilotage au rythme de l’activité",
+          'Reporting régulier',
+          'Suivi de trésorerie',
+          'Analyse de rentabilité',
+          "Situations comptables dans l'année",
+          'Rendez-vous de suivi',
         ],
+        footer:
+          'Pour les dirigeants qui souhaitent gagner en visibilité et mieux piloter leur activité.',
+        cta: { label: "Découvrir l'offre", href: '/contact?from=dirigeant&pack=pilotage' },
+        highlighted: true,
+        badge: 'Le plus choisi',
+      },
+      {
+        id: 'direction',
+        label: 'Capsule Direction',
+        intro:
+          'Un accompagnement financier plus structuré pour accompagner vos décisions.',
+        bullets: [
+          'Prévisionnels de trésorerie',
+          'Échanges réguliers avec votre expert-comptable',
+          'Accompagnement financement & banque',
+          'Aide aux recrutements et investissements',
+          'Suivi financier plus approfondi',
+        ],
+        footer:
+          "Pour les entreprises en croissance ayant besoin d'un accompagnement plus stratégique.",
+        cta: { label: "Découvrir l'offre", href: '/contact?from=dirigeant&pack=direction' },
+        highlighted: false,
       },
     ],
-    interventions: {
-      eyebrow: 'Interventions ponctuelles',
-      title: 'Questions fréquentes',
-      titleEm: 'des dirigeants',
-      intro:
-        "Au cours de l’accompagnement, certaines situations nécessitent un travail spécifique.",
-      bullets: [
-        'Arbitrage de la rémunération du dirigeant',
-        "Préparation d’un recrutement",
-        "Analyse de la rentabilité d’un investissement",
-        'Calcul de coût de revient',
-        "Préparation d’un financement",
-      ],
-      footer:
-        "Ces sujets peuvent être traités lorsque la situation de l’entreprise le nécessite.",
+    missionsHeading: {
+      eyebrow: 'Missions ponctuelles',
+      title: 'Des missions complémentaires selon',
+      titleEm: 'vos enjeux',
+      titleEnd: '.',
+      supporting:
+        "Certains besoins nécessitent un accompagnement spécifique ou ponctuel.",
     },
-    cta: { label: 'Échanger sur votre situation', href: '/contact' },
-    ctaAside:
-      'Pour les ETI et directions financières, voir le parcours Finance ci-dessous.',
+    missions: [
+      'Arbitrage rémunération dirigeant',
+      'Prévisionnel de trésorerie',
+      'Business plan & prévisionnels',
+      'Accompagnement bancaire & financement',
+      'Création de société & structuration',
+      'Tableaux de bord sur mesure',
+      'Analyse de rentabilité',
+      'DAF externalisé',
+      'Optimisation des outils de gestion',
+      'Structuration holding',
+    ],
   },
 
   // ─── QUESTIONS FAQ — 4 Q&R V1 (réintroduit en V5 pour SEO FAQPage) ───
