@@ -68,9 +68,10 @@ export function OffresSection() {
           </motion.p>
         </div>
 
-        {/* 3 cards premium — items-start pour hauteurs naturelles, variations
-            subtiles entre les 3 pour casser la perfection 'composant répété'. */}
-        <div className="grid gap-6 md:gap-7 md:grid-cols-3 items-start">
+        {/* 3 cards premium alignées (items-stretch). Variations internes :
+            paddings, gaps, marqueurs de bullets et footer treatments
+            différents pour casser le 'composant répété' sans casser l'alignement. */}
+        <div className="grid gap-6 md:gap-7 md:grid-cols-3 items-stretch">
           {O.packs.map((p, i) => {
             // Variations subtiles par card (Sprint B — composition)
             const isFirst = i === 0;
@@ -156,17 +157,37 @@ export function OffresSection() {
                   {/* Separator subtil */}
                   <div className="h-px bg-[rgba(20,37,58,0.08)]" />
 
-                  {/* Bullets */}
+                  {/* Bullets — marqueur différent par card pour identité visuelle :
+                      - Card 1 (Essentiel) : barre courte horizontale (sobre, pragmatique)
+                      - Card 2 (Pilotage)  : point rond ocre (premium, marqué)
+                      - Card 3 (Direction) : chevron > (orienté action / progression) */}
                   <ul className={cn('flex flex-col flex-1', bulletsGap)}>
                     {p.bullets.map((b) => (
                       <li
                         key={b}
                         className="relative pl-5 text-[15px] leading-[1.55] text-[rgba(20,37,58,0.85)]"
                       >
-                        <span
-                          aria-hidden
-                          className="absolute left-0 top-[11px] w-[8px] h-[1.5px] bg-[var(--color-ce-terra-deep)]"
-                        />
+                        {p.highlighted ? (
+                          // Card 2 : point rond ocre
+                          <span
+                            aria-hidden
+                            className="absolute left-0 top-[8px] w-[7px] h-[7px] rounded-full bg-[var(--color-ce-terra)]"
+                          />
+                        ) : isLast ? (
+                          // Card 3 : chevron orienté action
+                          <span
+                            aria-hidden
+                            className="absolute left-0 top-[1px] text-[13px] font-medium leading-[1.55] text-[var(--color-ce-terra-deep)]"
+                          >
+                            ›
+                          </span>
+                        ) : (
+                          // Card 1 : barre fine horizontale (existant)
+                          <span
+                            aria-hidden
+                            className="absolute left-0 top-[11px] w-[8px] h-[1.5px] bg-[var(--color-ce-terra-deep)]"
+                          />
+                        )}
                         {b}
                       </li>
                     ))}
