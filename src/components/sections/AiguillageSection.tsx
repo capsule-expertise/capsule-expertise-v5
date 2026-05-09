@@ -22,7 +22,7 @@ export function AiguillageSection() {
       id="parcours"
       ref={ref}
       className="bg-[var(--color-ce-cream)] text-[var(--color-ce-violet)]"
-      style={{ paddingBlock: '140px 80px' }}
+      style={{ paddingBlock: '100px 64px' }}
     >
       <div className="ce-container">
         {/* Head */}
@@ -35,7 +35,7 @@ export function AiguillageSection() {
               transition={{ duration: 0.85, ease: EASE }}
               className="tracking-display text-[var(--color-ce-violet)] max-w-[18ch]"
               style={{
-                fontSize: 'clamp(40px, 6.4vw, 94px)',
+                fontSize: 'clamp(34px, 5.4vw, 80px)',
                 lineHeight: 0.94,
                 fontWeight: 500,
               }}

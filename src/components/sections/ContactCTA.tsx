@@ -33,7 +33,7 @@ export function ContactCTA({
       className="relative overflow-hidden"
       style={{
         background: 'var(--color-ce-violet-deep)',
-        paddingBlock: '120px',
+        paddingBlock: '96px',
       }}
     >
       <div className="ce-container">
@@ -46,7 +46,7 @@ export function ContactCTA({
           <h2
             className="tracking-display text-[var(--color-ce-cream)] mb-6"
             style={{
-              fontSize: 'clamp(36px, 5vw, 64px)',
+              fontSize: 'clamp(32px, 4.4vw, 56px)',
               lineHeight: 1.0,
               fontWeight: 500,
               letterSpacing: '-0.03em',

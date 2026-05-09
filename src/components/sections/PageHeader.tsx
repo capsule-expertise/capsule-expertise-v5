@@ -33,8 +33,8 @@ export function PageHeader({ eyebrow, title, titleEm, description }: PageHeaderP
       className="relative overflow-hidden"
       style={{
         background: 'var(--color-ce-violet)',
-        paddingTop: '64px',
-        paddingBottom: '88px',
+        paddingTop: '48px',
+        paddingBottom: '64px',
       }}
     >
       {/* Trait ocre vertical à gauche — accent éditorial */}
@@ -70,7 +70,7 @@ export function PageHeader({ eyebrow, title, titleEm, description }: PageHeaderP
           variants={fadeUp}
           className="tracking-display text-[var(--color-ce-cream)] max-w-[20ch]"
           style={{
-            fontSize: 'clamp(36px, 5.5vw, 80px)',
+            fontSize: 'clamp(32px, 4.8vw, 68px)',
             lineHeight: 1.0,
             // fontWeight retiré : CSS base (h1 = 800) s'applique
             letterSpacing: '-0.04em',

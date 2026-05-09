@@ -30,7 +30,7 @@ export function OffresSection() {
       id="dirigeant"
       ref={ref}
       className="bg-[var(--color-ce-cream)] text-[var(--color-ce-violet)]"
-      style={{ paddingBlock: '160px 120px' }}
+      style={{ paddingBlock: '120px 96px' }}
     >
       <div className="ce-container">
         {/* Section intro — editorial rhythm, large spacing */}
@@ -49,7 +49,7 @@ export function OffresSection() {
             transition={{ duration: 0.85, delay: 0.1, ease: EASE }}
             className="tracking-display text-[var(--color-ce-violet)] mb-7 max-w-[20ch]"
             style={{
-              fontSize: 'clamp(34px, 5vw, 64px)',
+              fontSize: 'clamp(30px, 4.4vw, 56px)',
               lineHeight: 1.05,
               fontWeight: 500,
               letterSpacing: '-0.025em',

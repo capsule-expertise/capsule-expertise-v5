@@ -23,7 +23,7 @@ export function MissionsSection() {
     <section
       ref={ref}
       className="bg-[var(--color-ce-cream-warm)] text-[var(--color-ce-violet)]"
-      style={{ paddingBlock: '120px 140px' }}
+      style={{ paddingBlock: '96px 100px' }}
     >
       <div className="ce-container">
         {/* Header */}
@@ -42,7 +42,7 @@ export function MissionsSection() {
             transition={{ duration: 0.85, delay: 0.1, ease: EASE }}
             className="tracking-display text-[var(--color-ce-violet)] mb-6 max-w-[24ch]"
             style={{
-              fontSize: 'clamp(28px, 4vw, 52px)',
+              fontSize: 'clamp(26px, 3.5vw, 46px)',
               lineHeight: 1.08,
               fontWeight: 500,
               letterSpacing: '-0.025em',
