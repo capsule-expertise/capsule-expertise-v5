@@ -58,8 +58,7 @@ export function HeroSection() {
           src={H.heroPhoto.src}
           alt={H.heroPhoto.alt}
           loading="eager"
-          className="w-full h-full object-cover"
-          style={{ objectPosition: '30% 18%' }}
+          className="w-full h-full object-cover object-[50%_25%] md:object-[30%_18%]"
         />
         {/* Overlay navy LÉGER global — laisse la photo respirer, les visages
             ressortent. Avant: 0.35 + un 2e overlay gauche (trop sombre). */}
@@ -82,8 +81,7 @@ export function HeroSection() {
       {/* Container text par-dessus, H1 + subtitle + badge OEC */}
       <div className="ce-container relative z-10 flex items-center" style={{ minHeight: 'calc(100svh - var(--spacing-nav-h))' }}>
         <div
-          className="max-w-[640px] md:max-w-[720px] py-20 md:py-28"
-          style={{ marginLeft: 'clamp(-2.5rem, -2vw, -1rem)' }}
+          className="max-w-[640px] md:max-w-[720px] py-20 md:py-28 md:[margin-left:clamp(-2.5rem,-2vw,-1rem)]"
         >
           <motion.h1
             initial="hidden"

@@ -71,7 +71,7 @@ export function OffresSection() {
         {/* 3 cards premium alignées (items-stretch). Variations internes :
             paddings, gaps, marqueurs de bullets et footer treatments
             différents pour casser le 'composant répété' sans casser l'alignement. */}
-        <div className="grid gap-6 md:gap-7 md:grid-cols-3 items-stretch">
+        <div className="grid gap-6 lg:gap-7 lg:grid-cols-3 items-stretch">
           {O.packs.map((p, i) => {
             // Variations subtiles par card (Sprint B — composition)
             const isFirst = i === 0;
@@ -79,10 +79,10 @@ export function OffresSection() {
 
             // Padding variable : Card 1 plus condensé, Card 2 highlighted généreux, Card 3 intermédiaire
             const padding = p.highlighted
-              ? 'p-9 md:p-12'
+              ? 'p-9 lg:p-12'
               : isFirst
-                ? 'p-8 md:p-10'
-                : 'p-9 md:p-11';
+                ? 'p-8 lg:p-10'
+                : 'p-9 lg:p-11';
 
             // Gap interne : Card 1 et 3 plus resserrés (gap-6), Card 2 aéré (gap-7)
             const gap = p.highlighted ? 'gap-7' : 'gap-6';
@@ -104,7 +104,7 @@ export function OffresSection() {
                   'group relative flex flex-col rounded-[var(--radius-xl)] overflow-hidden',
                   'transition-transform duration-300 ease-out hover:-translate-y-1',
                   p.highlighted
-                    ? 'bg-[#ffffff] md:scale-[1.025] md:-my-2'
+                    ? 'bg-[#ffffff] lg:scale-[1.025] lg:-my-2'
                     : 'bg-[rgba(255,255,255,0.65)]',
                 )}
                 style={{

@@ -65,8 +65,9 @@ export function MissionsSection() {
         </div>
 
         {/* 3 colonnes thématiques séparées par des lignes verticales fines.
-            Pas de boxes/cards. Layout magazine-style, typographie-driven. */}
-        <div className="grid gap-10 md:gap-0 md:grid-cols-3">
+            Pas de boxes/cards. Layout magazine-style, typographie-driven.
+            Sur tablet (<1024px) : single column avec séparateurs horizontaux. */}
+        <div className="grid gap-10 lg:gap-0 lg:grid-cols-3">
           {O.missionsGroups.map((group, gi) => (
             <motion.div
               key={group.index}
@@ -78,11 +79,11 @@ export function MissionsSection() {
                 ease: EASE,
               }}
               className={`relative ${
-                // Séparateurs verticaux entre colonnes (desktop) — pas avant la 1ère
+                // Séparateurs verticaux entre colonnes (desktop lg+) — pas avant la 1ère
                 gi > 0
-                  ? 'md:pl-10 md:border-l md:border-[rgba(20,37,58,0.12)]'
-                  : 'md:pr-10'
-              } ${gi > 0 && gi < 2 ? 'md:pr-10' : ''}`}
+                  ? 'lg:pl-10 lg:border-l lg:border-[rgba(20,37,58,0.12)]'
+                  : 'lg:pr-10'
+              } ${gi > 0 && gi < 2 ? 'lg:pr-10' : ''}`}
             >
               {/* Eyebrow numéroté + catégorie */}
               <div className="mb-7">
