@@ -92,7 +92,7 @@ export function HeroSection() {
             variants={fadeUp}
             className="tracking-display text-[var(--color-ce-cream)] max-w-[26ch]"
             style={{
-              fontSize: 'clamp(30px, 5.3vw, 72px)',
+              fontSize: 'clamp(28px, 4.6vw, 60px)',
               lineHeight: 1.15,
               letterSpacing: '-0.035em',
             }}

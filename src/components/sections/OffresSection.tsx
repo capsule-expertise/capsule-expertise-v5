@@ -3,16 +3,26 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SITE } from '@/content/site';
 import { useInView } from '@/hooks/useInView';
+import { cn } from '@/lib/cn';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * OffresSection V5 — détail complet V1 : bloc 01 Comptabilité, bloc 02 Pilotage,
- * + bloc 03 interventions ponctuelles. Copy verbatim V1.
- * Pas de prix affichés (audit + demande client).
+ * OffresSection V8 — refonte premium parcours Dirigeant.
+ *
+ * Architecture :
+ * - Section intro (eyebrow "Nos offres" + H2 "Un accompagnement adapté..." +
+ *   supporting text). Editorial rhythm, large spacing.
+ * - 3 cards side-by-side (desktop) : Essentiel / Pilotage (highlighted) /
+ *   Direction. Center card subtly mise en avant : slightly larger, brighter
+ *   bg, gold accent bar en haut, badge "Le plus choisi".
+ * - Hover effects subtle (lift 2px), soft shadows.
+ * - Generous padding, lots of negative space, NOT SaaS pricing tables.
+ *
+ * Mobile : 1 colonne, ordre Essentiel → Pilotage (highlighted) → Direction.
  */
 export function OffresSection() {
-  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.08 });
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.05 });
   const O = SITE.offresTPE;
 
   return (
@@ -20,179 +30,206 @@ export function OffresSection() {
       id="dirigeant"
       ref={ref}
       className="bg-[var(--color-ce-cream)] text-[var(--color-ce-violet)]"
-      style={{ paddingBlock: '140px 120px' }}
+      style={{ paddingBlock: '120px 96px' }}
     >
       <div className="ce-container">
-        {/* Head */}
-        <div className="mb-14 max-w-[720px]">
-          <div className="ce-label ce-label--on-light mb-6">{O.eyebrow}</div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+        {/* Section intro — editorial rhythm, large spacing */}
+        <div className="max-w-[820px] mb-20 md:mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.85, ease: EASE }}
-            className="tracking-display text-[var(--color-ce-violet)] mb-5 max-w-[18ch]"
+            transition={{ duration: 0.7, ease: EASE }}
+            className="ce-label ce-label--on-light mb-7"
+          >
+            {O.eyebrow}
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 22 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.85, delay: 0.1, ease: EASE }}
+            className="tracking-display text-[var(--color-ce-violet)] mb-7 max-w-[20ch]"
             style={{
-              fontSize: 'clamp(40px, 6.4vw, 94px)',
-              lineHeight: 0.94,
+              fontSize: 'clamp(30px, 4.4vw, 56px)',
+              lineHeight: 1.05,
               fontWeight: 500,
+              letterSpacing: '-0.025em',
             }}
           >
-            {O.title} <em>{O.titleEm}</em> {O.titleEnd}
+            {O.title} <em>{O.titleEm}</em>
+            {O.titleEnd}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
-            className="text-[17px] leading-[1.65] text-[rgba(20, 37, 58,0.72)] max-w-[62ch]"
+            transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
+            className="text-[18px] leading-[1.6] text-[rgba(20,37,58,0.72)] max-w-[68ch]"
           >
             {O.intro}
           </motion.p>
         </div>
 
-        {/* 2 blocs niveaux */}
-        <div
-          className="grid gap-5 mb-8"
-          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))' }}
-        >
-          {O.blocs.map((b, i) => (
-            <motion.article
-              key={b.num}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.85, delay: 0.3 + i * 0.12, ease: EASE }}
-              className="flex flex-col gap-5 p-10 bg-[#ffffff] border border-[rgba(20, 37, 58,0.1)] rounded-[var(--radius-lg)]"
-            >
-              {/* N° label — mono discret */}
-              <div className="flex items-start justify-between gap-4">
-                <div
-                  className="text-[var(--color-ce-terra-deep)]"
-                  style={{
-                    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
-                    fontSize: '12px',
-                    fontWeight: 500,
-                    letterSpacing: '0.14em',
-                  }}
-                  aria-hidden
-                >
-                  N° {b.num}
-                </div>
-              </div>
-              <h3
-                className="text-[var(--color-ce-violet)]"
+        {/* 3 cards premium alignées (items-stretch). Variations internes :
+            paddings, gaps, marqueurs de bullets et footer treatments
+            différents pour casser le 'composant répété' sans casser l'alignement. */}
+        <div className="grid gap-6 md:gap-7 md:grid-cols-3 items-stretch">
+          {O.packs.map((p, i) => {
+            // Variations subtiles par card (Sprint B — composition)
+            const isFirst = i === 0;
+            const isLast = i === O.packs.length - 1;
+
+            // Padding variable : Card 1 plus condensé, Card 2 highlighted généreux, Card 3 intermédiaire
+            const padding = p.highlighted
+              ? 'p-9 md:p-12'
+              : isFirst
+                ? 'p-8 md:p-10'
+                : 'p-9 md:p-11';
+
+            // Gap interne : Card 1 et 3 plus resserrés (gap-6), Card 2 aéré (gap-7)
+            const gap = p.highlighted ? 'gap-7' : 'gap-6';
+
+            // Bullets gap : Card 2 plus aérée
+            const bulletsGap = p.highlighted ? 'gap-3' : 'gap-2.5';
+
+            return (
+              <motion.article
+                key={p.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.85,
+                  delay: 0.3 + i * 0.12,
+                  ease: EASE,
+                }}
+                className={cn(
+                  'group relative flex flex-col rounded-[var(--radius-xl)] overflow-hidden',
+                  'transition-transform duration-300 ease-out hover:-translate-y-1',
+                  p.highlighted
+                    ? 'bg-[#ffffff] md:scale-[1.025] md:-my-2'
+                    : 'bg-[rgba(255,255,255,0.65)]',
+                )}
                 style={{
-                  fontSize: '24px',
-                  fontWeight: 500,
-                  lineHeight: 1.2,
-                  letterSpacing: '-0.02em',
+                  boxShadow: p.highlighted
+                    ? '0 30px 60px -28px rgba(20, 37, 58, 0.18), 0 0 0 1px rgba(212, 182, 107, 0.4)'
+                    : '0 16px 40px -28px rgba(20, 37, 58, 0.12), 0 0 0 1px rgba(20, 37, 58, 0.08)',
                 }}
               >
-                {b.title}
-              </h3>
+                {/* Subtle gold accent bar on top of highlighted card */}
+                {p.highlighted && (
+                  <div
+                    aria-hidden
+                    className="absolute top-0 inset-x-0 h-[3px]"
+                    style={{ background: 'var(--color-ce-terra)' }}
+                  />
+                )}
 
-              {/* Divider */}
-              <div className="w-8 h-px bg-[var(--color-ce-terra-deep)]" aria-hidden />
+                <div className={cn('flex flex-col flex-1', gap, padding)}>
+                  {/* Badge "Le plus choisi" sur card highlighted */}
+                  {p.highlighted && p.badge && (
+                    <div className="inline-flex items-center gap-2 self-start text-[11px] font-medium tracking-[0.16em] uppercase text-[var(--color-ce-terra-deep)]">
+                      <span
+                        aria-hidden
+                        className="w-[6px] h-[6px] rounded-full bg-[var(--color-ce-terra)]"
+                      />
+                      {p.badge}
+                    </div>
+                  )}
 
-              {/* Description */}
-              <p className="text-[16px] leading-[1.65] text-[rgba(20, 37, 58,0.75)]">
-                {b.description}
-              </p>
+                  {/* Pack label */}
+                  <div>
+                    <h3
+                      className="tracking-display text-[var(--color-ce-violet)] mb-3"
+                      style={{
+                        fontSize: p.highlighted
+                          ? 'clamp(24px, 2.4vw, 30px)'
+                          : 'clamp(22px, 2.2vw, 28px)',
+                        lineHeight: 1.15,
+                        fontWeight: 500,
+                        letterSpacing: '-0.02em',
+                      }}
+                    >
+                      {p.label}
+                    </h3>
+                    <p className="text-[15px] leading-[1.55] text-[rgba(20,37,58,0.72)]">
+                      {p.intro}
+                    </p>
+                  </div>
 
-              {/* Bullets */}
-              <ul className="flex flex-col gap-2.5 mt-2">
-                {b.bullets.map((bullet) => (
-                  <li
-                    key={bullet}
-                    className="relative pl-6 text-[16px] leading-[1.55] text-[rgba(20, 37, 58,0.88)]"
+                  {/* Separator subtil */}
+                  <div className="h-px bg-[rgba(20,37,58,0.08)]" />
+
+                  {/* Bullets — marqueur différent par card pour identité visuelle :
+                      - Card 1 (Essentiel) : barre courte horizontale (sobre, pragmatique)
+                      - Card 2 (Pilotage)  : point rond ocre (premium, marqué)
+                      - Card 3 (Direction) : chevron > (orienté action / progression) */}
+                  <ul className={cn('flex flex-col flex-1', bulletsGap)}>
+                    {p.bullets.map((b) => (
+                      <li
+                        key={b}
+                        className="relative pl-5 text-[15px] leading-[1.55] text-[rgba(20,37,58,0.85)]"
+                      >
+                        {p.highlighted ? (
+                          // Card 2 : point rond ocre
+                          <span
+                            aria-hidden
+                            className="absolute left-0 top-[8px] w-[7px] h-[7px] rounded-full bg-[var(--color-ce-terra)]"
+                          />
+                        ) : isLast ? (
+                          // Card 3 : chevron orienté action
+                          <span
+                            aria-hidden
+                            className="absolute left-0 top-[1px] text-[13px] font-medium leading-[1.55] text-[var(--color-ce-terra-deep)]"
+                          >
+                            ›
+                          </span>
+                        ) : (
+                          // Card 1 : barre fine horizontale (existant)
+                          <span
+                            aria-hidden
+                            className="absolute left-0 top-[11px] w-[8px] h-[1.5px] bg-[var(--color-ce-terra-deep)]"
+                          />
+                        )}
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Footer text — treatment varié :
+                      - Card 1 (Essentiel) : pas de border-top, juste texte italique
+                      - Card 2 (Pilotage) : border-top fine (déjà)
+                      - Card 3 (Direction) : border-top + tiny accent ocre '—' en début */}
+                  <p
+                    className={cn(
+                      'text-[13px] italic leading-[1.55] text-[rgba(20,37,58,0.55)]',
+                      isFirst ? 'pt-1' : 'pt-3 border-t border-[rgba(20,37,58,0.08)]',
+                    )}
                   >
-                    <span
-                      aria-hidden
-                      className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra-deep)]"
-                    />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            </motion.article>
-          ))}
+                    {isLast && (
+                      <span
+                        aria-hidden
+                        className="inline-block mr-2 text-[var(--color-ce-terra-deep)] not-italic"
+                      >
+                        —
+                      </span>
+                    )}
+                    {p.footer}
+                  </p>
+
+                  {/* CTA */}
+                  <Link
+                    to={p.cta.href}
+                    className={cn(
+                      'ce-btn self-start',
+                      p.highlighted ? 'ce-btn--terra' : 'ce-btn--ghost-light',
+                    )}
+                  >
+                    {p.cta.label}
+                    <ArrowRight size={14} strokeWidth={1.75} />
+                  </Link>
+                </div>
+              </motion.article>
+            );
+          })}
         </div>
-
-        {/* Bloc 03 — Interventions ponctuelles */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.85, delay: 0.55, ease: EASE }}
-          className="p-10 bg-[var(--color-ce-violet)] text-[var(--color-ce-cream)] rounded-[var(--radius-lg)] mb-10"
-        >
-          <div className="ce-label ce-label--cream mb-3">
-            {O.interventions.eyebrow}
-          </div>
-          <h3
-            className="text-[var(--color-ce-cream)] mb-3"
-            style={{
-              fontSize: '26px',
-              fontWeight: 500,
-              lineHeight: 1.2,
-              letterSpacing: '-0.02em',
-            }}
-          >
-            {O.interventions.title} <em>{O.interventions.titleEm}</em>
-          </h3>
-          <p className="text-[16px] leading-[1.65] text-[rgba(242,237,225,0.72)] mb-7 max-w-[62ch]">
-            {O.interventions.intro}
-          </p>
-          <div
-            className="grid gap-x-10 gap-y-2"
-            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))' }}
-          >
-            <ul className="flex flex-col gap-2.5">
-              {O.interventions.bullets.slice(0, 3).map((b) => (
-                <li
-                  key={b}
-                  className="relative pl-6 text-[16px] leading-[1.55] text-[rgba(242,237,225,0.88)]"
-                >
-                  <span
-                    aria-hidden
-                    className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra-deep)]"
-                  />
-                  {b}
-                </li>
-              ))}
-            </ul>
-            <ul className="flex flex-col gap-2.5">
-              {O.interventions.bullets.slice(3).map((b) => (
-                <li
-                  key={b}
-                  className="relative pl-6 text-[16px] leading-[1.55] text-[rgba(242,237,225,0.88)]"
-                >
-                  <span
-                    aria-hidden
-                    className="absolute left-0 top-[12px] w-[10px] h-[2px] bg-[var(--color-ce-terra-deep)]"
-                  />
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <p className="text-[14px] italic text-[rgba(242,237,225,0.55)] leading-[1.6] border-t border-[rgba(242,237,225,0.12)] pt-5 mt-7">
-            {O.interventions.footer}
-          </p>
-        </motion.div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.85, delay: 0.7, ease: EASE }}
-          className="flex flex-wrap items-center justify-between gap-6"
-        >
-          <p className="text-[15px] italic text-[rgba(20, 37, 58,0.65)] max-w-[62ch]">
-            {O.ctaAside}
-          </p>
-          <Link to={`${O.cta.href}?from=dirigeant`} className="ce-btn ce-btn--terra ce-btn--lg">
-            {O.cta.label}
-            <ArrowRight size={15} strokeWidth={1.75} />
-          </Link>
-        </motion.div>
       </div>
     </section>
   );

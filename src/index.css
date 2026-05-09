@@ -36,11 +36,13 @@
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Radius V4 — plus généreux que V3 */
-  --radius-xs: 6px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
+  /* Radius V8 — réduits ~30% pour feeling architectural / structure
+     (au lieu de SaaS / produit digital) */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 11px;
+  --radius-xl: 14px;
   --radius-pill: 999px;
 
   /* Spacing */

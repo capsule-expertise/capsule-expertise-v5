@@ -12,7 +12,7 @@ export function ContactInfo() {
   return (
     <section
       className="bg-[var(--color-ce-cream-warm)] text-[var(--color-ce-violet)]"
-      style={{ paddingBlock: '0 120px' }}
+      style={{ paddingBlock: '0 96px' }}
     >
       <div className="ce-container">
         <div className="grid gap-10 md:grid-cols-3 max-w-[1100px]">

@@ -21,7 +21,7 @@ export function OffresETISection() {
       id="finance"
       ref={ref}
       className="bg-[var(--color-ce-violet-deep)] text-[var(--color-ce-cream)] relative overflow-hidden"
-      style={{ paddingBlock: '140px 120px' }}
+      style={{ paddingBlock: '100px 96px' }}
     >
       {/* Subtle grid overlay */}
       <div
@@ -44,7 +44,7 @@ export function OffresETISection() {
             transition={{ duration: 0.85, ease: EASE }}
             className="tracking-display text-[var(--color-ce-cream)] max-w-[14ch] mb-6"
             style={{
-              fontSize: 'clamp(40px, 6.4vw, 94px)',
+              fontSize: 'clamp(34px, 5.4vw, 80px)',
               lineHeight: 0.94,
               fontWeight: 500,
             }}
