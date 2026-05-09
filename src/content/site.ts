@@ -184,17 +184,35 @@ export const SITE = {
       supporting:
         "Certains besoins nécessitent un accompagnement spécifique ou ponctuel.",
     },
-    missions: [
-      'Arbitrage rémunération dirigeant',
-      'Prévisionnel de trésorerie',
-      'Business plan & prévisionnels',
-      'Accompagnement bancaire & financement',
-      'Création de société & structuration',
-      'Tableaux de bord sur mesure',
-      'Analyse de rentabilité',
-      'DAF externalisé',
-      'Optimisation des outils de gestion',
-      'Structuration holding',
+    missionsGroups: [
+      {
+        index: '01',
+        category: 'Pilotage & analyse',
+        items: [
+          'Arbitrage rémunération dirigeant',
+          'Prévisionnel de trésorerie',
+          'Tableaux de bord sur mesure',
+          'Analyse de rentabilité',
+        ],
+      },
+      {
+        index: '02',
+        category: 'Croissance & financement',
+        items: [
+          'Business plan & prévisionnels',
+          'Accompagnement bancaire & financement',
+          'DAF externalisé',
+        ],
+      },
+      {
+        index: '03',
+        category: 'Structuration',
+        items: [
+          'Création de société & structuration',
+          'Optimisation des outils de gestion',
+          'Structuration holding',
+        ],
+      },
     ],
   },
 

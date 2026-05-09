@@ -1,19 +1,21 @@
 import { motion } from 'framer-motion';
 import { SITE } from '@/content/site';
 import { useInView } from '@/hooks/useInView';
-import { cn } from '@/lib/cn';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * MissionsSection — missions complémentaires ponctuelles (parcours dirigeant).
+ * MissionsSection V2 — refonte éditoriale layout 3 colonnes thématiques.
  *
- * Affiche les 10 missions de SITE.offresTPE.missions sous forme de mini-cards
- * sobres en grid responsive. Style premium / éditorial : pas de SaaS pricing,
- * juste des chips/tags élégants avec respiration.
+ * Au lieu d'un mur de mini-cards uniformes (effet 'UI generated'), les 10
+ * missions sont regroupées en 3 thématiques (Pilotage & analyse / Croissance
+ * & financement / Structuration) présentées comme des chapitres de magazine :
+ * eyebrow numéroté + titre catégorie + liste éditoriale des missions.
  *
- * Section feel "secondaire / modulaire" — l'essentiel reste la grille des
- * 3 packs au-dessus. Ici on liste les missions ponctuelles activables.
+ * Pas de boxes, pas de cards, pas de tags. Typographie-driven, vertical
+ * separators subtils entre colonnes, hover discret sur chaque ligne.
+ *
+ * Mobile : passe en colonne unique, séparateurs horizontaux entre groupes.
  */
 export function MissionsSection() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.05 });
@@ -62,53 +64,77 @@ export function MissionsSection() {
           </motion.p>
         </div>
 
-        {/* Grid magazine — 4 cols sur lg, mais 2 missions phares prennent 2 cols
-            (index 0 "Arbitrage rémunération dirigeant" + index 7 "DAF externalisé").
-            Total 12 col-units sur 4 cols = 3 rangs propres asymétriques.
-            Sur tablet/mobile : grid normale (3 cols / 2 cols, pas de span).
-            Casse l'effet "mur de boutons" au profit d'un layout magazine. */}
-        <div className="grid gap-3 md:gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {O.missions.map((m, i) => {
-            const isFeatured = i === 0 || i === 7;
-            return (
-              <motion.div
-                key={m}
-                initial={{ opacity: 0, y: 16 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.3 + (i % 4) * 0.05 + Math.floor(i / 4) * 0.08,
-                  ease: EASE,
-                }}
-                className={cn(
-                  'group relative flex items-center gap-3 rounded-[var(--radius-md)] bg-[#ffffff] border border-[rgba(20,37,58,0.08)] transition-all duration-300 ease-out hover:border-[rgba(212,182,107,0.5)] hover:shadow-[0_8px_24px_-12px_rgba(20,37,58,0.15)]',
-                  // Variations de padding : missions featured plus généreuses
-                  isFeatured ? 'px-7 py-6' : 'px-5 py-5',
-                  // Col-span uniquement sur lg : missions featured = 2 cols
-                  isFeatured ? 'lg:col-span-2' : '',
-                )}
-              >
-                {/* Petit accent ocre — barre fine à gauche, plus haute si featured */}
-                <span
-                  aria-hidden
-                  className={cn(
-                    'bg-[var(--color-ce-terra-deep)] flex-shrink-0 transition-all duration-300',
-                    isFeatured
-                      ? 'w-[3px] h-[22px] group-hover:h-[28px]'
-                      : 'w-[3px] h-[18px] group-hover:h-[24px]',
-                  )}
-                />
-                <span
-                  className={cn(
-                    'leading-[1.4] text-[var(--color-ce-violet)] font-medium',
-                    isFeatured ? 'text-[16px]' : 'text-[14px]',
-                  )}
+        {/* 3 colonnes thématiques séparées par des lignes verticales fines.
+            Pas de boxes/cards. Layout magazine-style, typographie-driven. */}
+        <div className="grid gap-10 md:gap-0 md:grid-cols-3">
+          {O.missionsGroups.map((group, gi) => (
+            <motion.div
+              key={group.index}
+              initial={{ opacity: 0, y: 22 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{
+                duration: 0.85,
+                delay: 0.3 + gi * 0.12,
+                ease: EASE,
+              }}
+              className={`relative ${
+                // Séparateurs verticaux entre colonnes (desktop) — pas avant la 1ère
+                gi > 0
+                  ? 'md:pl-10 md:border-l md:border-[rgba(20,37,58,0.12)]'
+                  : 'md:pr-10'
+              } ${gi > 0 && gi < 2 ? 'md:pr-10' : ''}`}
+            >
+              {/* Eyebrow numéroté + catégorie */}
+              <div className="mb-7">
+                <div className="flex items-baseline gap-3 mb-3">
+                  <span
+                    className="text-[var(--color-ce-terra-deep)] font-medium tracking-[0.05em]"
+                    style={{
+                      fontFamily:
+                        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+                      fontSize: '13px',
+                    }}
+                    aria-hidden
+                  >
+                    {group.index}
+                  </span>
+                  <span
+                    aria-hidden
+                    className="h-px flex-1 bg-[rgba(20,37,58,0.18)]"
+                  />
+                </div>
+                <h3
+                  className="tracking-display text-[var(--color-ce-violet)]"
+                  style={{
+                    fontSize: 'clamp(20px, 1.8vw, 24px)',
+                    lineHeight: 1.2,
+                    fontWeight: 500,
+                    letterSpacing: '-0.015em',
+                  }}
                 >
-                  {m}
-                </span>
-              </motion.div>
-            );
-          })}
+                  {group.category}
+                </h3>
+              </div>
+
+              {/* Liste éditoriale — pas de bullets, juste typographie + hover */}
+              <ul className="flex flex-col">
+                {group.items.map((item, ii) => (
+                  <li
+                    key={item}
+                    className={`group/item flex items-start gap-4 py-3.5 cursor-default transition-colors duration-200 hover:text-[var(--color-ce-terra-deep)] ${
+                      ii < group.items.length - 1
+                        ? 'border-b border-[rgba(20,37,58,0.08)]'
+                        : ''
+                    }`}
+                  >
+                    <span className="text-[15px] leading-[1.5] text-[var(--color-ce-violet)] group-hover/item:text-[var(--color-ce-terra-deep)] transition-colors duration-200">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
