@@ -78,43 +78,44 @@ export function HeroSection() {
         />
       </motion.div>
 
-      {/* Photo mobile (<md) — plein écran. Photo dominante, gradient sur la
-          moitié inférieure pour faire lire le texte qui est centré-bas. */}
+      {/* Photo mobile (<md) — top 55% du viewport seulement (pas full screen).
+          Dézoome la photo car container moins extrême en aspect ratio → moins
+          de crop horizontal. Texte sur navy dans le bas 45%. Gradient fade
+          entre les deux. */}
       <div
         aria-hidden
-        className="md:hidden absolute inset-0 pointer-events-none overflow-hidden"
-        style={{ zIndex: 0 }}
+        className="md:hidden absolute top-0 left-0 right-0 pointer-events-none overflow-hidden"
+        style={{ zIndex: 0, height: '55%' }}
       >
         <img
           src={H.heroPhoto.src}
           alt=""
           loading="eager"
-          className="block w-full h-full object-cover object-[72%_22%]"
-          style={{ minWidth: '100%', minHeight: '100%' }}
+          className="block w-full h-full object-cover object-[55%_25%]"
         />
         {/* Léger overlay global pour cohérence couleur */}
         <div
           className="absolute inset-0"
-          style={{ background: 'rgba(14, 26, 46, 0.22)' }}
+          style={{ background: 'rgba(14, 26, 46, 0.18)' }}
         />
-        {/* Gradient navy bas→haut, couvre 70% bas pour lecture texte centré */}
+        {/* Gradient bas de photo → navy : transition douce vers le bloc texte */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-x-0 bottom-0 pointer-events-none"
           style={{
+            height: '40%',
             background:
-              'linear-gradient(to top, rgba(14,26,46,0.94) 0%, rgba(14,26,46,0.78) 30%, rgba(14,26,46,0.4) 55%, rgba(14,26,46,0.08) 80%, transparent 100%)',
+              'linear-gradient(to top, var(--color-ce-violet) 0%, rgba(14,26,46,0.6) 50%, transparent 100%)',
           }}
         />
       </div>
 
-      {/* Container text — sur mobile : items-center mais texte décalé vers bas
-          via padding pour rester visible avec photo dominante en haut.
+      {/* Container text — sur mobile : items-end (texte en bas, photo top 55%).
           Sur desktop : items-center (texte verticalement centré, photo biais). */}
       <div
-        className="ce-container relative z-10 flex items-center"
+        className="ce-container relative z-10 flex items-end md:items-center"
         style={{ minHeight: 'calc(100svh - var(--spacing-nav-h))' }}
       >
-        <div className="max-w-[560px] md:max-w-[600px] pt-32 pb-8 md:py-12">
+        <div className="max-w-[560px] md:max-w-[600px] pb-10 md:py-12">
           {/* Eyebrow — texte simple sans pastille (pas de .ce-label) */}
           <motion.div
             initial="hidden"
