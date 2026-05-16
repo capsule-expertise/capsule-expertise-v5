@@ -39,7 +39,9 @@ export function HeroSection() {
         minHeight: 'calc(100svh - var(--spacing-nav-h))',
       }}
     >
-      {/* Photo desktop — biais clip-path + fondu mask-image gauche */}
+      {/* Photo desktop — biais clip-path + fondu mask-image gauche.
+          Container plus large (60vw) + objectPosition '50% 22%' pour que
+          LES DEUX fondateurs soient visibles dans le cadre. */}
       <motion.div
         initial={{ opacity: 0, x: reduced ? 0 : 30 }}
         animate={{ opacity: 1, x: 0 }}
@@ -47,11 +49,11 @@ export function HeroSection() {
         aria-hidden
         className="hidden md:block absolute top-0 bottom-0 right-0 pointer-events-none overflow-hidden"
         style={{
-          width: 'clamp(500px, 55vw, 1000px)',
+          width: 'clamp(560px, 60vw, 1150px)',
           zIndex: 1,
-          // Clip-path en biais : bord gauche diagonal de haut-droit vers bas-gauche
-          clipPath: 'polygon(18% 0, 100% 0, 100% 100%, 0 100%)',
-          WebkitClipPath: 'polygon(18% 0, 100% 0, 100% 100%, 0 100%)',
+          // Clip-path biais légèrement adouci (12% au lieu de 18%)
+          clipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0 100%)',
+          WebkitClipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0 100%)',
         }}
       >
         <img
@@ -59,7 +61,7 @@ export function HeroSection() {
           alt={H.heroPhoto.alt}
           loading="eager"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '35% 20%' }}
+          style={{ objectPosition: '50% 22%' }}
         />
         {/* Fondu mask sur bord gauche pour transition douce vers navy bg */}
         <div
@@ -99,41 +101,15 @@ export function HeroSection() {
         className="ce-container relative z-10 flex items-center"
         style={{ minHeight: 'calc(100svh - var(--spacing-nav-h))' }}
       >
-        <div className="max-w-[560px] md:max-w-[600px] py-16 md:py-24">
-          {/* OEC logo (B&W via filter grayscale) — top-left */}
+        <div className="max-w-[560px] md:max-w-[600px] py-8 md:py-12">
+          {/* Eyebrow — texte simple sans pastille (pas de .ce-label) */}
           <motion.div
             initial="hidden"
             animate="visible"
-            custom={0.05}
+            custom={0.1}
             variants={fadeUp}
-            className="mb-7 flex items-center gap-3"
-          >
-            <img
-              src="/oec-logo.svg"
-              alt="Membre de l'Ordre des Experts-Comptables"
-              width={120}
-              height={36}
-              style={{
-                height: '28px',
-                width: 'auto',
-                filter: 'grayscale(1) brightness(1.8) opacity(0.85)',
-              }}
-            />
-            <span
-              aria-hidden
-              className="text-[11px] font-medium tracking-[0.16em] uppercase text-[rgba(242,237,225,0.55)]"
-            >
-              · Paris IDF
-            </span>
-          </motion.div>
-
-          {/* Eyebrow géo */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            custom={0.12}
-            variants={fadeUp}
-            className="ce-label ce-label--cream mb-5"
+            className="mb-5 text-[12px] font-medium tracking-[0.18em] uppercase"
+            style={{ color: 'rgba(242, 237, 225, 0.6)' }}
           >
             {H.eyebrow}
           </motion.div>

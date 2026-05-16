@@ -56,7 +56,7 @@ export const SITE = {
 
   // ─── HERO — V8 test biais : OEC logo + eyebrow + H1 + subtitle + CTA + photo diagonale ───
   hero: {
-    eyebrow: "Cabinet d'expertise comptable · Bry-sur-Marne",
+    eyebrow: "Cabinet d'expertise comptable indépendant",
     titleLine1: 'Maîtrisez vos chiffres,',
     titleLine2: 'décidez plus vite.',
     subtitleBrand: 'Cabinet indépendant — copilote des dirigeants & DAF.',
