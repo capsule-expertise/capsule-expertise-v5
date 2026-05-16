@@ -54,12 +54,14 @@ export const SITE = {
     cta: { label: 'Contact', href: '/contact' },
   },
 
-  // ─── HERO — V5 itération 5 : copy court, photo immersive, choix renvoyé en aiguillage ───
+  // ─── HERO — V8 test biais : OEC logo + eyebrow + H1 + subtitle + CTA + photo diagonale ───
   hero: {
+    eyebrow: "Cabinet d'expertise comptable · Bry-sur-Marne",
     titleLine1: 'Maîtrisez vos chiffres,',
-    titleLine2: 'Décidez plus vite.',
-    subtitleBrand: 'Capsule — Copilote des dirigeants & DAF',
+    titleLine2: 'décidez plus vite.',
+    subtitleBrand: 'Cabinet indépendant — copilote des dirigeants & DAF.',
     oecBadge: "Membre de l'Ordre des Experts-Comptables de Paris",
+    ctaPrimary: { label: 'Prendre rendez-vous', href: '/contact' },
     heroPhoto: {
       src: '/Ranto%20Jeromev3.png',
       alt: 'Ranto Rajaonarivo et Jérôme Phou, associés fondateurs de Capsule Expertise',

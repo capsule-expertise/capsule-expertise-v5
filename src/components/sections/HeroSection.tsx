@@ -1,26 +1,21 @@
 import { motion, type Variants } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { SITE } from '@/content/site';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * HeroSection V7 — photo plein écran + dark overlay (style hashtagfinance).
+ * HeroSection V8 — test layout split biais.
  *
- * Refonte de la hiérarchie visuelle :
- * - Photo prend toute la section en background (au lieu d'un container à droite
- *   avec mask gradient artificiel)
- * - Dark overlay navy semi-transparent (~55%) globalement par-dessus la photo
- * - Subtle gradient additionnel à gauche pour aider la lecture du texte sans
- *   créer de "rideau" artificiel
- * - H1 réduit (-18%), line-height 1.15, padding-y augmenté → respiration et luxe
- * - Plus de trait ocre vertical (devient redondant avec photo dominante)
+ * Layout :
+ * - Côté gauche (texte) : OEC logo B&W (haut-gauche) + eyebrow géo + H1
+ *   (ligne 2 italique gold) + subtitle + CTA primary gold
+ * - Côté droite (photo) : photo en diagonale via clip-path, fondu mask-image
+ *   sur le bord gauche (transition douce vers navy bg)
  *
- * Hiérarchie visuelle restaurée :
- *   1. Photo (dominante par sa surface)
- *   2. H1 (présence forte mais respirante)
- *   3. Subtitle + badge OEC (accent secondaires)
- *   4. Nav (chrome fonctionnel)
+ * Sur mobile : photo en background avec dark overlay (fallback), texte par-dessus.
  */
 export function HeroSection() {
   const reduced = useReducedMotion();
@@ -44,90 +39,169 @@ export function HeroSection() {
         minHeight: 'calc(100svh - var(--spacing-nav-h))',
       }}
     >
-      {/* Photo plein écran assumée — un seul overlay léger global, plus de
-          fade horizontal artificiel. Direction DA : "image pleine, on assume". */}
+      {/* Photo desktop — biais clip-path + fondu mask-image gauche */}
       <motion.div
-        initial={{ opacity: 0, scale: reduced ? 1 : 1.03 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: reduced ? 0 : 1.4, delay: 0, ease: EASE }}
+        initial={{ opacity: 0, x: reduced ? 0 : 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: reduced ? 0 : 1.2, delay: 0.1, ease: EASE }}
         aria-hidden
-        className="absolute inset-0 pointer-events-none overflow-hidden"
-        style={{ zIndex: 0 }}
+        className="hidden md:block absolute top-0 bottom-0 right-0 pointer-events-none overflow-hidden"
+        style={{
+          width: 'clamp(500px, 55vw, 1000px)',
+          zIndex: 1,
+          // Clip-path en biais : bord gauche diagonal de haut-droit vers bas-gauche
+          clipPath: 'polygon(18% 0, 100% 0, 100% 100%, 0 100%)',
+          WebkitClipPath: 'polygon(18% 0, 100% 0, 100% 100%, 0 100%)',
+        }}
       >
         <img
           src={H.heroPhoto.src}
           alt={H.heroPhoto.alt}
           loading="eager"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '30% 18%' }}
+          style={{ objectPosition: '35% 20%' }}
         />
-        {/* Overlay navy LÉGER global — laisse la photo respirer, les visages
-            ressortent. Avant: 0.35 + un 2e overlay gauche (trop sombre). */}
+        {/* Fondu mask sur bord gauche pour transition douce vers navy bg */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              'linear-gradient(to right, var(--color-ce-violet) 0%, rgba(14,26,46,0.7) 12%, rgba(14,26,46,0.2) 25%, transparent 40%)',
+          }}
+        />
+        {/* Overlay navy léger global pour harmoniser couleurs */}
         <div
           className="absolute inset-0"
-          style={{ background: 'rgba(14, 26, 46, 0.22)' }}
-        />
-        {/* Gradient vertical bas→haut subtle pour fond de lecture du H1
-            (pas un fade horizontal qui crée une frontière) */}
-        <div
-          className="absolute inset-x-0 bottom-0 pointer-events-none"
-          style={{
-            height: '70%',
-            background:
-              'linear-gradient(to top, rgba(14, 26, 46, 0.45) 0%, rgba(14, 26, 46, 0.15) 60%, transparent 100%)',
-          }}
+          style={{ background: 'rgba(14, 26, 46, 0.18)' }}
         />
       </motion.div>
 
-      {/* Container text par-dessus, H1 + subtitle + badge OEC */}
-      <div className="ce-container relative z-10 flex items-center" style={{ minHeight: 'calc(100svh - var(--spacing-nav-h))' }}>
+      {/* Photo mobile (<md) — fallback : background plein écran + overlay foncé */}
+      <div
+        aria-hidden
+        className="md:hidden absolute inset-0 pointer-events-none"
+        style={{ zIndex: 0 }}
+      >
+        <img
+          src={H.heroPhoto.src}
+          alt=""
+          loading="eager"
+          className="w-full h-full object-cover object-[50%_22%]"
+        />
         <div
-          className="max-w-[640px] md:max-w-[720px] py-20 md:py-28"
-          style={{ marginLeft: 'clamp(-2.5rem, -2vw, -1rem)' }}
-        >
+          className="absolute inset-0"
+          style={{ background: 'rgba(14, 26, 46, 0.78)' }}
+        />
+      </div>
+
+      {/* Container text par-dessus, à gauche */}
+      <div
+        className="ce-container relative z-10 flex items-center"
+        style={{ minHeight: 'calc(100svh - var(--spacing-nav-h))' }}
+      >
+        <div className="max-w-[560px] md:max-w-[600px] py-16 md:py-24">
+          {/* OEC logo (B&W via filter grayscale) — top-left */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            custom={0.05}
+            variants={fadeUp}
+            className="mb-7 flex items-center gap-3"
+          >
+            <img
+              src="/oec-logo.svg"
+              alt="Membre de l'Ordre des Experts-Comptables"
+              width={120}
+              height={36}
+              style={{
+                height: '28px',
+                width: 'auto',
+                filter: 'grayscale(1) brightness(1.8) opacity(0.85)',
+              }}
+            />
+            <span
+              aria-hidden
+              className="text-[11px] font-medium tracking-[0.16em] uppercase text-[rgba(242,237,225,0.55)]"
+            >
+              · Paris IDF
+            </span>
+          </motion.div>
+
+          {/* Eyebrow géo */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            custom={0.12}
+            variants={fadeUp}
+            className="ce-label ce-label--cream mb-5"
+          >
+            {H.eyebrow}
+          </motion.div>
+
+          {/* H1 — ligne 1 ivoire, ligne 2 italique gold (Fraunces) */}
           <motion.h1
             initial="hidden"
             animate="visible"
-            custom={0.1}
+            custom={0.2}
             variants={fadeUp}
-            className="tracking-display text-[var(--color-ce-cream)] max-w-[26ch]"
+            className="tracking-display text-[var(--color-ce-cream)] max-w-[22ch]"
             style={{
-              fontSize: 'clamp(28px, 4.6vw, 60px)',
-              lineHeight: 1.15,
-              letterSpacing: '-0.035em',
+              fontSize: 'clamp(32px, 4.8vw, 64px)',
+              lineHeight: 1.1,
+              letterSpacing: '-0.025em',
             }}
           >
             {H.titleLine1}
             <br />
-            <span style={{ color: 'var(--color-ce-terra)' }}>{H.titleLine2}</span>
+            <span
+              className="font-serif italic"
+              style={{
+                color: 'var(--color-ce-terra)',
+                fontWeight: 400,
+                letterSpacing: '-0.015em',
+              }}
+            >
+              {H.titleLine2}
+            </span>
           </motion.h1>
 
+          {/* Subtitle */}
           <motion.p
             initial="hidden"
             animate="visible"
-            custom={0.25}
+            custom={0.3}
             variants={fadeUp}
-            className="text-[var(--color-ce-cream)] mt-8 max-w-[60ch]"
+            className="text-[var(--color-ce-cream)] mt-7 max-w-[44ch]"
             style={{
-              fontSize: 'clamp(16px, 1.3vw, 18px)',
-              fontWeight: 500,
-              opacity: 0.92,
-              letterSpacing: '0.005em',
+              fontSize: '17px',
+              fontWeight: 400,
+              opacity: 0.85,
               lineHeight: 1.5,
             }}
           >
             {H.subtitleBrand}
           </motion.p>
 
+          {/* CTA primary gold (filled champagne, dark text) */}
           <motion.div
             initial="hidden"
             animate="visible"
             custom={0.4}
             variants={fadeUp}
-            className="ce-label mt-10"
-            style={{ color: 'var(--color-ce-terra)' }}
+            className="mt-9"
           >
-            {H.oecBadge}
+            <Link
+              to={H.ctaPrimary.href}
+              className="inline-flex items-center gap-2 px-7 py-4 rounded-[var(--radius-sm)] font-medium text-[15px] tracking-[-0.005em] transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
+              style={{
+                background: 'var(--color-ce-terra)',
+                color: 'var(--color-ce-violet)',
+                boxShadow: '0 8px 24px -10px rgba(212, 182, 107, 0.5)',
+              }}
+            >
+              {H.ctaPrimary.label}
+              <ArrowRight size={16} strokeWidth={1.75} />
+            </Link>
           </motion.div>
         </div>
       </div>
