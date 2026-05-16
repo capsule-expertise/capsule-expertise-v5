@@ -40,8 +40,8 @@ export function HeroSection() {
       }}
     >
       {/* Photo desktop — biais clip-path + fondu mask-image gauche.
-          Container plus large (60vw) + objectPosition '50% 22%' pour que
-          LES DEUX fondateurs soient visibles dans le cadre. */}
+          Container élargi à 68vw (plus de photo à gauche) + clip-path 8%
+          (biais moins agressif). objectPosition '50% 22%' garde 2 fondateurs. */}
       <motion.div
         initial={{ opacity: 0, x: reduced ? 0 : 30 }}
         animate={{ opacity: 1, x: 0 }}
@@ -49,11 +49,11 @@ export function HeroSection() {
         aria-hidden
         className="hidden md:block absolute top-0 bottom-0 right-0 pointer-events-none overflow-hidden"
         style={{
-          width: 'clamp(560px, 60vw, 1150px)',
+          width: 'clamp(620px, 68vw, 1300px)',
           zIndex: 1,
-          // Clip-path biais légèrement adouci (12% au lieu de 18%)
-          clipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0 100%)',
-          WebkitClipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0 100%)',
+          // Clip-path biais doux (8% — photo s'étend plus à gauche)
+          clipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0 100%)',
+          WebkitClipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0 100%)',
         }}
       >
         <img
@@ -78,7 +78,9 @@ export function HeroSection() {
         />
       </motion.div>
 
-      {/* Photo mobile (<md) — fallback : background plein écran + overlay foncé */}
+      {/* Photo mobile (<md) — plein écran cinématique. Photo visible en haut,
+          gradient navy bas→haut pour faire lire le texte qui sera positionné
+          en bas du viewport. Pas d'overlay uniforme — photo dominante. */}
       <div
         aria-hidden
         className="md:hidden absolute inset-0 pointer-events-none"
@@ -88,20 +90,30 @@ export function HeroSection() {
           src={H.heroPhoto.src}
           alt=""
           loading="eager"
-          className="w-full h-full object-cover object-[50%_22%]"
+          className="w-full h-full object-cover object-[50%_18%]"
         />
+        {/* Léger overlay global pour cohérence couleur (très faible) */}
         <div
           className="absolute inset-0"
-          style={{ background: 'rgba(14, 26, 46, 0.78)' }}
+          style={{ background: 'rgba(14, 26, 46, 0.18)' }}
+        />
+        {/* Gradient bas→haut : zone texte en bas avec fond foncé pour lecture */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to top, rgba(14,26,46,0.96) 0%, rgba(14,26,46,0.85) 25%, rgba(14,26,46,0.45) 50%, rgba(14,26,46,0.1) 75%, transparent 100%)',
+          }}
         />
       </div>
 
-      {/* Container text par-dessus, à gauche */}
+      {/* Container text — sur mobile : items-end (texte en bas, photo domine en haut).
+          Sur desktop : items-center (texte verticalement centré, photo en biais à côté). */}
       <div
-        className="ce-container relative z-10 flex items-center"
+        className="ce-container relative z-10 flex items-end md:items-center"
         style={{ minHeight: 'calc(100svh - var(--spacing-nav-h))' }}
       >
-        <div className="max-w-[560px] md:max-w-[600px] py-8 md:py-12">
+        <div className="max-w-[560px] md:max-w-[600px] pb-12 md:py-12">
           {/* Eyebrow — texte simple sans pastille (pas de .ce-label) */}
           <motion.div
             initial="hidden"
