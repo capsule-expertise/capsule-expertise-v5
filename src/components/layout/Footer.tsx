@@ -77,7 +77,8 @@ export function Footer() {
             style={{
               height: '40px',
               width: 'auto',
-              opacity: 0.95,
+              filter: 'grayscale(1) brightness(1.8)',
+              opacity: 0.85,
             }}
           />
           <span className="text-[13px] text-[rgba(242,237,225,0.6)]">
